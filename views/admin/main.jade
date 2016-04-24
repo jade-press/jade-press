@@ -1,0 +1,80 @@
+include ../parts/head1
+title main - #{siteName}
+include ../parts/head2
+#wrapper
+	
+	include ../parts/loading
+	#content.container-fluid(v-cloak)
+
+		.row
+
+			//left-panel
+			include ../parts/left-panel
+
+			//main
+			#main.col-sm-8.col-md-8.col-lg-9
+
+				.main-content.p-x-2
+					include ../parts/nav
+					.p-y-3
+					h1 main
+					hr
+					ul.nav.nav-tabs
+						li.nav-item.m-l-1
+							a.nav-link(href='#info', @click.prevent='setTab("info")', :class='{ "active": tab === "info" }') welcome
+						li.nav-item
+							a.nav-link(href='#password', @click.prevent='setTab("password")', :class='{ "active": tab === "password" }') password
+
+					hr
+					.tab-contents
+
+						.tab-content(v-show='tab === "info"')
+							ul.list-group
+								li.list-group-item
+									b user.name: 
+									span #{user.name}
+								li.list-group-item
+									b user.email: 
+									span #{user.email}
+								li.list-group-item
+									b user.group.name: 
+									span #{user.group.name}
+
+						.tab-content(v-show='tab === "password"')
+							h2 change password
+							hr
+							form(name='form1', @submit.prevent='update()', novalidate, v-form, hook='formHook')
+								.form-group
+									label current password
+									input.form-control(type='password', name='oldpass', v-form-ctrl, v-model='formData1.oldpass', placeholder='current password', required, maxlength=24)
+									div(v-show='form1.oldpass.$dirty && form1.oldpass.$invalid')
+										.alert.alert-danger(v-show='form1.oldpass.$error.required') required
+										.alert.alert-danger(v-else='form1.oldpass.$error.maxlength') <24 chars
+
+								.form-group
+									label new password
+									input.form-control(type='password', name='password', v-form-ctrl, v-model='formData1.password', placeholder='new password', maxlength=24, required)
+									div(v-show='form1.password.$dirty && form1.password.$invalid')
+										.alert.alert-danger(v-show='form1.password.$error.required') required
+										.alert.alert-danger(v-else='form1.password.$error.maxlength') <24 chars
+
+								.form-group
+									label repeat new password
+									input.form-control(type='password', name='password1', v-form-ctrl, v-model='formData1.password1', placeholder='repeat new password', maxlength=24, custom-validator='checkPass', required)
+									div(v-show='form1.password1.$dirty && form1.password1.$invalid')
+										.alert.alert-danger(v-show='form1.password1.$error.required') required
+										.alert.alert-danger(v-else='form1.password1.$error.custom') not match
+
+								.form-group
+									#msg2
+									button.btn.btn-primary(type='submit')
+										span(v-show='!onSubmit1') submit
+										span(v-show='onSubmit1')
+											include ../parts/spin
+											|Updating...
+
+					include ../parts/footer-html
+
+include ../parts/footer-js
+script(src='#{cdn}/js/main#{tail2}.js?#{version}')
+include ../parts/footer-end

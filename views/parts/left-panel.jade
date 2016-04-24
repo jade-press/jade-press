@@ -1,0 +1,23 @@
+#nav.col-sm-4.col-md-4.col-lg-3
+	.hidden-sm-up.clearfix.p-y-1
+		a.navbar-toggler.pull-xs-left(href="#{host}")
+			span.icon-jadepress1
+		button.navbar-toggler.pull-xs-right(type='button', data-toggle='collapse' data-target='#menus') &#9776;
+		.p-y-3.hidden-sm-down
+
+	nav#menus.collapse
+
+		.p-y-1
+		.lists.text-sm-right
+			.hidden-sm-down
+				a.font-weight-bold.form-control-lg(href="#{host}")
+					span.icon-jadepress1
+					|jadepress
+				hr
+
+			- for(var i = 0, len = links.length;i < len;i ++) {
+				- var link = links[i]
+				a(href='#{host}#{link.uri}', class='#{link.uri === path?"active":""}') #{link.name}
+			-	}
+			a(href='#{host}/logout') logout
+		.p-y-1.hidden-sm-up

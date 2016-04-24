@@ -1,0 +1,57 @@
+include ../parts/head1
+meta(name='description', content='#{siteDesc}')
+meta(name='keywords', content='#{siteKeywords}')
+title #{siteName}
+style.
+	.container {
+		max-width: 600px;
+	}
+include ../parts/head2
+#wrapper
+	include ../parts/loading
+	#content.container(v-cloak)
+
+		.p-y-3
+		h1.h3
+			span.icon-jadepress1
+			| Login to #{siteName}
+		hr.m-b-2
+		form(name='form1', @submit.prevent='submit()', novalidate, v-form, hook='formHook2')
+			
+			.form-group
+				label email
+				input.form-control(type='email', v-form-ctrl, name='email', placeholder='email', v-model='formData.email', required, autofocus)
+				div(v-show='form1.email.$dirty && form1.email.$invalid')
+					.alert.alert-danger(v-show='form1.email.$error.required') required
+					.alert.alert-danger(v-else='form1.email.$error.email') not a valid email address
+
+			.form-group
+				label password
+				input.form-control(type='password', v-form-ctrl, name='password', placeholder='密码', v-model='formData.password', required, minlength=6, maxlength=16)
+				div(v-show='form1.password.$dirty && form1.password.$invalid')
+					.alert.alert-danger(v-show='form1.password.$error.required') required
+					.alert.alert-danger(v-show='form1.password.$error.maxlength') too long
+					.alert.alert-danger(v-show='form1.password.$error.minlength') too short
+
+			.form-group(v-if='errCount > 2')
+				p
+					i.iblock(v-html='captchaHtml', @click='refreshCaptcha("#{host}/captcha")')
+					a.m-l-1(href='#', @click.prevent='refreshCaptcha("#{host}/captcha")') refresh
+				label captcha
+				input.form-control(placeholder='captcha', v-form-ctrl, name='captcha', type='text', v-model='formData.captcha', required, maxlength=6)
+				div(v-show='form1.captcha.$dirty && form1.captcha.$invalid')
+					.alert.alert-danger(v-show='form1.captcha.$error.required') required
+					.alert.alert-danger(v-show='form1.captcha.$error.maxlength') too long
+						
+			.form-group
+				#msg
+				button.btn.btn-primary(type='submit')
+					span(v-show='!onSubmit') Login
+					span(v-show='onSubmit') Logining...
+
+		include ../parts/footer-html
+
+include ../parts/footer-js
+script(src='#{cdn}/js/login#{tail2}.js?#{version}')
+
+include ../parts/footer-end

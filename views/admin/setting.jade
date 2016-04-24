@@ -1,0 +1,38 @@
+include ../parts/head1
+title setting - #{siteName}
+include ../parts/head2
+#wrapper
+	
+	include ../parts/loading
+	#content.container-fluid(v-cloak)
+
+		.row
+
+			//left-panel
+			include ../parts/left-panel
+
+			//main
+			#main.col-sm-8.col-md-8.col-lg-9
+
+				.main-content.p-x-2
+					include ../parts/nav
+					.p-y-1
+					h1 setting
+					hr
+					p for now there is nothing to set
+
+					include ../parts/footer-html
+
+include ../parts/footer-js
+script.
+
+	;(function () {
+		var app = new Vue({
+			el: 'body'
+			,data: {
+				loaded: true
+			}
+		})
+	})()
+
+include ../parts/footer-end

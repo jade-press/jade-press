@@ -1,0 +1,173 @@
+include ../parts/head1
+title users - #{siteName}
+include ../parts/head2
+#wrapper
+	
+	include ../parts/loading
+	#content.container-fluid(v-cloak)
+
+		.row
+
+			//left-panel
+			include ../parts/left-panel
+
+			//main
+			#main.col-sm-8.col-md-8.col-lg-9
+
+				.main-content.p-x-2
+					include ../parts/nav
+					h1 users
+					hr
+
+					ul.nav.nav-tabs
+						li.nav-item.m-l-1
+							a.nav-link(href='#list', @click.prevent='setTab("list")', :class='{ "active": tab === "list" }')
+								|list
+								span.text-danger ({{total}})
+						li.nav-item
+							a.nav-link(href='#new', @click.prevent='setTab("new")', :class='{ "active": tab === "new" }') new
+
+					.tab-contents
+						.tab-content(v-show='tab === "list"')
+							.p-y-1
+							h2 list
+							hr
+							form(name='form1', @submit.prevent='getList()', novalidate, v-form)
+								.form-group
+									label name
+									input.form-control(name='name', v-form-ctrl, v-model='formData1.name', placeholder='search user name')
+
+								.form-group
+									label email
+									input.form-control(name='email', v-form-ctrl, v-model='formData1.email', placeholder='search user email')
+
+								.form-group
+									label user group
+									select.form-control(name='groupId', v-form-ctrl, v-model='formData1.groupId')
+										option(v-for='group in groupOptions', value='{{group._id}}') {{group.name}}
+
+								.form-group
+									#msg1
+									button.btn.btn-primary(type='submit')
+										span(v-show='!onSubmit1') search
+										span(v-show='onSubmit1')
+											include ../parts/spin
+											|Logining...
+
+							#msg3
+							hr
+							div(v-show='total > formData1.pageSize')
+								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+							ul.list-group
+								li.list-group-item(v-for='item in list')
+									div(v-show='currentEditItem._id !== item._id')
+										div.clearfix
+											b {{item.name}}
+											span ({{item.email}})
+											span.label.label-default(title='{{item.desc}}') {{item.group.name}}
+											span.pull-xs-right(v-show='checkShow(item)')
+												span.btn-group.btn-group-sm(v-show='state !== "del"')
+													button.btn.btn-primary(@click='edit(item, $index)') edit
+													button.btn.btn-warning(@click='del(item)') delete
+												span.btn-group.btn-group-sm(v-show='state === "del"')
+													button.btn.btn-danger(@click='delConfirm(item, $index)')
+														span(v-show='onDel') deleting...
+														span(v-show='!onDel') confirm delete
+													button.btn.btn-primary(@click='cancel(item)') cancel
+										#msg-item(v-if='currentEditItem._id === item._id || currentDelItem._id === item._id')
+
+
+									div(v-if='currentEditItem._id === item._id')
+										form(name='form3', @submit.prevent='update()', novalidate, v-form)
+
+											.form-group
+												label <span class="text-danger">*</span> name
+												input.form-control(name='name', v-form-ctrl, v-model='formData3.name', placeholder='user name', maxlength=50, required)
+												div(v-show='form3.name.$dirty && form3.name.$invalid')
+													.alert.alert-danger(v-show='form3.name.$error.required') required
+													.alert.alert-danger(v-else='form3.name.$error.maxlength') more than 50 chars
+
+											.form-group
+												label password
+												input.form-control(type='password', name='password', v-form-ctrl, v-model='formData3.password', placeholder='password', custom-validator='validatePass3')
+												div(v-show='form3.password.$dirty && form3.password.$invalid')
+													.alert.alert-danger(v-else='form3.password.$error.custom') must have [1-9] and [a-zA-Z], 6 ~ 16
+
+											.form-group
+												label <span class="text-danger">*</span> email
+												input.form-control(type='email', rows=3, name='email', v-form-ctrl, v-model='formData3.email', placeholder='email', required)
+												div(v-show='form3.email.$dirty && form3.email.$invalid')
+													.alert.alert-danger(v-show='form3.email.$error.required') required
+													.alert.alert-danger(v-else='form3.email.$error.email') not valid email
+
+											.form-group
+												label <span class="text-danger">*</span> group
+												p(v-show='onloadGroup') loading...
+												.accesses(v-form-ctrl, custom-validator='validateGroup3')
+													
+													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='group in groups', :class='{ "btn-primary": checkGroup(group, formData3), "btn-secondary": !checkGroup(group, formData3) }', @click='selectGroup(group, formData3)') {{group.name}}
+
+											.form-group
+												#msg31
+												.btn-group.btn-group-sm
+													button.btn.btn-primary(type='submit')
+														span(v-show='!onSubmit3') update
+														span(v-show='onSubmit3')
+															include ../parts/spin
+															|updating...
+
+													button.btn.btn-danger(type='button', @click='cancelEdit(item)') cancel
+
+							div(v-show='total > formData1.pageSize')
+								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+
+						.tab-content(v-show='tab === "new"')
+							.p-y-1
+							h2 new user
+							hr
+							form(name='form2', @submit.prevent='add()', novalidate, v-form, hook='formHook2')
+
+								.form-group
+									label <span class="text-danger">*</span> name
+									input.form-control(name='name', v-form-ctrl, v-model='formData2.name', placeholder='name', maxlength=50, required)
+									div(v-show='form2.name.$dirty && form2.name.$invalid')
+										.alert.alert-danger(v-show='form2.name.$error.required') required
+										.alert.alert-danger(v-else='form2.name.$error.maxlength') more than 50 chars
+
+								.form-group
+									label <span class="text-danger">*</span> password
+									input.form-control(type='password', name='password', v-form-ctrl, v-model='formData2.password', placeholder='password', custom-validator='validatePass2', required)
+									div(v-show='form2.password.$dirty && form2.password.$invalid')
+										.alert.alert-danger(v-show='form2.password.$error.required') required
+										.alert.alert-danger(v-else='form2.password.$error.custom') must have [1-9] and [a-zA-Z], 6 ~ 16
+
+								.form-group
+									label <span class="text-danger">*</span> email
+									input.form-control(type='email', rows=2, name='email', v-form-ctrl, v-model='formData2.email', placeholder='email', required)
+									div(v-show='form2.email.$dirty && form2.email.$invalid')
+										.alert.alert-danger(v-show='form2.email.$error.required') required
+										.alert.alert-danger(v-else='form2.email.$error.email') not valid email
+
+								.form-group
+									label <span class="text-danger">*</span> group
+									p(v-show='onloadGroup') loading...
+									.accesses(name='group', v-form-ctrl='formData2.group', custom-validator='validateGroup2')
+										
+										button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='group in groups', :class='{ "btn-primary": checkGroup(group, formData2), "btn-secondary": !checkGroup(group, formData2) }', @click='selectGroup(group, formData2)', title='{{group.desc}}') {{group.name}}
+									div(v-show='form2.group.$dirty && form2.group.$invalid')
+										.alert.alert-danger(v-else='form2.group.$error.custom') please select
+
+								.form-group
+									#msg2
+									button.btn.btn-primary(type='submit')
+										span(v-show='!onSubmit2') submit
+										span(v-show='onSubmit2')
+											include ../parts/spin
+											|submitting...
+
+					include ../parts/footer-html
+
+include ../parts/footer-js
+script(src='#{cdn}/vue-pagenav/dist/vue-pagenav#{tail1}.js')
+script(src='#{cdn}/js/user#{tail2}.js?#{version}')
+include ../parts/footer-end

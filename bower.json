@@ -1,0 +1,41 @@
+{
+  "name": "jade-press",
+  "version": "0.0.1",
+  "homepage": "http://jade-press.org",
+  "author": {
+    "email": "zxdong@gmail.com",
+    "name": "ZHAO Xudong",
+    "url": "http://html5beta.com"
+  },
+  "description": "cms with built-in jade-editor",
+  "bugs": "https://github.com/zxdong262/jade-press/issues",
+  "main": "app.js",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "jade-press",
+    "cms",
+    "jade"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "vue": "^1.0.20",
+    "jquery": "^2.2.0",
+    "bootstrap": "^v4.0.0-alpha.2",
+    "google-code-prettify": "*",
+    "vue-form": "zxdong262/vue-form#master",
+    "vue-pagenav": "*",
+    "tether": "*",
+    "vue-jade-editor": "^0.1.0",
+    "browser-md5-file": "^1.0.0",
+    "blueimp-file-upload": "jquery-file-upload#^9.12.3"
+  }
+}

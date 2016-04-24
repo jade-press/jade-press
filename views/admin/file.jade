@@ -1,0 +1,75 @@
+include ../parts/head1
+title files - #{siteName}
+include ../parts/head2
+#wrapper
+	
+	include ../parts/loading
+	#content.container-fluid(v-cloak)
+
+		.row
+
+			//left-panel
+			include ../parts/left-panel
+
+			//main
+			#main.col-sm-8.col-md-8.col-lg-9
+
+				.main-content.p-x-2
+					include ../parts/nav
+					h1 files
+					hr
+
+					.p-y-1
+					h2 list
+					hr
+					form(name='form1', @submit.prevent='getList()', novalidate, v-form)
+						.form-group
+							.input-group
+								input.form-control(type='text', v-model='formData1.name')
+								span.input-group-btn
+									button.btn.btn-secondary
+										span(v-show='!onSubmit1') search
+										span(v-show='onSubmit1') loading...
+
+					#msg3
+					hr
+					p
+						label.file
+							input(type='file', id='file2', multiple)
+							span.file-custom
+						span.label.label-success(v-show='uploadProgress > 0 && uploadProgress < 100') {{uploadProgress}}/100
+					#file-err2
+					div(v-show='total > formData1.pageSize')
+						zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+
+					ul.list-group
+						li.list-group-item(v-for='item in list')
+
+							div
+								#msg-item(v-if='currentDelItem._id === item._id')
+								a(:href='createImgSrc(item)', target='_blank', title='{{item.filename}}') {{item._id}}.{{item.ext}}
+
+								span.pull-xs-right(v-show='checkShow(item)')
+									button.btn.btn-warning.btn-sm(@click='del(item)', v-show='state !== "del"') delete
+									span.btn-group.btn-group-sm(v-show='state === "del"')
+										button.btn.btn-danger(@click='delConfirm(item, $index)')
+											span(v-show='onDel') deleting...
+											span(v-show='!onDel') confirm delete
+										button.btn.btn-primary(@click='cancel(item)') cancel
+							div 
+								.img(v-if='isImg(item)')
+									a(:href='createImgSrc(item)', target='_blank')
+										img(:src='createImgSrc(item)', alt='item.filename', height=30)		
+
+					div(v-show='total > formData1.pageSize')
+						zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+
+					include ../parts/footer-html
+
+include ../parts/footer-js
+script(src='#{cdn}/browser-md5-file/dist/browser-md5-file.min.js')
+script(src='#{cdn}/vue-pagenav/dist/vue-pagenav#{tail1}.js')
+script(src='#{cdn}/blueimp-file-upload/js/vendor/jquery.ui.widget#{tail1}.js')
+script(src='#{cdn}/blueimp-file-upload/js/jquery.fileupload#{tail1}.js')
+script(src='#{cdn}/js/file#{tail2}.js?#{version}')
+include ../parts/footer-end

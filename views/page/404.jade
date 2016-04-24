@@ -1,0 +1,22 @@
+include ../parts/head1
+meta(name='description', content='#{siteDesc}')
+meta(name='keywords', content='#{siteKeywords}')
+title 500 - #{siteName}
+style.
+	.container {
+		max-width: 600px;
+	}
+include ../parts/head2
+#wrapper
+
+	#content.container
+
+		.p-y-3
+		h1 404
+		hr.m-b-2
+		p page not exist
+
+		include ../parts/footer-html
+
+
+include ../parts/footer-end

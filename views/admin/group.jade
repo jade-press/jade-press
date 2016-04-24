@@ -1,0 +1,162 @@
+include ../parts/head1
+title user groups - #{siteName}
+style.
+	.list-group-item .urls {
+		height: 1.5em;
+		overflow-y: hidden;
+	}
+	.list-group-item:hover .urls {
+		height: auto;
+	}
+include ../parts/head2
+#wrapper
+	
+	include ../parts/loading
+	#content.container-fluid(v-cloak)
+
+		.row
+
+			//left-panel
+			include ../parts/left-panel
+
+			//main
+			#main.col-sm-8.col-md-8.col-lg-9
+
+				.main-content.p-x-2
+					include ../parts/nav
+					h1 user groups
+					hr
+
+					ul.nav.nav-tabs
+						li.nav-item.m-l-1
+							a.nav-link(href='#list', @click.prevent='setTab("list")', :class='{ "active": tab === "list" }')
+								|list
+								span.text-danger ({{total}})
+						li.nav-item
+							a.nav-link(href='#new', @click.prevent='setTab("new")', :class='{ "active": tab === "new" }') new
+
+					.tab-contents
+						.tab-content(v-show='tab === "list"')
+							.p-y-1
+							h2 list
+							hr
+							form(name='form1', @submit.prevent='getList()', novalidate, v-form)
+								.form-group
+									input.form-control(name='name', v-form-ctrl, v-model='formData1.name', placeholder='search group name')
+								.form-group
+									#msg1
+									button.btn.btn-primary(type='submit')
+										span(v-show='!onSubmit1') search
+										span(v-show='onSubmit1')
+											include ../parts/spin
+											|Logining...
+
+							#msg3
+							hr
+							div(v-show='total > formData1.pageSize')
+								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+							ul.list-group
+								li.list-group-item(v-for='item in list')
+									div(v-show='currentEditItem._id !== item._id')
+										h4
+											|{{item.name}} 
+											span.pull-xs-right(v-show='checkShow(item)')
+												span.btn-group.btn-group-sm(v-show='state !== "del"')
+													button.btn.btn-primary(@click='edit(item, $index)') edit
+													button.btn.btn-warning(@click='del(item)') delete
+												span.btn-group.btn-group-sm(v-show='state === "del"')
+													button.btn.btn-danger(@click='delConfirm(item, $index)')
+														span(v-show='onDel') deleting...
+														span(v-show='!onDel') confirm delete
+													button.btn.btn-primary(@click='cancel(item)') cancel
+										div(v-show='item.desc')
+											|{{item.desc}}
+										ul.urls
+											li(v-for='url in item.access', :title='url')
+												|{{accessObj[url].name}}	
+												small {{url}}
+
+										#msg-item(v-if='currentEditItem._id === item._id || currentDelItem._id === item._id')
+
+
+									div(v-show='currentEditItem._id === item._id')
+										form(name='form3', @submit.prevent='update()', novalidate, v-form)
+
+											.form-group
+												label <span class="text-danger">*</span> name
+												input.form-control(name='name', v-form-ctrl, v-model='formData3.name', placeholder='accessegory name', maxlength=50, required)
+												div(v-show='form3.name.$dirty && form3.name.$invalid')
+													.alert.alert-danger(v-show='form3.name.$error.required') required
+													.alert.alert-danger(v-else='form3.name.$error.maxlength') more than 50 chars
+
+											.form-group
+												label description
+												textarea.form-control(rows=3, name='desc', v-form-ctrl, v-model='formData3.desc', placeholder='accessegory description', maxlength=500)
+												div(v-show='form3.desc.$dirty && form3.desc.$invalid')
+													.alert.alert-danger(v-show='form3.desc.$error.required') required
+													.alert.alert-danger(v-else='form3.desc.$error.maxlength') more than 500 chars
+
+											.form-group
+												label access
+												p(v-show='onloadAccess') loading...
+												.accesses
+													
+													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='access in accesses', :class='{ "btn-primary": inAccesses(access, formData3.access), "btn-secondary": !inAccesses(access, formData3.access) }', @click='toggleAccess(access, formData3.access)') {{accessObj[access].name}}
+
+											.form-group
+												#msg31
+												.btn-group.btn-group-sm
+													button.btn.btn-primary(type='submit')
+														span(v-show='!onSubmit3') update
+														span(v-show='onSubmit3')
+															include ../parts/spin
+															|updating...
+
+													button.btn.btn-danger(type='button', @click='cancelEdit(item)') Cancel
+
+							div(v-show='total > formData1.pageSize')
+								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
+									
+						.tab-content(v-show='tab === "new"')
+							.p-y-1
+							h2 new group
+							hr
+							form(name='form2', @submit.prevent='add()', novalidate, v-form, hook='formHook2')
+
+								.form-group
+									label <span class="text-danger">*</span> name
+									input.form-control(name='name', v-form-ctrl, v-model='formData2.name', placeholder='accessegory name', maxlength=50, required)
+									div(v-show='form2.name.$dirty && form2.name.$invalid')
+										.alert.alert-danger(v-show='form2.name.$error.required') required
+										.alert.alert-danger(v-else='form2.name.$error.maxlength') more than 50 chars
+
+								.form-group
+									label description
+									textarea.form-control(rows=3, name='desc', v-form-ctrl, v-model='formData2.desc', placeholder='accessegory description', maxlength=500)
+									div(v-show='form2.desc.$dirty && form2.desc.$invalid')
+										.alert.alert-danger(v-show='form2.desc.$error.required') required
+										.alert.alert-danger(v-else='form2.desc.$error.maxlength') more than 500 chars
+
+								.form-group
+									label accesses
+									p(v-show='onloadAccesses') loading...
+									.accesses
+										
+										button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='access in accesses', :class='{ "btn-primary": inAccesses(access, formData2.access), "btn-secondary": !inAccesses(access, formData2.access) }', @click='toggleAccess(access, formData2.access)') {{accessObj[access].name}}
+
+								.form-group
+									#msg2
+									button.btn.btn-primary(type='submit')
+										span(v-show='!onSubmit2') submit
+										span(v-show='onSubmit2')
+											include ../parts/spin
+											|submitting...
+
+					include ../parts/footer-html
+
+include ../parts/footer-js
+script.
+	h5.accesses = !{JSON.stringify(accesses)}
+script(src='#{cdn}/vue-pagenav/dist/vue-pagenav#{tail1}.js')
+script(src='#{cdn}/js/group#{env === "production"?".min":".dev"}.js?#{version}')
+include ../parts/footer-end
