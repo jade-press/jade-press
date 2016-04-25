@@ -12,6 +12,7 @@ blog cms based on mongodb, nodejs
 - user system
 - user groups and custom access control based on url
 - post and category
+- custom styl & script for every post
 
 ## use
 ```bash
@@ -38,4 +39,6 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 # todo
 - resetpassword
 - test
+- docs
+- ...
 
