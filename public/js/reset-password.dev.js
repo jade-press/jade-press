@@ -2,6 +2,7 @@
 /*login*/
 
 ;(function () {
+
 	var $alert = Vue.$alert
 	var app = new Vue({
 		el: 'body'
@@ -10,7 +11,7 @@
 			,tab: 'list'
 			,form1: null
 			,formData1: {
-
+				resetPassword: h5.resetPassword
 			}
 			,tab: 'info'
 			,onSubmit1: false
@@ -18,10 +19,7 @@
 		}
 		,methods: {
 
-			setTab: function(tab) {
-				this.tab = tab
-			}
-			,formHook: function(fm2) {
+			formHook: function(fm2) {
 				this._form = fm2
 			}
 			,setPristine: function() {
@@ -49,7 +47,7 @@
 				pi.onSubmit1 = true
 				$.ajax({
 					type: 'post'
-					,url: h5.host + '/api/user/change-password'
+					,url: h5.host + '/api/user/reset-password'
 					,data: pi.formData1
 				})
 				.then(function(res) {
@@ -61,12 +59,15 @@
 					} else {
 						pi.formData1 = {}
 						pi.setPristine()
-						$alert('change password done', 'success', '#msg2', 10000)
+						$alert('reset password done', 'success', '#msg2', 10000)
+						setTimeout(function() {
+							location.href = data.redirect || h5.host
+						}, 3000)
 					}
 					
 				}, function(res) {
 					pi.onSubmit1 = false
-					$alert('change password failed', 'danger', '#msg2')
+					$alert('reset password failed', 'danger', '#msg2')
 				})
 
 				//end func

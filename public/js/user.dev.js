@@ -24,6 +24,7 @@
 			}
 			,formData2: {
 				group: {}
+				,resetPassword: true
 			}
 			,formData3: {}
 			,currentEditItem: {}
@@ -108,6 +109,7 @@
 			,reset: function() {
 				this.formData2 = {
 					group: {}
+					,resetPassword: true
 				}
 			}
 			,add: function() {
@@ -119,6 +121,7 @@
 					type: 'post'
 					,url: h5.host + '/api/user/add'
 					,data: pi.formData2
+					,dataType: 'json'
 				})
 				.then(function(res) {
 					pi.onSubmit2 = false
@@ -150,6 +153,7 @@
 					type: 'post'
 					,url: h5.host + '/api/user/update'
 					,data: pi.formData3
+					,dataType: 'json'
 				})
 				.then(function(res) {
 					pi.onSubmit3 = false

@@ -12,7 +12,7 @@ blog cms based on mongodb, nodejs
 - user system
 - user groups and custom access control based on url
 - post and category
-- custom styl & script for every post
+- custom style & script for every post
 
 ## use
 ```bash

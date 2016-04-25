@@ -58,7 +58,7 @@ gulp.task('ugly', function() {
 			}))
 			.pipe(plumber())
 			.pipe(rename(function (path) {
-		    path.basename = path.extname.replace('.js', '.min.js')
+		    path.extname = path.extname.replace('.js', '.min.js')
 		  }))
 		  .pipe(gulp.dest(jsFolder))
 			.pipe(ugly(uglyOptions))
@@ -89,7 +89,7 @@ gulp.task('watch',  function () {
 		runSequence('stylus')
 	})
 
-	watch(jsFolder + '/*.js', function() {
+	watch(jsFolder + '/*.dev.js', function() {
 		runSequence('ugly')
 	})
 

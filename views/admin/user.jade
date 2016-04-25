@@ -158,8 +158,12 @@ include ../parts/head2
 										.alert.alert-danger(v-else='form2.group.$error.custom') please select
 
 								.form-group
+									button.btn(type='button', @click='formData2.resetPassword = !formData2.resetPassword', :class='{ "btn-muted": !formData2.resetPassword, "btn-primary": formData2.resetPassword}') resetPassword
+									.small reset password when first login
+
+								.form-group
 									#msg2
-									button.btn.btn-primary(type='submit')
+									button.btn.btn-danger(type='submit')
 										span(v-show='!onSubmit2') submit
 										span(v-show='onSubmit2')
 											include ../parts/spin

@@ -1,6 +1,15 @@
 
 'use strict'
 
+exports['/api/user/reset-password'] = {
+	url: '/api/user/reset-password'
+	,method: 'post'
+	,name: 'reset password'
+	,desc: ''
+	,lib: 'lib/user'
+	,func: 'resetPassword'
+	,type: 'required'
+}
 
 exports['/api/user/add'] = {
 	url: '/api/user/add'
@@ -45,6 +54,7 @@ exports['/api/user/change-password'] = {
 	,desc: ''
 	,lib: 'lib/user'
 	,func: 'changePassword'
+	,type: 'required'
 }
 
 exports['/api/user/get'] = {

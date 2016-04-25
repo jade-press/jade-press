@@ -9,6 +9,7 @@ _ = require('lodash')
 	,siteDesc: 'jade-press'
 	,version: packageInfo.version
 	,jadepress: 'http://jadepress.org'
+	,siteKeywords: 'jade-press'
 }
 ,config = require('../config')
 

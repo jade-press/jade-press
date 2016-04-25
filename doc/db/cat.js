@@ -32,7 +32,11 @@ module.exports = {
 		,default: 'defaultCatSlugPromise'
 		,required: true
 		,custom: function(value) {
-			return Promise.resolve(this.value !== 'admin' && this.value !== 'file')
+			return Promise.resolve(
+				this.value !== 'admin' && 
+				this.value !== 'file' && 
+				this.value !== 'reset-password'
+			)
 		}
 	}
 	,desc: {

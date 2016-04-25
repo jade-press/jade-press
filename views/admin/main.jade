@@ -53,14 +53,14 @@ include ../parts/head2
 
 								.form-group
 									label new password
-									input.form-control(type='password', name='password', v-form-ctrl, v-model='formData1.password', placeholder='new password', maxlength=24, required)
+									input.form-control(type='password', name='password', v-form-ctrl, v-model='formData1.password', placeholder='new password', custom-validator='pass', required)
 									div(v-show='form1.password.$dirty && form1.password.$invalid')
 										.alert.alert-danger(v-show='form1.password.$error.required') required
-										.alert.alert-danger(v-else='form1.password.$error.maxlength') <24 chars
+										.alert.alert-danger(v-else='form1.password.$error.custom') 6-16 chars, must have digit and English chars
 
 								.form-group
 									label repeat new password
-									input.form-control(type='password', name='password1', v-form-ctrl, v-model='formData1.password1', placeholder='repeat new password', maxlength=24, custom-validator='checkPass', required)
+									input.form-control(type='password', name='password1', v-form-ctrl, v-model='formData1.password1', placeholder='repeat new password', custom-validator='checkPass', required)
 									div(v-show='form1.password1.$dirty && form1.password1.$invalid')
 										.alert.alert-danger(v-show='form1.password1.$error.required') required
 										.alert.alert-danger(v-else='form1.password1.$error.custom') not match
@@ -71,7 +71,7 @@ include ../parts/head2
 										span(v-show='!onSubmit1') submit
 										span(v-show='onSubmit1')
 											include ../parts/spin
-											|Updating...
+											|updating...
 
 					include ../parts/footer-html
 

@@ -57,4 +57,10 @@ module.exports = {
 			return 'user-created'
 		}
 	}
+	,resetPassword: {
+		type: 'string'
+		,desc: 'resetPassword _id'
+		,default: 'emptyString'
+		,required: true
+	}
 }

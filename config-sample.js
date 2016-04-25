@@ -14,8 +14,11 @@ exports.init = {
 exports.local = {
 	port: 7200
 	,env: 'dev' //or production
+	,siteName: 'jadepress'
+	,siteDesc: 'jade-press'
+	,siteKeywords: 'jade-press'
 
-	/* only you use cdn
+	/* only if you use cdn
 	,cdn: 'http://mycdn.com'
 	*/
 }
