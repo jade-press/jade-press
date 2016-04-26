@@ -22,7 +22,7 @@ npm install
 bower install
 cp config-sample.js config.js
 
-#edit config.js to define database url etc, 
+#read and edit config.js to define database url etc, 
 # need your mongodb ready to connct
 node app
 
