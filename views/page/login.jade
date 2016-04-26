@@ -1,7 +1,7 @@
 include ../parts/head1
 meta(name='description', content='#{siteDesc}')
 meta(name='keywords', content='#{siteKeywords}')
-title #{siteName}
+title login - #{siteName}
 style.
 	.container {
 		max-width: 600px;
@@ -35,8 +35,8 @@ include ../parts/head2
 
 			.form-group(v-if='errCount > 2')
 				p
-					i.iblock(v-html='captchaHtml', @click='refreshCaptcha("#{host}/captcha")')
-					a.m-l-1(href='#', @click.prevent='refreshCaptcha("#{host}/captcha")') refresh
+					i.iblock(v-html='captchaHtml', @click='refreshCaptcha()')
+					a.m-l-1(href='#', @click.prevent='refreshCaptcha()') refresh
 				label captcha
 				input.form-control(placeholder='captcha', v-form-ctrl, name='captcha', type='text', v-model='formData.captcha', required, maxlength=6)
 				div(v-show='form1.captcha.$dirty && form1.captcha.$invalid')

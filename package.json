@@ -2,25 +2,25 @@
   "name": "jade-press",
   "description": "blog cms based on mongodb, nodejs",
   "version": "0.0.1",
-  "main": "app.js"
-  ,"scripts": {
+  "main": "app.js",
+  "scripts": {
     "test": "mocha"
-  }
-  ,"repository": {
-    "type": "git"
-    ,"url": "https://github.com/zxdong262/jade-press"
-  }
-  ,"keywords": [
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zxdong262/jade-press"
+  },
+  "keywords": [
     "jade-press",
     "jade",
     "cms"
-  ]
-  ,"author": {
+  ],
+  "author": {
     "email": "zxdong@gmail.com",
     "name": "ZHAO Xudong",
     "url": "http://html5beta.com"
-  }
-  ,"dependencies": {
+  },
+  "dependencies": {
     "canvas-captcha": "^2.0.1",
     "co": "^4.6.0",
     "jadepress-theme-pi": "^0.1.0",
@@ -37,16 +37,17 @@
     "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
     "lodash": "^4.8.2",
-    "multiparty": "^4.1.2",
     "mongodb": "^2.1.16",
+    "multiparty": "^4.1.2",
+    "nodemailer": "^2.3.2",
     "request": "^2.70.0",
     "s-validater": "^2.0.0",
     "shortid": "^2.2.6",
     "stylus": "^0.54.2",
     "useragent": "^2.1.9",
     "zpager": "^1.1.0"
-  }
-  ,"devDependencies": {
+  },
+  "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
     "gulp-newer": "^0.5.0",
@@ -60,9 +61,9 @@
   },
   "engines": {
     "node": "^4.2.0"
-  }
-  ,"license": "MIT"
-  ,"bugs": {
+  },
+  "license": "MIT",
+  "bugs": {
     "url": "https://github.com/zxdong262/jadepress-theme-pi/issues"
   }
 }

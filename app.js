@@ -11,6 +11,7 @@ tools = require('./lib/tools')
 ,co = require('co')
 ,dbRef = require('./lib/db')
 ,plugins = require('./lib/plugins')
+,mail = require('./lib/mail')
 
 function* init() {
 
@@ -21,9 +22,12 @@ function* init() {
 
 	var hasMeta = yield db.collection('meta').findOne()
 
+	setting.mailServiceReady = yield mail.checkMailService()
+
 	if(!hasMeta) yield require('./lib/init').init()
 
 	local.themeVersion = require('./package.json').dependencies[setting.theme] || '*'
+
 	plugins.loadPlugins()
 
 	return Promise.resolve()

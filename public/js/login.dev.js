@@ -29,7 +29,9 @@
 				this._form2.setDirty()
 			}
 			,refreshCaptcha: function(url) {
-				this.captchaHtml = '<img alt="" src="' + url + '?' + new Date().getTime() + '" />'
+				this.captchaHtml = '<img alt="" src="' + 
+				(url || h5.host + '/captcha') + 
+				'?' + new Date().getTime() + '" />'
 			}
 
 			,submit: function() {
@@ -49,12 +51,10 @@
 				function ok(res) {
 					pi.onSubmit = false
 					var data = res
-					if(data.errorMsg) {
-						$alert(data.errorMsg, 'danger', '#msg')
+					if(data.errorMsg || data.errs) {
+						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg')
 						pi.errCount = data.errCount
-					} else if(data.errs) {
-						$alert(data.errs.join(';'), 'danger', '#msg')
-						pi.errCount = data.errCount
+						pi.refreshCaptcha()
 					}
 					else {
 						location.href = data.redirect
@@ -70,7 +70,5 @@
 		}
 	})
 
-	//resize
-	$(window).on('resize', app.checkNavBar)
 
 })()

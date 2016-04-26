@@ -48,9 +48,47 @@ let setting = {
 
 	,dbCols: cols
 	,sessionName: 'jdp'
-	,maxFilesSize: 2000 * 1024
+	,maxFilesSize: 200000 * 1024
 	,pageSize: 20
-	
+
+	/* mail server info
+	,mailSender: {
+		name: 'your-sender-name'
+		,address: 'your-email-service@your-mail-service.com'
+	}
+	,mailServer: {
+		service: 'Gmail'
+		,auth: {
+				user: 'your@email.com'
+				,pass: 'your password'
+		}
+	}
+	*/
+
+	,resetPasswordEmailTemplate: function(from, to, _host, rid, siteName) {
+
+		let id0 = rid
+		let host = _host
+		let html = '<h1>reset passord (' + siteName + ')</h1>' +
+		'<hr />' +
+		'<p>a request has been sent to our server to change "' + to + '" corresponding password，so we sended this email. </p>' +
+		'<p>if you did not send the request, just ignore this email.</p>' +
+		'<p>you can click the link below to reset your password.</p>' + 
+		'<p><a target="_blank" href="' + host + '/reset-password/' + id0 + '">' + host + '/reset-password/' + id0 + '</a></p>' +
+
+		'<p>please be aware that this link will expire in 48 hour since you send the request.</p>' +
+		'<p></p>' +
+		'<p></p>' +
+		'<p>--from ' + siteName + '</p>'
+
+		return {
+			from: from
+			,to: to
+			,subject: 'reset password[' + siteName + ']'
+			,html: html
+		}
+	}
+
 }
 
 ,config = require('../config')

@@ -38,7 +38,9 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 # todo
 - resetpassword
+- new logo & icon svg
 - test
 - docs
-- ...
+- settings
+
 

@@ -35,7 +35,8 @@ module.exports = {
 			return Promise.resolve(
 				this.value !== 'admin' && 
 				this.value !== 'file' && 
-				this.value !== 'reset-password'
+				this.value !== 'reset-password' &&
+				this.value !== 'cat'
 			)
 		}
 	}
