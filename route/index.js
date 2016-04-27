@@ -3,14 +3,18 @@
 
 let
 _ = require('lodash')
+,publics = {}
 ,setting = require('../app/setting')
 ,local = require('../app/local')
 ,tools = require('../lib/tools')
 ,ua = require('../lib/ua')
 ,Router = require('koa-router')
-,apis = require('../doc/api').accesses
-,publicApis = require('../doc/public-page').apis
+,apis = publics.apis = require('../doc/api').accesses
+,publicApis = publics.publicApis = require('../doc/public-page').apis
 ,path = require('path')
+,plugins = require('../lib/plugins').plugins
+
+exports.publicExports = publics
 
 exports.init = function(app) {
 	
@@ -40,3 +44,5 @@ exports.init = function(app) {
 
 	//end
 }
+
+tools.extendLib(__filename, exports, plugins)
