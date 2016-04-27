@@ -21,6 +21,7 @@ cd jade-press
 npm install
 bower install
 cp config-sample.js config.js
+gulp dist
 
 #read and edit config.js to define database url etc, 
 # need your mongodb ready to connct

@@ -85,7 +85,7 @@ gulp.task('ugly-vender', function() {
 
 gulp.task('watch',  function () {
 
-	watch(cssFolder, function() {
+	watch(cssFolder + '/*.styl', function() {
 		runSequence('stylus')
 	})
 

@@ -19,11 +19,30 @@ include ../parts/head2
 					.p-y-1
 					h1 setting
 					hr
-					p for now there is nothing to set
+					p for now all the settings is in <code>config.js</code>
+
+					.p-y-2
+
+					ul.nav.nav-tabs
+						li.nav-item.m-l-1
+							a.nav-link.active(href='#info') system info
+
+					#msg1
+						
+					.p-y-1
+					h3 proccess
+					pre.prettyprint.lang-javascript {{process | json}}
+					.p-y-1
+					h3 os
+					pre.prettyprint.lang-javascript {{os | json}}
+					.p-y-1
+					h3 v8
+					pre.prettyprint.lang-javascript {{v8 | json}}
 
 					include ../parts/footer-html
 
 include ../parts/footer-js
+script(src='#{cdn}/google-code-prettify/bin/prettify.min.js')
 script.
 
 	;(function () {
@@ -31,8 +50,43 @@ script.
 			el: 'body'
 			,data: {
 				loaded: true
+				,os: {}
+				,process: {}
+				,v8: {}
 			}
+			,methods: {
+				getSystemInfo: function() {
+
+					var pi = this
+
+					$.ajax({
+						type: 'post'
+						,url: h5.host + '/api/option/get-system-info'
+						,data: {}
+					})
+					.then(function(res) {
+						var data = res
+						if(data.errorMsg || data.errs) {
+							$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg1')
+						} else {
+							pi.v8 = data.result.v8
+							pi.os = data.result.os
+							pi.process = data.result.process
+							Vue.nextTick(function() {
+								window.prettyPrint()
+							})
+							
+						}
+					}, function(res) {
+						$alert('get system info failed', 'danger', '#msg1')
+					})
+
+				}
+			}
+
 		})
+
+		app.getSystemInfo()
 	})()
 
 include ../parts/footer-end

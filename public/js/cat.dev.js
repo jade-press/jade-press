@@ -2,6 +2,7 @@
 /*login*/
 
 ;(function () {
+	
 	var $alert = Vue.$alert
 	Vue.use(zPagenav)
 	var app = new Vue({
@@ -203,13 +204,9 @@
 				.then(function(res) {
 					pi.onSubmit1 = false
 					var data = res
-					if(data.errorMsg) {
-						$alert(data.errorMsg, 'danger', '#msg1')
-						
-					} else if(data.errs) {
-						$alert(data.errs.join(';'), 'danger', '#msg1')
-					}
-					else {
+					if(data.errorMsg || data.errs) {
+						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg1')
+					} else {
 						pi.total = data.total
 						pi.list = data.result
 					}
