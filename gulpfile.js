@@ -12,6 +12,7 @@ ugly = require('gulp-uglify')
 ,rename = require('gulp-rename')
 ,runSequence = require('run-sequence')
 ,_ = require('lodash')
+,exec = require('child_process').exec
 
 let
 cssFolder = __dirname + '/public/css'
@@ -20,7 +21,7 @@ cssFolder = __dirname + '/public/css'
 	__dirname + '/bower_components/blueimp-file-upload/js'
 	,__dirname + '/bower_components/blueimp-file-upload/js/vendor'
 ]
-
+,config = require('./config')
 ,stylusOptions = {
 	compress: true
 }
@@ -58,9 +59,9 @@ gulp.task('ugly', function() {
 			}))
 			.pipe(plumber())
 			.pipe(rename(function (path) {
-		    path.extname = path.extname.replace('.js', '.min.js')
-		  }))
-		  .pipe(gulp.dest(jsFolder))
+				path.extname = path.extname.replace('.js', '.min.js')
+			}))
+			.pipe(gulp.dest(jsFolder))
 			.pipe(ugly(uglyOptions))
 			.pipe(gulp.dest(jsFolder))
 
@@ -74,9 +75,9 @@ gulp.task('ugly-vender', function() {
 			.pipe(plumber())
 			.pipe(rename(function (path) {
 				console.log(path)
-		    path.extname = path.extname.replace('.js', '.min.js')
-		  }))
-		  .pipe(gulp.dest(fpath))
+				path.extname = path.extname.replace('.js', '.min.js')
+			}))
+			.pipe(gulp.dest(fpath))
 			.pipe(ugly(uglyOptions))
 			.pipe(gulp.dest(fpath))
 	})
@@ -95,7 +96,47 @@ gulp.task('watch',  function () {
 
 })
 
+
+let plugins = config.setting.plugins
+let pluginsArr = Object.keys(plugins)
+let tasks = pluginsArr.map(function(v) {
+	return 'install-plugin-' + v
+})
+
+pluginsArr.forEach(function(pln) {
+
+
+	gulp.task('install-plugin-' + pln, function(cb) {
+
+		let name = pln
+		let ver = plugins[name]
+		let ext = ''
+
+		if(
+			/^(\.{1,2})?\//.test(ext) ||
+			/\:/.test(ext) ||
+			/\//.test(ext)
+		) ext = ver
+
+		else ext = name + '@' + ver
+
+		exec('npm install ' + ext, function (err, stdout, stderr) {
+			console.log(stdout)
+			console.error(stderr)
+			cb(err)
+		})
+
+	})
+
+
+
+})
+
+
 gulp.task('default', ['watch'])
 gulp.task('dist', function() {
 	runSequence('stylus', 'ugly')
+})
+gulp.task('install', function() {
+	runSequence(tasks)
 })

@@ -38,10 +38,6 @@ function ok() {
 
 	try {
 		require('./app/index.js')
-		process.on('uncaughtException', function (e) {
-			err(e.stack || e)
-			log('danm it...')
-		})
 	} catch(e) {
 		err('fail1', e, 'start', local.siteName, 'server fail')
 		console.error(e.stack)

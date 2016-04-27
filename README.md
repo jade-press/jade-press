@@ -22,6 +22,12 @@ npm install
 bower install
 cp config-sample.js config.js
 
+#build css/js
+gulp dist
+
+#install plugins
+gulp install
+
 #read and edit config.js to define database url etc, 
 # need your mongodb ready to connct
 node app
@@ -37,10 +43,9 @@ node app
 then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 # todo
-- resetpassword
+- theme load fix
 - new logo & icon svg
 - test
 - docs
-- settings
 
 

@@ -28,6 +28,9 @@ let setting = {
 	//theme
 	,theme: 'jadepress-theme-pi'
 
+	//plugins
+	,plugins: {}
+
 	//use public cdn or not
 	,usePublicCdn: false
 

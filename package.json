@@ -23,7 +23,6 @@
   "dependencies": {
     "canvas-captcha": "^2.0.1",
     "co": "^4.6.0",
-    "jadepress-theme-pi": "^0.1.0",
     "koa": "^1.2.0",
     "koa-bodyparser": "^2.0.1",
     "koa-compress": "^1.0.9",

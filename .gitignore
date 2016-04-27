@@ -6,9 +6,9 @@
 # config etc
 .idea/
 /config.js
-/local/
 /temp/
-/tab/
+/public/css/*.css
+/public/js/*.min.js
 
 # Runtime data
 #pids
