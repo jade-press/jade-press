@@ -22,13 +22,14 @@ npm install
 bower install
 cp config-sample.js config.js
 
+#read and edit config.js to define all the settings 
+
 #build css/js
 gulp dist
 
 #install plugins
 gulp install
 
-#read and edit config.js to define database url etc, 
 # need your mongodb ready to connct
 node app
 
