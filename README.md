@@ -43,7 +43,8 @@ node app
 then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 # todo
-- theme load fix
+- more plugin extend point
+- https support
 - new logo & icon svg
 - test
 - docs

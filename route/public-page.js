@@ -229,6 +229,4 @@ exports.search = function* (next) {
 
 }
 
-if(plugins.extendPublicRoute) {
-	Object.assign(exports, plugins.extendPublicRoute(exports.publicExports))
-}
+tools.extendLib(__filename, exports, plugins)
