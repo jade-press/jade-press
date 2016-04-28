@@ -44,7 +44,7 @@ node app
 then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 # todo
-- cat update dup slug bug, post add/update dup slug bug
+- the whole app as a module
 - https support
 - new logo & icon svg
 - test
