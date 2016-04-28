@@ -351,7 +351,7 @@
 						pi.reset()
 
 						pi.setPristine()
-						$alert('add new category done', 'success', '#msg2', 10000)
+						$alert('add new post done', 'success', '#msg2', 10000)
 						pi.total ++
 						pi.list.push(data.result)
 					}

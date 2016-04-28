@@ -95,7 +95,7 @@ module.exports = {
 		,default: 0
 		,required: true
 	}
-	,createdBy: {
+	,createBy: {
 		type: 'object'
 		,required: true
 	}
