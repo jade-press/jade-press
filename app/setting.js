@@ -26,6 +26,16 @@ module.exports = {
 	,dbLink: 'mongodb://127.0.0.1:27017/jadepress'
 
 	//theme
+	//can also be a object like:
+	//
+	/*
+	,theme: {
+		path: '/home/zxd/dev/jade-press.org'
+		,name: 'jade-press-org'
+		,version: 'v0.1.0'
+	}
+	*/
+
 	,theme: 'jadepress-theme-pi'
 
 	//plugins

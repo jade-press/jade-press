@@ -57,13 +57,15 @@ exports.init = function() {
 	})
 
 	//load theme res
-	let themeResPath = process.cwd() + '/node_modules/' + setting.theme + '/public'
+	let themeResPath = setting.theme.path?setting.theme.path + '/public'
+											: 
+											process.cwd() + '/node_modules/' + setting.theme + '/public'
 	try {
 		let themeRes = fs.accessSync(themeResPath)
-		let op = serve( path.resolve(themeResPath), {
+		let op = serve( themeResPath, {
 			maxAge: oneYear
 		})
-		app.use(mount('/' + setting.theme, op))
+		app.use(mount('/' + (setting.theme.name || setting.theme), op))
 	} catch(e) {
 		console.warn(setting.theme, 'has no theme res')
 	}

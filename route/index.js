@@ -20,10 +20,17 @@ exports.init = function(app) {
 	
 	let route = new Router()
 	apis = apis.concat(publicApis)
+	
 	for(let i = 0, len = apis.length;i < len;i ++) {
+
 		let api = apis[i]
-		let p = path.resolve(__dirname, '../', api.lib)
+
+		let p = /^\//.test(api.lib)?
+						api.lib:
+						path.resolve(__dirname, '../', api.lib)
+
 		route[api.method](api.url, require(p)[api.func])
+
 	}
 
 	route.use(tools.init)

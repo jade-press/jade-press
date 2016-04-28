@@ -33,7 +33,7 @@ exports.init = function* (config) {
 
 	if(!hasMeta) yield require('../lib/init').init()
 
-	local.themeVersion = setting.plugins[setting.theme] || '*'
+	local.themeVersion = setting.theme.version?setting.theme.version:(setting.plugins[setting.theme] || '*')
 
 	plugins.loadPlugins()
 

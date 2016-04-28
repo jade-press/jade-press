@@ -15,7 +15,8 @@ let _ = publics._ = require('lodash')
 ,err = publics.err = tools.err
 ,db = publics.db = require('../lib/db').db
 ,path = require('path')
-,baseThemeViewPath = publics.baseThemeViewPath = process.cwd() + '/node_modules/' + setting.theme + '/views/'
+,baseThemeViewPath = publics.baseThemeViewPath = setting.theme.path?setting.theme.path + '/views/':
+			process.cwd() + '/node_modules/' + setting.theme + '/views/'
 ,Pager = publics.Pager = new require('zpager')
 ,pager = publics.pager = new Pager()
 ,getCats = publics.getCats = require('../lib/cat').public.getCats
@@ -24,6 +25,10 @@ let _ = publics._ = require('lodash')
 ,plugins = require('../lib/plugins').plugins
 
 exports.publicExports = publics
+
+function buildThemeRes(host) {
+	return host + '/' + (setting.theme.name?setting.theme.name:setting.theme)
+}
 
 exports.home = function* (next) {
 
@@ -57,7 +62,7 @@ exports.home = function* (next) {
 			,pageSize: pageSize
 			,total: obj.total
 			,posts: obj.posts
-			,themeRes: this.local.host + '/' + setting.theme
+			,themeRes: buildThemeRes(this.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
@@ -97,7 +102,7 @@ exports.post = function* (next) {
 			post: post
 			,publicRoute: setting.publicRoute
 			,createUrl:tools.createUrl
-			,themeRes: this.local.host + '/' + setting.theme
+			,themeRes: buildThemeRes(this.local.host)
 			,cats: obj.cats
 		})
 		
@@ -156,7 +161,7 @@ exports.cat = function* (next) {
 			,total: obj.total
 			,cat: catObj
 			,pager: pagerHtml
-			,themeRes: this.local.host + '/' + setting.theme
+			,themeRes: buildThemeRes(this.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
@@ -210,7 +215,7 @@ exports.search = function* (next) {
 			,pageSize: pageSize
 			,total: obj.total
 			,pager: pagerHtml
-			,themeRes: this.local.host + '/' + setting.theme
+			,themeRes: buildThemeRes(this.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats

@@ -55,13 +55,23 @@ exports.setting = {
 	,dbLink: 'mongodb://127.0.0.1:27017/jadepress'
 
 	//theme
+	//can also be a object like:
+	//
+	/*
+	,theme: {
+		path: '/home/zxd/dev/jade-press.org'
+		,name: 'jade-press-org'
+		,version: 'v0.1.0'
+	}
+	*/
+
 	,theme: 'jadepress-theme-pi'
 
 	//plugins, format just like dependencies in package.json
 	//make sure your theme is in plugins too
 	//plugins will be installed by run "gulp install"
 	,plugins: {
-		"jadepress-theme-pi": "^0.3.0"
+		"jadepress-theme-pi": "^0.4.0"
 	}
 
 	//use public cdn or not
