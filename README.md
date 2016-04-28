@@ -41,8 +41,7 @@ node app
 then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 # todo
-- the whole app as a module
-- https support
+- 404/500 extendable
 - new logo & icon svg
 - test
 - docs
