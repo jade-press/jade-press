@@ -21,7 +21,7 @@ cssFolder = __dirname + '/public/css'
 	__dirname + '/bower_components/blueimp-file-upload/js'
 	,__dirname + '/bower_components/blueimp-file-upload/js/vendor'
 ]
-,config = require('./config')
+,config = require( process.cwd() + '/config' )
 ,stylusOptions = {
 	compress: true
 }

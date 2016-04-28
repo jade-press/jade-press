@@ -6,8 +6,9 @@
 
 let init = require('./app/start').init
 ,co = require('co')
+,config = require('./config')
 
-co(init())
+co(init(config))
 .then(function(res) {
 	//console.log('server start')
 }, function(err) {

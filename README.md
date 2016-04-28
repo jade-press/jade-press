@@ -1,5 +1,5 @@
 # jade-press
-blog cms based on mongodb, nodejs
+cms based on mongodb, nodejs
 
 ## features
 
@@ -23,9 +23,6 @@ bower install
 cp config-sample.js config.js
 
 #read and edit config.js to define all the settings 
-
-#build css/js
-gulp dist
 
 #install plugins
 gulp install

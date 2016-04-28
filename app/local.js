@@ -4,13 +4,11 @@ _ = require('lodash')
 ,sid = require('shortid')
 ,resolve = require('path').resolve
 ,fs = require('fs')
-,local = {
+
+module.exports = {
 	siteName: 'jadepress'
 	,siteDesc: 'jade-press'
 	,version: packageInfo.version
 	,jadepress: 'http://jadepress.org'
 	,siteKeywords: 'jade-press'
 }
-,config = require('../config')
-
-module.exports = Object.assign(local, config.local)

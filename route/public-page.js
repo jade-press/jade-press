@@ -15,7 +15,7 @@ let _ = publics._ = require('lodash')
 ,err = publics.err = tools.err
 ,db = publics.db = require('../lib/db').db
 ,path = require('path')
-,baseThemeViewPath = publics.baseThemeViewPath = path.resolve(__dirname, '../node_modules/' + setting.theme + '/views') + '/'
+,baseThemeViewPath = publics.baseThemeViewPath = process.cwd() + '/node_modules/' + setting.theme + '/views/'
 ,Pager = publics.Pager = new require('zpager')
 ,pager = publics.pager = new Pager()
 ,getCats = publics.getCats = require('../lib/cat').public.getCats

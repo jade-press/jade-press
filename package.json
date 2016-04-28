@@ -1,8 +1,8 @@
 {
   "name": "jade-press",
-  "description": "blog cms based on mongodb, nodejs",
-  "version": "0.0.1",
-  "main": "app.js",
+  "description": "cms based on mongodb, nodejs",
+  "version": "0.5.0",
+  "main": "app/start.js",
   "scripts": {
     "test": "mocha"
   },
@@ -61,7 +61,7 @@
     "run-sequence": "^1.1.0"
   },
   "engines": {
-    "node": "^4.2.0"
+    "node": "^5.8.0"
   },
   "license": "MIT",
   "bugs": {

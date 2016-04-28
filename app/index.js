@@ -52,12 +52,12 @@ exports.init = function() {
 	}))
 
 	//static files bower_components
-	app.use(serve( path.resolve(__dirname, '../bower_components'), {
+	app.use( serve( process.cwd() + '/bower_components' ), {
 		maxAge: oneYear
-	}))
+	})
 
 	//load theme res
-	let themeResPath = path.resolve(__dirname, '../node_modules/' + setting.theme + '/public')
+	let themeResPath = process.cwd() + '/node_modules/' + setting.theme + '/public'
 	try {
 		let themeRes = fs.accessSync(themeResPath)
 		let op = serve( path.resolve(themeResPath), {
@@ -94,12 +94,13 @@ exports.init = function() {
 	//routes
 	routes.init(app)
 
-	//start
-	app.listen(port, function() {
+	
+	if( process.cwd() === path.resolve(__dirname, '..') ) app.listen(port, function() {
 		console.log('' + new Date(), local.siteName, 'runs on port', port)
 	})
 
-	return app
+	//if not use as module return app
+	else return app
 }
 
 

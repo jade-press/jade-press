@@ -13,7 +13,7 @@ let cols = fs.readdirSync( path.resolve(__dirname, '../doc/db') ).map(function(v
 	return v.replace(/\.js$/, '')
 })
 
-let setting = {
+module.exports = {
 
 	mongoStoreOptions: {
 
@@ -93,7 +93,3 @@ let setting = {
 	}
 
 }
-
-,config = require('../config')
-
-module.exports = Object.assign(setting, config.setting)

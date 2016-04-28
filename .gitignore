@@ -7,8 +7,6 @@
 .idea/
 /config.js
 /temp/
-/public/css/*.css
-/public/js/*.min.js
 
 # Runtime data
 #pids
