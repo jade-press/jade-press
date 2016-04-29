@@ -1,6 +1,6 @@
 {
   "name": "jade-press",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "homepage": "http://jade-press.org",
   "author": {
     "email": "zxdong@gmail.com",
@@ -44,7 +44,7 @@
     "jquery": "^2.2.0",
     "bootstrap": "^v4.0.0-alpha.2",
     "google-code-prettify": "*",
-    "vue-form": "jade-press/vue-form#master",
+    "vue-form": "zxdong262/vue-form#master",
     "vue-pagenav": "*",
     "tether": "*",
     "vue-jade-editor": "^0.1.0",
