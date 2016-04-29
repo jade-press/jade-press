@@ -97,7 +97,7 @@ exports.init = function() {
 	routes.init(app)
 
 	
-	if( process.cwd() === path.resolve(__dirname, '..') ) app.listen(port, function() {
+	if( process.cwd() === path.resolve(__dirname, '..') ) app.listen(port, setting.listenAddress, function() {
 		console.log('' + new Date(), local.siteName, 'runs on port', port)
 	})
 

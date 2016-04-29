@@ -15,7 +15,11 @@ exports.init = {
 //local setting
 exports.local = {
 
+	//port
 	port: 7200
+
+	//listen address can be 'localhost' or '127.0.0.1' or domain name like 'example.com', default is undefined
+	//,listenAddress: 'locahost'
 
 	,env: 'dev' //or 'production'
 

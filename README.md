@@ -1,5 +1,5 @@
 # jade-press
-cms based on mongodb, nodejs
+cms based on mongodb, nodejs, koa, vue and more
 
 ## features
 
