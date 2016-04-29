@@ -31,7 +31,7 @@ exports.init = function* (config) {
 
 	setting.mailServiceReady = yield mail.checkMailService()
 
-	if(!hasMeta) yield require('../lib/init').init()
+	if(!hasMeta) yield require('../lib/init').init(config.init)
 
 	local.themeVersion = setting.theme.version?setting.theme.version:(setting.plugins[setting.theme] || '*')
 
