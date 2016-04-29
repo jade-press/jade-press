@@ -1,14 +1,18 @@
 {
   "name": "jade-press",
-  "version": "0.5.0",
+  "version": "0.6.1",
   "homepage": "http://jade-press.org",
   "author": {
     "email": "zxdong@gmail.com",
     "name": "ZHAO Xudong",
     "url": "http://html5beta.com"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jade-press/jade-press"
+  },
   "description": "cms based on mongodb, nodejs",
-  "bugs": "https://github.com/zxdong262/jade-press/issues",
+  "bugs": "https://github.com/jade-press/jade-press/issues",
   "main": "app.js",
   "moduleType": [
     "globals"
@@ -40,7 +44,7 @@
     "jquery": "^2.2.0",
     "bootstrap": "^v4.0.0-alpha.2",
     "google-code-prettify": "*",
-    "vue-form": "zxdong262/vue-form#master",
+    "vue-form": "jade-press/vue-form#master",
     "vue-pagenav": "*",
     "tether": "*",
     "vue-jade-editor": "^0.1.0",

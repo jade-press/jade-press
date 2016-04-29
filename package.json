@@ -1,14 +1,14 @@
 {
   "name": "jade-press",
   "description": "cms based on mongodb, nodejs",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "main": "app/start.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/zxdong262/jade-press"
+    "url": "https://github.com/jade-press/jade-press"
   },
   "keywords": [
     "jade-press",
@@ -65,6 +65,6 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zxdong262/jadepress-theme-pi/issues"
+    "url": "https://github.com/jade-press/jade-press/issues"
   }
 }
