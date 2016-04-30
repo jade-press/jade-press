@@ -36,14 +36,8 @@ cp config-sample.js config.js
 #install plugins
 gulp install
 
-# need your mongodb ready to connct
+# need your mongodb ready to connect
 node app
-
-#or inproduction
-# pm2 start server.json
-
-#or dev
-# pm2 start dev-server.json
 
 ```
 
