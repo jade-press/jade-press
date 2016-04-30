@@ -16,6 +16,15 @@ cms based on mongodb, nodejs, koa, vue and more
 
 ## use
 ```bash
+
+#for mongodb driver ubuntu (optional)
+#sudo apt-get install libkrb5-dev
+#or visit https://github.com/mongodb/node-mongodb-native#troubleshooting for more
+
+#for canvas ubuntu (optional)
+#sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
+#visit https://www.npmjs.com/package/canvas for more platform
+
 git clone https://github.com/jade-press/jade-press.git
 cd jade-press
 npm install
@@ -40,7 +49,11 @@ node app
 
 then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
-# todo
+## use jade-press as a module
+
+visit [https://github.com/jade-press/jade-press.org](https://github.com/jade-press/jade-press.org) as a example
+
+## todo
 - 404/500 extendable
 - new logo & icon svg
 - test
