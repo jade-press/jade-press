@@ -52,5 +52,6 @@ visit [https://github.com/jade-press/jade-press.org](https://github.com/jade-pre
 - new logo & icon svg
 - test
 - docs
+- windows support
 
 
