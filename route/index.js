@@ -16,40 +16,39 @@ _ = require('lodash')
 
 exports.publicExports = publics
 
-exports.init = function(app) {
-	
-	let route = new Router()
-	apis = apis.concat(publicApis)
-	
-	for(let i = 0, len = apis.length;i < len;i ++) {
 
-		let api = apis[i]
+let route = new Router()
+apis = apis.concat(publicApis)
 
-		let p = /^\//.test(api.lib)?
-						api.lib:
-						path.resolve(__dirname, '../', api.lib)
+for(let i = 0, len = apis.length;i < len;i ++) {
 
-		route[api.method](api.url, require(p)[api.func])
+	let api = apis[i]
 
-	}
+	let p = /^\//.test(api.lib)?
+					api.lib:
+					path.resolve(__dirname, '../', api.lib)
 
-	route.use(tools.init)
-	route.use(ua.ua)
-	route.use(tools.loginCheck)
-	route.use(tools.authCheck)
-	route.use(tools.setNoCache)
+	route[api.method](api.url, require(p)[api.func])
 
-	app
-	.use(route.routes())
-	.use(route.allowedMethods())
-	
+}
+
+exports.middlewares = [
+
+	tools.init
+	,ua.ua
+	,tools.loginCheck
+	,tools.authCheck
+	,tools.setNoCache
+	,route.routes()
+	,route.allowedMethods()
+
 	//404
-	app.use(function* (next) {
+	,function* (next) {
 		this.status =  404
 		this.render('views/page/404', this.local)
-	})
+	}
 
-	//end
-}
+]
+
 
 tools.extendLib(__filename, exports, plugins)

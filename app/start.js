@@ -1,9 +1,122 @@
 
-/*!
- * main entrance
-**/
+/**
+ * Module dependencies.
+ */
 
 'use strict'
+
+let
+koa = require('koa')
+,compress = require('koa-compress')
+,serve = require('koa-static')
+,conditional = require('koa-conditional-get')
+,etag = require('koa-etag')
+,Jade = require('koa-jade')
+,bodyParser = require('koa-bodyparser')
+,mount = require('koa-mount')
+,router = require('koa-router')
+,MongoStore = require('koa-generic-session-mongo')
+,session = require('koa-generic-session')
+,path = require('path')
+,fs = require('fs')
+,_ = require('lodash')
+,tools = require('../lib/tools')
+,oneYear = 1000 * 60 * 60 * 24 * 365
+,plugins = require('../lib/plugins').plugins
+
+exports.publicExports = {
+	tools: tools
+}
+
+//middlewares
+exports.middlewares = [
+	
+	conditional()
+
+	,etag()
+
+	,compress({
+		threshold: 2048
+		,flush: require('zlib').Z_SYNC_FLUSH
+	})
+
+	,serve( path.resolve(__dirname, '../public'), {
+		maxAge: oneYear
+	})
+
+	,serve( process.cwd() + '/bower_components', {
+		maxAge: oneYear
+	})
+
+]
+
+
+exports.start = function() {
+
+
+	let
+
+	setting = require('./setting')
+	,local = require('./local')
+	,port = local.port
+	,routes = require('../route/')
+
+	
+	// all environments
+	,app = koa()
+	,middlewares = exports.middlewares
+
+	//middleware
+	app.keys = [setting.secret]
+
+
+	//load theme res
+	let themeResPath = setting.theme.path?setting.theme.path + '/public'
+											: 
+											process.cwd() + '/node_modules/' + setting.theme + '/public'
+	try {
+		let themeRes = fs.accessSync(themeResPath)
+		let op = serve( themeResPath, {
+			maxAge: oneYear
+		})
+		middlewares.push( mount('/' + (setting.theme.name || setting.theme), op) )
+	} catch(e) {
+		console.warn(setting.theme, 'has no theme res')
+	}
+
+	// parse application/x-www-form-urlencoded
+	middlewares.push(bodyParser())
+
+	//view engine
+	var jade = new Jade({
+		viewPath: path.resolve(__dirname, '..')
+		,debug: false
+		,pretty: false
+		,compileDebug: local.env !== 'production'
+		,locals: { _:_ }
+		//basedir: 'path/for/jade/extends',
+		,noCache: local.env !== 'production'
+	})
+
+	middlewares.push(jade.middleware)
+
+	//session
+	middlewares.push(session({
+		key: setting.sessionName
+		,rolling: true
+		,store: new MongoStore(setting.mongoStoreOptions)
+	}))
+
+	//routes
+	middlewares = middlewares.concat(routes.middlewares)
+
+	//now use middlewares
+	for(let i = 0, len = middlewares.length;i < len;i ++) {
+		app.use(middlewares[i])
+	}
+	
+	return app
+}
 
 exports.init = function* (config) {
 
@@ -37,8 +150,11 @@ exports.init = function* (config) {
 
 	plugins.loadPlugins()
 
-	let app = require('./index.js').init()
+	let app = exports.start()
 
 	return Promise.resolve(app)
 
 }
+
+//exntend 
+tools.extendLib(__filename, exports, plugins)

@@ -48,7 +48,7 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 visit [https://github.com/jade-press/jade-press.org](https://github.com/jade-press/jade-press.org) as a example
 
 ## todo
-- middleware array
+- env handling
 - 404/500 extendable
 - new logo & icon svg
 - test
