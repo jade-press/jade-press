@@ -14,9 +14,6 @@ _ = require('lodash')
 ,path = require('path')
 ,plugins = require('../lib/plugins').plugins
 
-exports.publicExports = publics
-
-
 let route = new Router()
 apis = apis.concat(publicApis)
 
@@ -32,7 +29,7 @@ for(let i = 0, len = apis.length;i < len;i ++) {
 
 }
 
-exports.middlewares = [
+exports.middlewares = publics.middlewares = [
 
 	tools.init
 	,ua.ua
@@ -50,5 +47,6 @@ exports.middlewares = [
 
 ]
 
+exports.publicExports = publics
 
 tools.extendLib(__filename, exports, plugins)
