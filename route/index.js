@@ -32,6 +32,7 @@ for(let i = 0, len = apis.length;i < len;i ++) {
 exports.middlewares = publics.middlewares = [
 
 	tools.init
+	,tools.accessLog
 	,ua.ua
 	,tools.loginCheck
 	,tools.authCheck

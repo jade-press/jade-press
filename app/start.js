@@ -33,6 +33,9 @@ exports.middlewares = [
 	
 	conditional()
 
+	// parse application/x-www-form-urlencoded
+	,bodyParser()
+
 	,etag()
 
 	,compress({
@@ -83,9 +86,6 @@ exports.start = function() {
 	} catch(e) {
 		console.warn(setting.theme, 'has no theme res')
 	}
-
-	// parse application/x-www-form-urlencoded
-	middlewares.push(bodyParser())
 
 	//view engine
 	var jade = new Jade({
