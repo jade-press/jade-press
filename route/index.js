@@ -6,7 +6,7 @@ _ = require('lodash')
 ,publics = {}
 ,setting = require('../app/setting')
 ,local = require('../app/local')
-,tools = require('../lib/tools')
+,tools = publics.tools = require('../lib/tools')
 ,ua = require('../lib/ua')
 ,Router = require('koa-router')
 ,apis = publics.apis = require('../doc/api').accesses

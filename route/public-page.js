@@ -23,12 +23,9 @@ let _ = publics._ = require('lodash')
 ,getPosts = publics.getPosts = require('../lib/post').public.getPosts
 ,fs = require('fs')
 ,plugins = require('../lib/plugins').plugins
+,buildThemeRes = tools.buildThemeRes
 
 exports.publicExports = publics
-
-function buildThemeRes(host) {
-	return host + '/' + (setting.theme.name?setting.theme.name:setting.theme)
-}
 
 exports.home = function* (next) {
 
