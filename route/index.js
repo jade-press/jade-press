@@ -42,8 +42,9 @@ exports.middlewares = publics.middlewares = [
 
 	//404
 	,function* (next) {
+		tools.log(setting.path404)
 		this.status =  404
-		this.render('views/page/404', this.local)
+		this.render(setting.path404, this.local)
 	}
 
 ]

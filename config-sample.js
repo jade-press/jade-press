@@ -21,7 +21,7 @@ exports.local = {
 	//listen address can be 'localhost' or '127.0.0.1' or domain name like 'example.com', default is undefined
 	//,listenAddress: 'locahost'
 
-	,env: 'dev' //or 'production'
+	,env: process.env.NODE_ENV || 'dev' //or 'production'
 
 	//sitename, you should edit it
 	,siteName: 'jadepress'

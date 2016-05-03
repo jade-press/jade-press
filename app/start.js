@@ -142,6 +142,8 @@ exports.init = function* (config) {
 
 	var hasMeta = yield db.collection('meta').findOne()
 
+	tools.loadTheme404500()
+
 	setting.mailServiceReady = yield mail.checkMailService()
 
 	if(!hasMeta) yield require('../lib/init').init(config.init)

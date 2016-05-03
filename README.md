@@ -3,9 +3,9 @@ cms based on mongodb, nodejs, koa, vue and more
 
 ## features
 
-- based on mongodb(database and session), nodejs 4+, koa...
+- based on mongodb(database and session), nodejs 5+, koa...
 - built in jade editor
-- file upload and insert
+- file upload (to mongodb gridfs) and insert
 - custom routes
 - plugin system
 - theme system

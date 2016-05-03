@@ -72,7 +72,7 @@ exports.home = function* (next) {
 		err('failed render home page', e)
 		this.status = 500
 		this.local.error = e
-		this.render('views/page/500', this.local)
+		this.render(setting.path500, this.local)
 
 	}
 
@@ -110,7 +110,7 @@ exports.post = function* (next) {
 		err('failed render single post page', e)
 		this.status = 500
 		this.local.error = e
-		this.render('views/page/500', this.local)
+		this.render(setting.path500, this.local)
 
 	}
 
@@ -171,7 +171,7 @@ exports.cat = function* (next) {
 		err('failed render cat page', e)
 		this.status = 500
 		this.local.error = e
-		this.render('views/page/500', this.local)
+		this.render(setting.path500, this.local)
 
 	}
 
@@ -225,7 +225,7 @@ exports.search = function* (next) {
 		err('failed render cat page', e)
 		this.status = 500
 		this.local.error = e
-		this.render('views/page/500', this.local)
+		this.render(setting.path500, this.local)
 
 	}
 
