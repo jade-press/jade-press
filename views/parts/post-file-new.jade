@@ -100,5 +100,6 @@
 
 	div(name='content', v-form-ctrl='formData2.content', maxlength=10000)
 			jadeeditor(:content.sync='formData2.content', :rows='rows', :id='editor2')
+			include editor-tip
 	div(v-show='form2.content.$dirty && form2.content.$invalid')
 		.alert.alert-danger(v-show='form2.content.$error.maxlength') more than 10000 chars
