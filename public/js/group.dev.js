@@ -1,5 +1,5 @@
 
-/*login*/
+/*group*/
 
 ;(function () {
 	var $alert = Vue.$alert

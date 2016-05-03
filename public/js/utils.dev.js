@@ -1,5 +1,5 @@
 
-(function() {
+;(function() {
 Vue.$alert = function() {
 
 	var args = arguments

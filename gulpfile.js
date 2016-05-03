@@ -59,6 +59,7 @@ gulp.task('ugly', function() {
 			}))
 			.pipe(plumber())
 			.pipe(rename(function (path) {
+				path.basename = path.basename.replace('.dev', '')
 				path.extname = path.extname.replace('.js', '.min.js')
 			}))
 			.pipe(gulp.dest(jsFolder))
