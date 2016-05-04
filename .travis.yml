@@ -21,4 +21,6 @@ services:
   - mongodb
 before_script:
   - npm install -g bower
+  - npm install -g gulp
+  - gulp install
   - bower install
