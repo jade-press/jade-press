@@ -75,7 +75,7 @@ exports.setting = {
 	//make sure your theme is in plugins too
 	//plugins will be installed by run "gulp install"
 	,plugins: {
-		"jadepress-theme-pi": "*"
+		"jadepress-theme-pi": "^0.8.0"
 	}
 
 	//use public cdn or not

@@ -17,9 +17,9 @@ describe('pages', function() {
 
 	this.timeout(20000)
 
-	after(function() {
-		co(killProcessByPort(port))
-	})
+	// after(function() {
+	// 	co(killProcessByPort(port))
+	// })
 
 	it('run by default config', function(done) {
 		
