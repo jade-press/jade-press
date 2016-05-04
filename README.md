@@ -1,4 +1,7 @@
 # jade-press
+
+[![Build Status](https://travis-ci.org/jade-press/jade-press.svg?branch=master)](https://travis-ci.org/jade-press/jade-press)
+
 cms based on mongodb, nodejs, koa, vue and more
 
 ## features
