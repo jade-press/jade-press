@@ -9,7 +9,7 @@ let killProcessByPort = require('./lib/kill-process-by-port').kill
 ,co = require('co')
 ,pack = require('../package.json')
 ,path = require('path')
-,port = 9867
+,port = 9868
 ,wait = require('./lib/wait-for-server')
 
 describe(pack.name, function() {
@@ -46,44 +46,6 @@ describe(pack.name, function() {
 
 	})
 
-	it('home page', function(done) {
-		
-		co(wait(port)).then(function(res) {
-			visit({
-				url: 'http://127.0.0.1:' + port
-				,method: 'get'
-			})
-			.then(function(res) {
-				chai.should()
-				res.should.have.property('response')
-				res.should.have.property('body')
-				chai.expect(res.body.indexOf('<title>jadepress</title>') > -1).to.equal(true)
-				done()
-			})
-		}, function(err) {
-			console.error(err.stack || err)
-		})
 
-	})
-
-	it('404', function(done) {
-		
-		co(wait(port)).then(function(res) {
-			visit({
-				url: 'http://127.0.0.1:' + port + '/ggg'
-				,method: 'get'
-			})
-			.then(function(res) {
-				chai.should()
-				res.should.have.property('response')
-				res.should.have.property('body')
-				chai.expect(res.body.indexOf('<title>404 - jadepress</title>') > -1).to.equal(true)
-				done()
-			})
-		}, function(err) {
-			console.error(err.stack || err)
-		})
-
-	})
 	
 })
