@@ -45,11 +45,9 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 ## use jade-press as a module
 
-visit [https://github.com/jade-press/jade-press.org](https://github.com/jade-press/jade-press.org) as a example
+visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org) as a example
 
 ## todo
-- env handling
-- 404/500 extendable
 - new logo & icon svg
 - test
 - docs
