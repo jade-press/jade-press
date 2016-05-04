@@ -1,3 +1,6 @@
+
+<img src="http://jade-press.org/public/jade-press-logo.png", alt="" />
+
 # jade-press
 
 [![Build Status](https://travis-ci.org/jade-press/jade-press.svg?branch=master)](https://travis-ci.org/jade-press/jade-press)
@@ -51,10 +54,12 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org) as a example
 
 ## todo
-- views only theme support
+- post content search support
 - new logo & icon svg
-- test
+- more test
 - docs
 - windows support
 
+## license
+MIT
 

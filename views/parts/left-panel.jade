@@ -1,7 +1,6 @@
 #nav.col-sm-4.col-md-4.col-lg-3
 	.hidden-sm-up.clearfix.p-y-1
-		a.navbar-toggler.pull-xs-left(href="#{host}")
-			span.icon-jadepress1
+		a.navbar-toggler.pull-xs-left(href="#{host}") #{siteName}
 		button.navbar-toggler.pull-xs-right(type='button', data-toggle='collapse' data-target='#menus') &#9776;
 		.p-y-3.hidden-sm-down
 
@@ -10,9 +9,7 @@
 		.p-y-1
 		.lists.text-sm-right
 			.hidden-sm-down
-				a.font-weight-bold.form-control-lg(href="#{host}")
-					span.icon-jadepress1
-					|jadepress
+				a.font-weight-bold.form-control-lg(href="#{host}") #{siteName}
 				hr
 
 			- for(var i = 0, len = links.length;i < len;i ++) {
