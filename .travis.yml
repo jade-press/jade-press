@@ -22,5 +22,6 @@ services:
 before_script:
   - npm install -g bower
   - npm install -g gulp
+  - cp config-sample.js config.js
   - gulp install
   - bower install
