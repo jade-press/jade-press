@@ -48,6 +48,7 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org) as a example
 
 ## todo
+- views only theme support
 - new logo & icon svg
 - test
 - docs
