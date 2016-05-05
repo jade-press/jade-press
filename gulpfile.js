@@ -35,12 +35,12 @@ gulp.task('stylus', function() {
 
 	gulp.src(cssFolder + '/*.styl')
 		
-		.pipe(newer({
+/*		.pipe(newer({
 			dest: cssFolder
 			,map: function(path) {
 				return path.replace(/\.styl$/, '.css')
 			}
-		}))
+		}))*/
 		.pipe(plumber())
 		.pipe(stylus(stylusOptions))
 		.pipe(gulp.dest(cssFolder))
@@ -87,7 +87,7 @@ gulp.task('ugly-vender', function() {
 
 gulp.task('watch',  function () {
 
-	watch(cssFolder + '/*.styl', function() {
+	watch([cssFolder + '/*.styl', cssFolder + '/parts/*.styl'], function() {
 		runSequence('stylus')
 	})
 
