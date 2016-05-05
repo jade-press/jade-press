@@ -53,15 +53,18 @@ include ../parts/head2
 										h4
 											|{{item.name}} 
 											small (slug:{{item.slug}})
-											span.pull-xs-right(v-show='checkShow(item)')
-												span.btn-group.btn-group-sm(v-show='state !== "del"')
-													button.btn.btn-primary(@click='edit(item, $index)') edit
-													button.btn.btn-warning(@click='del(item)') delete
+											span.pull-xs-right
+
+												span.btn-group.btn-group-sm
+													button.btn.btn-primary(@click='edit(item, $index)', v-show='state !== "del" && checkShow(item, "edit")') edit
+													button.btn.btn-warning(@click='del(item)', v-show='state === "del" && checkShow(item, "del")') delete
+
 												span.btn-group.btn-group-sm(v-show='state === "del"')
 													button.btn.btn-danger(@click='delConfirm(item, $index)')
 														span(v-show='onDel') deleting...
 														span(v-show='!onDel') confirm delete
 													button.btn.btn-primary(@click='cancel(item)') cancel
+
 										div(v-show='item.desc')
 											|{{item.desc}}
 										#msg-item(v-if='currentEditItem._id === item._id || currentDelItem._id === item._id')

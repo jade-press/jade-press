@@ -14,6 +14,7 @@
 			}
 			,tab: 'info'
 			,onSubmit1: false
+			,hideForm: false
 
 		}
 		,methods: {
@@ -50,14 +51,16 @@
 					,data: pi.formData1
 				})
 				.then(function(res) {
-					pi.onSubmit1 = false
+					
 					var data = res
 					if(data.errorMsg || data.errs) {
+						pi.onSubmit1 = false
 						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg2')
 						
 					} else {
 						pi.formData1 = {}
 						pi.setPristine()
+						pi.hideForm = true
 						$alert('reset password done', 'success', '#msg2', 10000)
 						setTimeout(function() {
 							location.href = data.redirect || h5.host

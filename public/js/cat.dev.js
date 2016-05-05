@@ -44,8 +44,8 @@
 			setTab: function(tab) {
 				this.tab = tab
 			}
-			,checkShow: function(item) {
-				if(item.type !== 'user-created') return false
+			,checkShow: function(item, action) {
+				if(item.type !== 'user-created' && action === 'del') return false
 				if(this.state === 'list') return true
 
 				return item._id === this.currentEditItem._id || 
