@@ -51,4 +51,21 @@ exports.pages = [
 		,elementCount: ['h2', 1]
 		,url: 'http://127.0.0.1:' + port + '/s?title=hello'
 	}
+	,{
+		title: 'login'
+		,waitForElementVisible: '#wrapper'
+		,elementPresent: 'h1'
+		,containsText: ['.btn-link', 'forget password']
+		,elementCount: ['h1', 1]
+		,url: 'http://127.0.0.1:' + port + '/login'
+	}
+	,{
+		title: 'forget password'
+		,waitForElementVisible: '#wrapper'
+		,elementPresent: 'h1'
+		,containsText: ['.btn-link', 'login']
+		,elementCount: ['h1', 1]
+		,url: 'http://127.0.0.1:' + port + '/reset-password-request'
+	}
+
 ]
