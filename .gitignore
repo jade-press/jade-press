@@ -7,6 +7,7 @@
 .idea/
 /config.js
 /temp/
+/test/e2e/reports
 
 # Runtime data
 #pids

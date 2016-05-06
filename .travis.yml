@@ -1,5 +1,6 @@
 language: node_js
 sudo: required
+dist: trusty
 node_js:
   - "5"
   - "6"
@@ -15,10 +16,20 @@ addons:
       - libgif-dev 
       - build-essential 
       - g++-4.8
+      - openjdk-7-jre
 env:
   - CXX=g++-4.8
-services:
-  - mongodb
+before_install:
+  - sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+  - echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+  - export CHROME_BIN=/usr/bin/google-chrome
+  - export DISPLAY=:99.0 
+  - sh -e /etc/init.d/xvfb start
+  - sudo apt-get update
+  - sudo apt-get install -y libappindicator1 fonts-liberation
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - sudo dpkg -i google-chrome*.deb
+  - sudo apt-get install -y mongodb-org
 before_script:
   - npm install -g bower
   - npm install -g gulp

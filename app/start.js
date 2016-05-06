@@ -110,9 +110,15 @@ exports.start = function() {
 	//routes
 	middlewares = middlewares.concat(routes.middlewares)
 
+
+	//exntend
+	exports.publicExports.middlewares = middlewares
+	exports.middlewares = middlewares
+	tools.extendLib(__filename, exports, plugins)
+
 	//now use middlewares
-	for(let i = 0, len = middlewares.length;i < len;i ++) {
-		app.use(middlewares[i])
+	for(let i = 0, len = exports.middlewares.length;i < len;i ++) {
+		app.use(exports.middlewares[i])
 	}
 	
 	return app
@@ -158,5 +164,3 @@ exports.init = function* (config) {
 
 }
 
-//exntend 
-tools.extendLib(__filename, exports, plugins)

@@ -1,10 +1,11 @@
 {
   "name": "jade-press",
   "description": "cms based on mongodb, nodejs",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "main": "app/start.js",
   "scripts": {
-    "test": "mocha"
+    "test": "node test/e2e/runner.js",
+    "e2e": "node test/e2e/runner.js"
   },
   "repository": {
     "type": "git",
@@ -47,19 +48,25 @@
     "zpager": "^1.1.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^5.3.0",
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
-    "gulp-newer": "^0.5.0",
-    "gulp-plumber": "^1.0.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-stylus": "^2.0.2",
-    "gulp-uglify": "^1.2.0",
-    "gulp-util": "^3.0.5",
-    "gulp-watch": "^4.2.4",
-    "mocha": "^2.4.5",
-    "run-sequence": "^1.1.0"
+    "chai": "3.5.0",
+    "chai-as-promised": "5.3.0",
+    "chromedriver": "^2.21.2",
+    "cross-spawn": "^2.2.3",
+    "gulp": "3.8.11",
+    "gulp-concat": "2.5.2",
+    "gulp-newer": "0.5.0",
+    "gulp-plumber": "1.0.1",
+    "gulp-rename": "1.2.2",
+    "gulp-stylus": "2.0.2",
+    "gulp-uglify": "1.2.0",
+    "gulp-util": "3.0.5",
+    "gulp-watch": "4.2.4",
+    "jade-press": "^0.7.4",
+    "mocha": "2.4.5",
+    "nightwatch": "^0.8.18",
+    "request": "^2.72.0",
+    "run-sequence": "1.1.5",
+    "selenium-server": "^2.53.0"
   },
   "engines": {
     "node": "^5.8.0"
