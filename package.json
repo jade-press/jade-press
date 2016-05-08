@@ -5,7 +5,8 @@
   "main": "app/start.js",
   "scripts": {
     "test": "node test/e2e/runner.js",
-    "e2e": "node test/e2e/runner.js"
+    "e2e": "node test/e2e/runner.js",
+    "api": "node test/api/runner.js"
   },
   "repository": {
     "type": "git",

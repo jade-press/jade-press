@@ -8,18 +8,18 @@ script.
 - var tail2 = env === 'production'?'.min':'.dev'
 
 - if(usePublicCdn)
-	script(src='http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js')
-	script(src='http://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js')
-	script(src='http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/js/bootstrap.min.js')
-	script(src='http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.19/vue.min.js')
+	script(src='//ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.1.min.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js')
+	script(src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js')
+	script(src='//cdnjs.cloudflare.com/ajax/libs/vue/1.0.19/vue.min.js')
 
 - else
 	script(src='#{cdn}/jquery/dist/jquery#{tail1}.js?v2.2.0')
 	script(src='#{cdn}/tether/dist/js/tether#{tail1}.js?v1.2.0')
 	script(src='#{cdn}/bootstrap/dist/js/bootstrap#{tail1}.js?v4a2')
 	script(src='#{cdn}/vue/dist/vue#{tail1}.js')
-	script(src='#{cdn}/vue-form/vue-form#{tail1}.js')
 
+script(src='#{cdn}/vue-form/vue-form#{tail1}.js')
 script(src='#{cdn}/js/utils#{tail2}.js')
 
 
