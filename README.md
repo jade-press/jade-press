@@ -11,14 +11,14 @@ cms based on mongodb, nodejs, koa, vue and more
 
 - based on mongodb(database and session), nodejs 5+, koa...
 - built in jade editor
-- file upload (to mongodb gridfs) and insert
+- file upload (to mongodb gridfs), insert, manage
 - custom routes
 - plugin system
 - theme system
 - user system
 - user groups and custom access control based on url
 - post and category
-- custom style & script for every post
+- custom style & script & features file/image for every post
 
 ## use
 ```bash
