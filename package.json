@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run e2e && npm run api",
     "e2e": "node test/e2e/runner.js",
-    "api": "node test/api/runner.js"
+    "api": "mocha --require mocha-steps test/api/runner.js"
   },
   "repository": {
     "type": "git",
@@ -53,6 +53,7 @@
     "chai-as-promised": "^5.3.0",
     "chalk": "^1.1.3",
     "chromedriver": "^2.21.2",
+    "co-mocha": "^1.1.2",
     "cross-spawn": "^2.2.3",
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",
@@ -63,6 +64,8 @@
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.5",
     "gulp-watch": "^4.2.4",
+    "mocha": "^2.4.5",
+    "mocha-steps": "^1.0.0",
     "nightwatch": "^0.8.18",
     "request": "^2.72.0",
     "run-sequence": "^1.1.5",

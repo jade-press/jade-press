@@ -3,13 +3,27 @@
 
 let _ = require('lodash')
 ,co = require('co')
-
 ,MongoClient = require('mongodb').MongoClient
 ,pack = require('../../package.json')
 ,port = 9965
-,test = require('./tester')
 ,path = require('path')
 ,config = require('../../config-sample')
+,chai = require('chai')
+,expect = chai.expect
+,host = 'http://127.0.0.1:' + port
+,request = require('request')
+,qr = function(args) {
+	return new Promise(function(resolve, reject) {
+		request(args, function(err, response, body) {
+			if(err) reject(err)
+			else resolve({
+				response: response
+				,body: body
+			})
+		})
+	})
+
+}
 
 config.setting.mongoStoreOptions.url = 'mongodb://127.0.0.1:27017/test'
 config.setting.dbLink = 'mongodb://127.0.0.1:27017/test'
@@ -17,41 +31,43 @@ config.local.port = port
 
 let init = require('../../app/start').init
 
-co(init(config))
-.then(function(app) {
+describe(pack.name, function() {
 
-	app.listen(port, config.setting.listenAddress, function() {
-		console.log('' + new Date(), config.local.siteName, 'runs on port', port)
-		testRun()
+
+	step('start server', function(done) {
+
+		co(init(config))
+		.then(function(app) {
+
+			app.listen(port, config.setting.listenAddress, function() {
+				console.log('' + new Date(), config.local.siteName, 'runs on port', port)
+				done()
+				
+			})
+			
+		})
+
 	})
-	
-}, function(err) {
-	console.error(err.stack || err)
+
+	let loginTests = require('./specs/login')(host)
+	let tests = loginTests.tests
+	testRun(tests)
+
+
 })
 
 
-function testRun() {
+function testRun(tests) {
 
-	console.log('run api tests jade-press@' + pack.version)
-	co(testPromise())
-	.then(function(app) {
+	for(let i = 0, len = tests.length;i < len;i ++) {
+		let test = tests[i]
+		step(test.title, function(done) {
+			qr(test.options)
+			.then(function(res) {
+				expect(JSON.stringify(res.body)).to.equal(JSON.stringify(test.expect))
+				done()
+			})
+		})
+	}
 
-		console.log('done')
-		
-	}, function(err) {
-		console.error(err.stack || err)
-	})
-
-}
-
-function* testPromise() {
-
-	let db = yield MongoClient.connect(config.setting.dbLink)
-	let host = 'http://127.0.0.1:' + port
-
-	let loginTests = require('./specs/login')(host)
-
-	yield test(loginTests)
-
-	return Promise.resolve()
 }
