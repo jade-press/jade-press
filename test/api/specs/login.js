@@ -30,7 +30,7 @@ module.exports = function(host) {
 					,method: 'post'
 					,body: {
 						email: 'admin@example.com'
-						,password: '123456a0'
+						,password: '123456a'
 					}
 					,jar: true
 					,json: true
