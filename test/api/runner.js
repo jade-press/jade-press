@@ -4,6 +4,7 @@
 let _ = require('lodash')
 ,co = require('co')
 ,MongoClient = require('mongodb').MongoClient
+,db
 ,pack = require('../../package.json')
 ,port = 9965
 ,path = require('path')
@@ -25,14 +26,25 @@ let _ = require('lodash')
 
 }
 
-config.setting.mongoStoreOptions.url = 'mongodb://127.0.0.1:27017/test'
-config.setting.dbLink = 'mongodb://127.0.0.1:27017/test'
+config.setting.mongoStoreOptions.url = 'mongodb://127.0.0.1:27017/test1'
+config.setting.dbLink = 'mongodb://127.0.0.1:27017/test1'
 config.local.port = port
 
 let init = require('../../app/start').init
 
 describe(pack.name, function() {
 
+	step('clear db', function(done) {
+
+		co(function* () {
+			let dd = yield MongoClient.connect(config.setting.dbLink)
+			return dd.dropDatabase()
+		})
+		.then(function() {
+			done()
+		})
+
+	})
 
 	step('start server', function(done) {
 
@@ -41,6 +53,7 @@ describe(pack.name, function() {
 
 			app.listen(port, config.setting.listenAddress, function() {
 				console.log('' + new Date(), config.local.siteName, 'runs on port', port)
+				db = require('../../lib/db').db
 				done()
 				
 			})
@@ -49,10 +62,8 @@ describe(pack.name, function() {
 
 	})
 
-	let loginTests = require('./specs/login')(host)
-	let tests = loginTests.tests
-	testRun(tests)
-
+	testRun( require('./specs/login')(host).tests )
+	testRunRp( require('./specs/reset-password')(host).tests )
 
 })
 
@@ -64,9 +75,37 @@ function testRun(tests) {
 		step(test.title, function(done) {
 			qr(test.options)
 			.then(function(res) {
+				//console.log(res.body)
+				//console.log(test.expect)
 				expect(JSON.stringify(res.body)).to.equal(JSON.stringify(test.expect))
 				done()
 			})
+		})
+	}
+
+}
+
+function testRunRp(tests) {
+
+	for(let i = 0, len = tests.length;i < len;i ++) {
+		let test = tests[i]
+		step(test.title, function (done) {
+
+			co(function* () {
+
+				var user = yield db.collection('user').findOne()
+				test.options.body.resetPassword = user.resetPassword
+				var res = yield qr(test.options)
+
+				//console.log(res.body)
+				//console.log(test.expect)
+				expect(JSON.stringify(res.body)).to.equal(JSON.stringify(test.expect))
+
+			})
+			.then(function() {
+				done()
+			})
+
 		})
 	}
 
