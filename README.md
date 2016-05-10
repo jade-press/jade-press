@@ -1,5 +1,6 @@
-
-<img src="http://jade-press.org/public/jade-press-logo.png", alt="" />
+<h1 align="center">
+    <img src="http://jade-press.org/public/jade-press-logo.png", alt="" />
+</h1>
 
 # jade-press
 
@@ -23,7 +24,7 @@ cms based on mongodb, nodejs, koa, vue and more
 ## use
 ```bash
 
-#install mongodb if needed(ubuntu)
+#install mongodb if needed(ubuntu14.04)
 # sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
 # echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 # sudo apt-get install -y mongodb-org

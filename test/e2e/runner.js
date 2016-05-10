@@ -8,6 +8,7 @@ var server = require('./test-server.js')
 //    2. add it to the --env flag below
 // For more information on Nightwatch's config file, see
 // http://nightwatchjs.org/guide#settings-file
+
 var spawn = require('cross-spawn')
 var runner = spawn(
   './node_modules/.bin/nightwatch',
