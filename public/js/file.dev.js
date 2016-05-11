@@ -34,13 +34,14 @@
 		,methods: {
 
 			isImg: function(fileObj) {
-				var ext = fileObj.ext
+				var ext = (fileObj.ext || '').toLowerCase()
 				return ext === 'jpg' ||
+							 ext === 'jpeg' ||
 							 ext === 'png' ||
 							 ext === 'webp'
 			}
 			,createImgSrc: function(fileObj) {
-				return h5.host + '/file/' + fileObj._id + '.' + fileObj.ext
+				return h5.fileServer + '/file/' + fileObj._id + '.' + fileObj.ext
 			}
 			,checkShow: function(item) {
 

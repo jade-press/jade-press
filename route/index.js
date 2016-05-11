@@ -29,6 +29,7 @@ for(let i = 0, len = apis.length;i < len;i ++) {
 
 }
 
+
 exports.middlewares = publics.middlewares = [
 
 	tools.init
@@ -37,17 +38,16 @@ exports.middlewares = publics.middlewares = [
 	,tools.loginCheck
 	,tools.authCheck
 	,tools.setNoCache
-	,route.routes()
-	,route.allowedMethods()
-
-	//404
-	,function* (next) {
-		this.status =  404
-		this.render(setting.path404, this.local)
-	}
 
 ]
 
 exports.publicExports = publics
 
 tools.extendLib(__filename, exports, plugins)
+
+exports.middlewares.push( route.routes() )
+exports.middlewares.push( route.allowedMethods() )
+exports.middlewares.push( function* (next) {
+	this.status =  404
+	this.render(setting.path404, this.local)
+} )

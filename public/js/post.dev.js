@@ -1,6 +1,7 @@
 
 /*post*/
 
+
 ;(function () {
 	var $alert = Vue.$alert
 	Vue.use(zPagenav)
@@ -92,8 +93,9 @@
 				obj.featuredFile = {}
 			}
 			,isImg: function(fileObj) {
-				var ext = fileObj.ext
+				var ext = (fileObj.ext || '').toLowerCase()
 				return ext === 'jpg' ||
+							 ext === 'jpeg' ||
 							 ext === 'png' ||
 							 ext === 'webp'
 			}
@@ -108,7 +110,7 @@
 				obj.featuredFile = f
 			}
 			,createImgSrc: function(fileObj) {
-				return h5.host + '/file/' + fileObj._id + '.' + fileObj.ext
+				return h5.fileServer + '/file/' + fileObj._id + '.' + fileObj.ext
 			}
 			,createUrl: function(item) {
 				//todo:more replace thing
@@ -275,6 +277,7 @@
 							,content: 1
 							,files: 1
 							,featuredFile: 1
+							,published: 1
 						}
 					}
 				})
@@ -413,8 +416,9 @@
 						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg31', 10000)
 						
 					} else {
+
 						item.published = !item.published
-						//pi.list.$set(index, Object())
+
 					}
 					
 				}, function(res) {

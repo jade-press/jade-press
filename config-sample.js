@@ -32,8 +32,12 @@ exports.local = {
 	//site keywords, you should edit it
 	,siteKeywords: 'jade-press,nodejs,mongodb'
 
-	/* only if you use cdn
+	/* only if you use seprate domain to serve static resources
 	,cdn: 'http://mycdn.com'
+	*/
+
+	/* only if you use seprate domain to server uploaded files
+	,fileServer: 'http://myfile-server.com'
 	*/
 
 }
