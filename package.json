@@ -1,6 +1,6 @@
 {
   "name": "jade-press",
-  "description": "cms based on mongodb, nodejs",
+  "description": "cms based on mongodb, nodejs, koa, vue and more",
   "version": "0.8.2",
   "main": "app/start.js",
   "scripts": {
