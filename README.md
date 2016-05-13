@@ -69,7 +69,7 @@ visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jad
 
 ## todo
 
-visit [https://github.com/jade-press/jade-press/issues](issues)
+visit [issues](https://github.com/jade-press/jade-press/issues)
 
 ## license
 MIT
