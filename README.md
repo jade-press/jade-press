@@ -59,12 +59,17 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org) as a example
 
+## example theme
+
+[https://github.com/jade-press/jadepress-theme-pi](https://github.com/jade-press/jadepress-theme-pi)
+
+## example plugin
+
+[https://github.com/jade-press/jadepress-plugin-qr](https://github.com/jade-press/jadepress-plugin-qr)
+
 ## todo
-- post content search support
-- new logo & icon svg
-- more test
-- docs
-- windows support
+
+visit [https://github.com/jade-press/jade-press/issues](issues)
 
 ## license
 MIT
