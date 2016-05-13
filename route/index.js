@@ -15,20 +15,6 @@ _ = require('lodash')
 ,plugins = require('../lib/plugins').plugins
 
 let route = new Router()
-apis = apis.concat(publicApis)
-
-for(let i = 0, len = apis.length;i < len;i ++) {
-
-	let api = apis[i]
-
-	let p = /^\//.test(api.lib)?
-					api.lib:
-					path.resolve(__dirname, '../', api.lib)
-
-	route[api.method](api.url, require(p)[api.func])
-
-}
-
 
 exports.middlewares = publics.middlewares = [
 
@@ -44,6 +30,20 @@ exports.middlewares = publics.middlewares = [
 exports.publicExports = publics
 
 tools.extendLib(__filename, exports, plugins)
+
+apis = apis.concat(publicApis)
+
+for(let i = 0, len = apis.length;i < len;i ++) {
+
+	let api = apis[i]
+
+	let p = /^\//.test(api.lib)?
+					api.lib:
+					path.resolve(__dirname, '../', api.lib)
+
+	route[api.method](api.url, require(p)[api.func])
+
+}
 
 exports.middlewares.push( route.routes() )
 exports.middlewares.push( route.allowedMethods() )
