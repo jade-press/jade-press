@@ -1,6 +1,10 @@
 language: node_js
 sudo: required
 dist: trusty
+branches:
+  only:
+    - master
+    - dev
 node_js:
   - "5"
   - "6"

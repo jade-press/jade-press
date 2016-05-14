@@ -17,9 +17,9 @@ let config = require('../config')
 tests.forEach(function(test) {
 
 	exports[test.title] = function(browser) {
+
 		browser
 			.url(test.url)
-			.waitForElementVisible(test.waitForElementVisible, 5000)
 			.assert.elementPresent(test.elementPresent)
 			.assert.containsText(test.containsText[0], test.containsText[1])
 			.assert.elementCount(test.elementCount[0], test.elementCount[1])
@@ -29,6 +29,18 @@ tests.forEach(function(test) {
 			.setValue('input[type=email]', 'xxxx@gg.kk', function() {
 				browser.assert.elementCount('.alert.alert-danger:visible', 0)
 			})
+			.clearValue('input[type=email]')
+			.setValue('input[type=email]', 'admin@example.com')
+			.setValue('input[type=password]', '12345', function() {
+				browser.assert.elementCount('.alert.alert-danger:visible', 1)
+			})
+			.clearValue('input[type=password]')
+			.setValue('input[type=password]', '123456a', function() {
+				browser.assert.elementCount('.alert.alert-danger:visible', 0)
+			})
+			.click('button[type="submit"]')
+			.pause(1000)
+			.assert.urlContains('reset')
 			.end()
 	}
 	
