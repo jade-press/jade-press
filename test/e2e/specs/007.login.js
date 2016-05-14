@@ -13,6 +13,8 @@ let config = require('../config')
 		,url: 'http://127.0.0.1:' + port + '/login'
 	}
 ]
+//disable
+exports['@disabled'] = false
 
 tests.forEach(function(test) {
 
@@ -40,8 +42,15 @@ tests.forEach(function(test) {
 			})
 			.click('button[type="submit"]')
 			.pause(1000)
-			.assert.urlContains('reset')
-			.end()
+
+			//now in reset-password page
+			require('../sub-tests/reset-password')(browser)
+
+			//now in /admin/main
+			require('../sub-tests/main')(browser)
+			
+			//end
+			browser.end()
 	}
 	
 })

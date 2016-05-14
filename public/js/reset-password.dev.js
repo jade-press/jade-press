@@ -1,6 +1,5 @@
 
 
-
 ;(function () {
 
 	var $alert = Vue.$alert
@@ -15,7 +14,7 @@
 			,tab: 'info'
 			,onSubmit1: false
 			,hideForm: false
-
+			,onRedirect: false
 		}
 		,methods: {
 
@@ -42,7 +41,7 @@
 			}
 			,update: function() {
 				var pi = this
-				if(pi.onSubmit1) return
+				if(pi.onSubmit1 || pi.onRedirect) return
 				if(pi.form1.$invalid) return this.setDirty()
 				pi.onSubmit1 = true
 				$.ajax({
@@ -51,13 +50,14 @@
 					,data: pi.formData1
 				})
 				.then(function(res) {
-					
+					pi.onSubmit1 = false
 					var data = res
 					if(data.errorMsg || data.errs) {
 						pi.onSubmit1 = false
 						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg2')
 						
 					} else {
+						pi.onRedirect = true
 						pi.formData1 = {}
 						pi.setPristine()
 						pi.hideForm = true

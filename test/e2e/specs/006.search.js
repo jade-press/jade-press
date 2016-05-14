@@ -22,6 +22,9 @@ let config = require('../config')
 	}
 ]
 
+//disable
+exports['@disabled'] = true
+
 tests.forEach(function(test) {
 
 	exports[test.title] = function(browser) {

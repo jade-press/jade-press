@@ -12,6 +12,9 @@ let config = require('../config')
 	,url: 'http://127.0.0.1:' + port + '/default/hello-slug'
 }
 
+//disable
+exports['@disabled'] = true
+
 exports[test.title] = function(browser) {
 	browser
 		.url(test.url)
