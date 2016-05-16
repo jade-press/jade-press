@@ -79,7 +79,7 @@ include ../parts/head2
 										#msg-item(v-if='currentEditItem._id === item._id || currentDelItem._id === item._id')
 
 
-									div(v-show='currentEditItem._id === item._id')
+									div(v-if='currentEditItem._id === item._id')
 										form(name='form3', @submit.prevent='update()', novalidate, v-form)
 
 											.form-group
@@ -104,7 +104,7 @@ include ../parts/head2
 													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='access in accesses', :class='{ "btn-primary": inAccesses(access, formData3.access), "btn-secondary": !inAccesses(access, formData3.access) }', @click='toggleAccess(access, formData3.access)') {{accessObj[access].name}}
 
 												div(v-show='form3.access.$dirty && form3.access.$invalid')
-													.alert.alert-danger(v-if='form3.access.$error.customValidator') required	
+													.alert.alert-danger(v-if='form3.access.$error.customValidator') select one at least	
 
 											.form-group
 												#msg31

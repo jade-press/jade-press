@@ -168,16 +168,14 @@
 				.then(function(res) {
 					pi.onSubmit3 = false
 					var data = res
-					if(data.errorMsg) {
-						$alert(data.errorMsg, 'danger', '#msg31', 10000)
+					if(data.errorMsg || data.errs) {
+						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg31', 10000)
 						
-					} else if(data.errs) {
-						$alert(data.errs.join(';'), 'danger', '#msg31', 10000)
-					}
-					else {
+					} else {
 						pi.list.$set(pi.editIndex, pi.formData3)
 						pi.state = 'list'
 						pi.currentEditItem = {}
+						$alert('update group done', 'success', '#msg3', 10000)
 					}
 					
 				}, function(res) {
@@ -203,13 +201,9 @@
 				.then(function(res) {
 					pi.onDel = false
 					var data = res
-					if(data.errorMsg) {
-						$alert(data.errorMsg, 'danger', '#msg-item', 10000)
-						
-					} else if(data.errs) {
-						$alert(data.errs.join(';'), 'danger', '#msg-item', 10000)
-					}
-					else {
+					if(data.errorMsg || data.errs) {
+						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg-item', 10000)
+					} else {
 						pi.list.splice($index, 1)
 						pi.total --
 						pi.state = 'list'
