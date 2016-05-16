@@ -49,8 +49,11 @@ tests.forEach(function(test) {
 			//now in /admin/main
 			require('../sub-tests/main')(browser)
 
-			//now in /admin/group
-			require('../sub-tests/user-groups')(browser)
+			//now in /admin/group new group
+			require('../sub-tests/user-groups1')(browser)
+
+			//now in /admin/group edit group
+			//require('../sub-tests/user-groups2')(browser)
 
 			//end
 			browser.end()

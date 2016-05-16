@@ -27,6 +27,7 @@
 					desc: 1
 					,access: 1
 					,name: 1
+					,type: 1
 				}
 			}
 			,formData2: {
