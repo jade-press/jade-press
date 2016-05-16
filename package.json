@@ -67,6 +67,7 @@
     "mocha": "^2.4.5",
     "mocha-steps": "^1.0.0",
     "nightwatch": "^0.8.18",
+    "nightwatch-custom-commands-assertions": "^1.0.5",
     "request": "^2.72.0",
     "run-sequence": "^1.1.5",
     "selenium-server": "^2.53.0"

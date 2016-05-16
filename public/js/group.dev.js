@@ -70,6 +70,12 @@
 								item._id === this.currentDelItem._id
 
 			}
+			,checkAccess2: function() {
+				return this.formData2.access.length > 0
+			}
+			,checkAccess3: function(ref) {
+				return this.formData3.access.length > 0
+			}
 			,inAccesses: function(item, arr) {
 				return (arr || []).indexOf(item) > -1
 			}
