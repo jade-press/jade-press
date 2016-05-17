@@ -47,13 +47,19 @@ tests.forEach(function(test) {
 			require('../sub-tests/reset-password')(browser)
 
 			//now in /admin/main
-			//require('../sub-tests/main')(browser)
+			require('../sub-tests/main')(browser)
 
-			//now in /admin/group new group
+			//now in /admin/group new user group
 			require('../sub-tests/user-groups1')(browser)
 
-			//now in /admin/group edit group
+			//now in /admin/group edit user group
 			require('../sub-tests/user-groups2')(browser)
+
+			//now in /admin/file
+			require('../sub-tests/files')(browser)
+
+			//now in /admin/user
+			//require('../sub-tests/users')(browser)
 
 			//end
 			browser.end()

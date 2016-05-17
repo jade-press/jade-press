@@ -76,6 +76,10 @@ module.exports = function($) {
 	//success alert
 	.waitForElementPresent('#msg3 .alert.alert-success', 1500)
 
+	//delete
+	require('./delete-elem')($)
+
+
 
 }
 

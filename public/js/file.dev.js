@@ -123,10 +123,22 @@
 					$alert('get list failed', 'danger', '#msg3')
 				})
 			}
+			,animate: function(index, type) {
+				var cls = 'animated ' + type
+				var elem = $('.list-group .list-group-item').eq(index)
+				elem.addClass(cls)
+				setTimeout(function() {
+					elem.removeClass(cls)
+				}, 1000)
+			}
 			,findFile: function(md5, arr) {
 				for(var i = 0, len = arr.length;i < len;i ++) {
 					var it = arr[i]
-					if(md5 === it.md5) return it
+					if(md5 === it.md5) {
+						this.animate(i, 'tada')
+						$alert(it.name + ' already uploaded', 'danger', '#msg3', 10000)
+						return it
+					}
 				}
 				return false
 			}
@@ -181,8 +193,7 @@
 					browserMD5File(file, function (err, md5) {
 						if(err) reject(err)
 						else {
-
-							console.log(file.name, md5)
+							//console.log(file.name, md5)
 							file.md5 = md5
 							resolve(file)
 						}

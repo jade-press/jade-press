@@ -103,7 +103,7 @@ include ../parts/head2
 											.form-group
 												label <span class="text-danger">*</span> group
 												p(v-show='onloadGroup') loading...
-												.accesses(v-form-ctrl, custom-validator='validateGroup3')
+												.accesses(name='group', v-form-ctrl, custom-validator='validateGroup3')
 													
 													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='group in groups', :class='{ "btn-primary": checkGroup(group, formData3), "btn-secondary": !checkGroup(group, formData3) }', @click='selectGroup(group, formData3)') {{group.name}}
 

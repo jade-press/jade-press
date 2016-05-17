@@ -20,6 +20,7 @@
 					name: 1
 					,group: 1
 					,email: 1
+					,type: 1
 				}
 			}
 			,formData2: {
@@ -192,7 +193,8 @@
 					var data = res
 					if(data.errorMsg || data.errs) {
 						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg-item', 10000)
-						
+					} else if(data.result && data.result.n === 0) {
+						$alert('delete fail', 'danger', '#msg-item', 10000)
 					} else {
 						pi.list.splice($index, 1)
 						pi.total --
