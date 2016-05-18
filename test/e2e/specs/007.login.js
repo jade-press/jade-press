@@ -61,6 +61,9 @@ tests.forEach(function(test) {
 			//now in /admin/user
 			require('../sub-tests/user')(browser)
 
+			//now in /admin/cat
+			require('../sub-tests/cat')(browser)
+
 			//end
 			browser.end()
 	}

@@ -171,7 +171,7 @@
 						pi.state = 'list'
 						pi.formData3 = {}
 						pi.currentEditItem = {}
-						$alert('update group done', 'success', '#msg3', 10000)
+						$alert('update user done', 'success', '#msg3', 10000)
 					}
 					
 				}, function(res) {

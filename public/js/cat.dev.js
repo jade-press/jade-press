@@ -146,6 +146,7 @@
 						pi.list.$set(pi.editIndex, pi.formData3)
 						pi.state = 'list'
 						pi.currentEditItem = {}
+						$alert('update category done', 'success', '#msg3', 10000)
 					}
 					
 				}, function(res) {

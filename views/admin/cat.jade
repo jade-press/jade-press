@@ -57,7 +57,7 @@ include ../parts/head2
 
 												span.btn-group.btn-group-sm
 													button.btn.btn-primary(@click='edit(item, $index)', v-show='state !== "del" && checkShow(item, "edit")') edit
-													button.btn.btn-warning(@click='del(item)', v-show='state === "del" && checkShow(item, "del")') delete
+													button.btn.btn-warning(@click='del(item)', v-show='checkShow(item, "del")') delete
 
 												span.btn-group.btn-group-sm(v-show='state === "del"')
 													button.btn.btn-danger(@click='delConfirm(item, $index)')
