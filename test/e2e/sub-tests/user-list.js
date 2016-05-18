@@ -2,14 +2,10 @@
 
 let config = require('../config')
 let host = 'http://127.0.0.1:' + config.port
-let urls = require('../../../doc/api').accessUrlsControlled
-
 let testTab = require('../section-tests/tab')
 
 //sub test for main
 module.exports = function($) {
-
-	let browser = $
 
 	testTab($, '#list', 'form[name=form1]')
 
@@ -30,7 +26,7 @@ module.exports = function($) {
 	})
 
 	//form
-	.setValue('form[name=form3] input[name=name]', 'kk')
+	$.setValue('form[name=form3] input[name=name]', 'kk')
 	.clearValue('form[name=form3] input[name=name]', function() {
 		$.assert.elementCount('.alert.alert-danger:visible', 1)
 	})
@@ -41,36 +37,40 @@ module.exports = function($) {
 	})
 
 	.clearValue('form[name=form3] input[name=name]')
-	.setValue('form[name=form3] input[name=name]', 'test2', function() {
+	.setValue('form[name=form3] input[name=name]', 'test1', function() {
 		$.assert.elementCount('.alert.alert-danger:visible', 0)
 	})
 
-	.clearValue('form[name=form3] textarea[name=desc]')
-	.setValue('form[name=form3] textarea[name=desc]', Array(510).fill('p').join(''), function() {
-		$.getValue('form[name=form3] textarea[name=desc]', function(result) {
-			this.assert.equal(result.value, Array(500).fill('p').join(''))
+	//password
+	.setValue('form[name=form3] input[name=password]', '12345677', function() {
+		$.assert.elementCount('.alert.alert-danger:visible', 1)
+	})
+	.clearValue('form[name=form3] input[name=password]', function() {
+		$.assert.elementCount('.alert.alert-danger:visible', 0)
+	})
+	.setValue('form[name=form3] input[name=password]', '123456a')
+
+	//email
+	.clearValue('form[name=form3] input[name=email]')
+	.setValue('form[name=form3] input[name=email]', '12345677', function() {
+		$.assert.elementCount('.alert.alert-danger:visible', 1)
+	})
+	.clearValue('form[name=form3] input[name=email]', function() {
+		$.assert.elementCount('.alert.alert-danger:visible', 1)
+		//submit fail
+		.click('form[name=form3] button[type="submit"]', function() {
+			$.assert.elementCount('.alert.alert-danger:visible', 1)
 		})
 	})
-	.clearValue('form[name=form3] textarea[name=desc]', function() {
-		$.assert.elementCount('.alert.alert-danger:visible', 0)
-	})
-	.setValue('form[name=form3] textarea[name=desc]', 'desc9')
-
-	//unselect access url
-	.jqueryClick('form[name=form3] .accesses .btn:first', function() {
-		$.assert.elementCount('.alert.alert-danger:visible', 1)
-	})
-
-	//submit fail
-	.click('form[name=form3] button[type="submit"]', function() {
-		$.assert.elementCount('.alert.alert-danger:visible', 1)
-	})
-
-	//unselect access url
-	.jqueryClick('form[name=form3] .accesses .btn:first', function() {
+	.setValue('form[name=form3] input[name=email]', 'xx@dd.jjg', function() {
 		$.assert.elementCount('.alert.alert-danger:visible', 0)
 	})
 
+	//select user group
+	.jqueryClick('form[name=form3] .accesses .btn:eq(1)', function() {
+		$.assert.elementCount('.alert.alert-danger:visible', 0)
+	})
+	
 	//submit again
 	.click('form[name=form3] button[type="submit"]')
 
@@ -79,7 +79,6 @@ module.exports = function($) {
 
 	//delete
 	require('../section-tests/delete-elem')($)
-
 
 
 }

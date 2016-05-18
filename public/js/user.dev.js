@@ -52,11 +52,16 @@
 			,validateGroup3: function() {
 				return this.formData3.group._id
 			}
+			,validatePass: function(pass) {
+				return /^[0-9A-Za-z]{6,16}$/.test(pass) &&
+						 /[A-Za-z]/.test(pass) &&
+						 /[0-9]/.test(pass)
+			}
+			,validatePass3: function() {
+				return this.validatePass(this.formData3.password)
+			}
 			,validatePass2: function() {
-				var v = this.formData2.password
-				return /^[0-9A-Za-z]{6,16}$/.test(v) &&
-						 /[A-Za-z]/.test(v) &&
-						 /[0-9]/.test(v)
+				return this.validatePass(this.formData2.password)
 			}
 			,validateGroup3: function() {
 				var v = this.formData3.password
@@ -166,6 +171,7 @@
 						pi.state = 'list'
 						pi.formData3 = {}
 						pi.currentEditItem = {}
+						$alert('update group done', 'success', '#msg3', 10000)
 					}
 					
 				}, function(res) {

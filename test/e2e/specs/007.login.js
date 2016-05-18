@@ -59,7 +59,7 @@ tests.forEach(function(test) {
 			require('../sub-tests/files')(browser)
 
 			//now in /admin/user
-			//require('../sub-tests/users')(browser)
+			require('../sub-tests/user')(browser)
 
 			//end
 			browser.end()

@@ -104,7 +104,7 @@ include ../parts/head2
 													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='access in accesses', :class='{ "btn-primary": inAccesses(access, formData3.access), "btn-secondary": !inAccesses(access, formData3.access) }', @click='toggleAccess(access, formData3.access)') {{accessObj[access].name}}
 
 												div(v-show='form3.access.$dirty && form3.access.$invalid')
-													.alert.alert-danger(v-if='form3.access.$error.customValidator') select one at least	
+													.alert.alert-danger(v-show='form3.access.$error.customValidator') select one at least	
 
 											.form-group
 												#msg31
@@ -147,7 +147,7 @@ include ../parts/head2
 										button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='access in accesses', :class='{ "btn-primary": inAccesses(access, formData2.access), "btn-secondary": !inAccesses(access, formData2.access) }', @click='toggleAccess(access, formData2.access)') {{accessObj[access].name}}
 									p {{form2.access | json}}
 									div(v-show='form2.access.$dirty && form2.access.$invalid')
-										.alert.alert-danger(v-if='form2.access.$error.customValidator') select one at least	
+										.alert.alert-danger(v-show='form2.access.$error.customValidator') select one at least	
 
 								.form-group
 									#msg2

@@ -91,11 +91,11 @@ include ../parts/head2
 												label password
 												input.form-control(type='password', name='password', v-form-ctrl, v-model='formData3.password', placeholder='password', custom-validator='validatePass3')
 												div(v-show='form3.password.$dirty && form3.password.$invalid')
-													.alert.alert-danger(v-else='form3.password.$error.customValidator') must have [1-9] and [a-zA-Z], 6 ~ 16
+													.alert.alert-danger(v-show='form3.password.$error.customValidator') must have [1-9] and [a-zA-Z], 6 ~ 16
 
 											.form-group
 												label <span class="text-danger">*</span> email
-												input.form-control(type='email', rows=3, name='email', v-form-ctrl, v-model='formData3.email', placeholder='email', required)
+												input.form-control(type='email', name='email', v-form-ctrl, v-model='formData3.email', placeholder='email', required)
 												div(v-show='form3.email.$dirty && form3.email.$invalid')
 													.alert.alert-danger(v-show='form3.email.$error.required') required
 													.alert.alert-danger(v-else='form3.email.$error.email') not valid email
@@ -106,6 +106,9 @@ include ../parts/head2
 												.accesses(name='group', v-form-ctrl, custom-validator='validateGroup3')
 													
 													button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='group in groups', :class='{ "btn-primary": checkGroup(group, formData3), "btn-secondary": !checkGroup(group, formData3) }', @click='selectGroup(group, formData3)') {{group.name}}
+
+												div(v-show='form3.group.$dirty && form3.group.$invalid')
+													.alert.alert-danger(v-else='form3.group.$error.customValidator') please select
 
 											.form-group
 												#msg31
@@ -143,7 +146,7 @@ include ../parts/head2
 
 								.form-group
 									label <span class="text-danger">*</span> email
-									input.form-control(type='email', rows=2, name='email', v-form-ctrl, v-model='formData2.email', placeholder='email', required)
+									input.form-control(type='email', name='email', v-form-ctrl, v-model='formData2.email', placeholder='email', required)
 									div(v-show='form2.email.$dirty && form2.email.$invalid')
 										.alert.alert-danger(v-show='form2.email.$error.required') required
 										.alert.alert-danger(v-else='form2.email.$error.email') not valid email
@@ -154,6 +157,7 @@ include ../parts/head2
 									.accesses(name='group', v-form-ctrl='formData2.group', custom-validator='validateGroup2')
 										
 										button.access.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='group in groups', :class='{ "btn-primary": checkGroup(group, formData2), "btn-secondary": !checkGroup(group, formData2) }', @click='selectGroup(group, formData2)', title='{{group.desc}}') {{group.name}}
+
 									div(v-show='form2.group.$dirty && form2.group.$invalid')
 										.alert.alert-danger(v-else='form2.group.$error.customValidator') please select
 

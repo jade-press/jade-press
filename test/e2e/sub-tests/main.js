@@ -1,4 +1,5 @@
 'use strict'
+let testTab = require('../section-tests/tab')
 
 //sub test for main
 module.exports = function($) {
@@ -11,9 +12,9 @@ module.exports = function($) {
 	.assert.urlContains('main')
 
 	//tab
-	.click('.nav-tabs a[href="#password"]')
-	.waitForElementVisible('form[name=form1]', 500)
-	.click('.nav-tabs a[href="#info"]')
+	testTab($, '#password', 'form[name=form1]')
+
+	$.click('.nav-tabs a[href="#info"]')
 	.waitForElementNotVisible('form[name=form1]', 500)
 
 	//form validate

@@ -34,7 +34,7 @@ module.exports = function($) {
 	.assert.elementCount('.list-group-item', 2)
 
 	//del
-	require('./delete-elem')($)
+	require('../section-tests/delete-elem')($)
 
 }
 
