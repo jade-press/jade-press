@@ -60,20 +60,6 @@ module.exports = function($) {
 	.pause(300)
 	.assert.elementCount('.list-group-item', 0)
 
-
-	/*
-	.jqueryElement('form[name=form1] select option:eq(2)', function(elem) {
-		var v = elem.setValue
-		$.pause(100000)
-		$.setSelect2Value('form[name=form1] select', v, function() {
-			$
-			.click('form[name=form1] button[type="submit"]')
-			.pause(300)
-			.assert.elementCount('.list-group-item', 0)
-		})
-	})
-	*/
-
 	//group select 1 result
 	.click('form[name=form1] select')
 	.keys($.Keys.ARROW_UP)

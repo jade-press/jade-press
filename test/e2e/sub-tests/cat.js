@@ -82,6 +82,12 @@ module.exports = function($) {
 	//list count
 	.assert.elementCount('.list-group-item', 2)
 
+	//add 1 new cat
+	.setValue('form[name=form2] input[name=name]', 'test2', function() {
+		//submit ok
+		$.click('form[name=form2] button[type="submit"]')
+	})
+
 	//user-list
 	require('./cat-list')($)
 

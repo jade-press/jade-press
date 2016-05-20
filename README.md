@@ -20,6 +20,7 @@ cms based on mongodb, nodejs, koa, vue and more
 - user groups and custom access control based on url
 - post and category
 - custom style & script & features file/image for every post
+- can be used as a module to extend
 
 ## use
 ```bash
@@ -29,11 +30,11 @@ cms based on mongodb, nodejs, koa, vue and more
 # echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 # sudo apt-get install -y mongodb-org
 
-#for mongodb driver ubuntu (optional)
+#for mongodb driver ubuntu
 #sudo apt-get install libkrb5-dev
 #or visit https://github.com/mongodb/node-mongodb-native#troubleshooting for more
 
-#for canvas ubuntu (optional)
+#for canvas ubuntu
 #sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
 #visit https://www.npmjs.com/package/canvas for more platform
 
@@ -57,7 +58,7 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 ## use jade-press as a module
 
-visit [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org) as a example
+[https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org)
 
 ## example theme
 

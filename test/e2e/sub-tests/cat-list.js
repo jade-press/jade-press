@@ -17,7 +17,7 @@ module.exports = function($) {
 
 	//cancel
 	.jqueryClick('.list-group-item:last form[name=form3] .btn-danger', function() {
-		$.assert.elementCount('.list-group-item:last form[name=form3]', 0)
+		$.pause(100).assert.elementCount('.list-group-item:last form[name=form3]', 0)
 	})
 
 	//edit
@@ -44,8 +44,8 @@ module.exports = function($) {
 	//submit again
 	.click('form[name=form3] button[type="submit"]')
 
-	//success alert
-	.waitForElementPresent('#msg3 .alert.alert-success', 1500)
+	//success alert-success
+	.waitForElementPresent('#msg3 .alert.alert-success', 2500)
 
 	//delete
 	require('../section-tests/delete-elem')($)

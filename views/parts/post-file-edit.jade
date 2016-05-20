@@ -6,7 +6,7 @@
 			span.icon-help-circled
 		|)
 
-	.files-control
+	.files-control3
 
 		#file-err3
 
@@ -40,7 +40,7 @@
 						span.file-custom
 					span.label.label-success(v-show='uploadProgress > 0 && uploadProgress < 100') {{uploadProgress}}/100
 
-				ul.list-group
+				ul.list-group.files-list1
 					li.list-group-item(v-for='f in formData3.files')
 						.small
 
@@ -64,19 +64,19 @@
 								img(:src='createImgSrc(f)', alt='f.filename', height=30)
 
 			.tab-content(v-show='fileTab === "file-list"')
-				#msgf
+				#msgf3
 				.form-group
 					.input-group
 						input.form-control(type='text', v-model='formDataf.name', @change='getFiles()', debounce=500)
 						span.input-group-btn
-							button.btn.btn-secondary(@click='getFiles()')
+							button.btn.btn-secondary(type='button', @click='getFiles()')
 								span(v-show='!onloadFiles') search
 								span(v-show='onloadFiles') loading...
 
 				div(v-show='filesTotal > formDataf.pageSize')
 					zpagenav(:page.sync='formDataf.page', :page-size='formDataf.pageSize', :total='filesTotal', :max-link='formDataf.maxLink')
 
-				ul.list-group
+				ul.list-group.files-list2
 					li.list-group-item(v-for='f in files')
 						.small
 

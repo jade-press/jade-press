@@ -60,7 +60,7 @@ include ../parts/head2
 							div(v-show='total > formData1.pageSize')
 								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
 							#msg3
-							ul.list-group
+							ul.list-group.post-list
 								li.list-group-item(v-for='item in list')
 									div(v-show='currentEditItem._id !== item._id')
 										p
@@ -70,13 +70,13 @@ include ../parts/head2
 												span.small in:
 												span {{renderItemCats(item)}}
 											span.pull-xs-right
-												button.btn.btn-sm.m-r-1(@click='publish(item ,$index)', :class='{ "btn-info": item.published, "btn-success": !item.published}')
+												button.btn.btn-sm.m-r-1.toggle-publish(@click='publish(item ,$index)', :class='{ "btn-info": item.published, "btn-success": !item.published}')
 													span(v-show='item.published') unpublish
 													span(v-show='!item.published') publish
 
 										p.small(v-show='item.desc') {{item.desc}}
 										#msg-item(v-if='currentEditItem._id === item._id || currentDelItem._id === item._id')
-										div(v-show='checkShow(item)')
+										div.btns(v-show='checkShow(item)')
 
 											.btn-group.btn-group-sm(v-show='state !== "del"')
 												button.btn.btn-primary(@click='edit(item, $index)')
@@ -87,7 +87,7 @@ include ../parts/head2
 												button.btn.btn-danger(@click='delConfirm(item, $index)')
 													span(v-show='onDel') deleting...
 													span(v-show='!onDel') confirm delete
-												button.btn.btn-primary(@click='cancel(item)') cancel
+												button.btn.btn-secondary(@click='cancel(item)') cancel
 
 									div(v-if='currentEditItem._id === item._id')
 										form(name='form3', @submit.prevent='update()', novalidate, v-form)
@@ -101,21 +101,22 @@ include ../parts/head2
 
 											.form-group
 												label description
-												input.form-control(type='text', rows=3, name='desc', v-form-ctrl, v-model='formData3.desc', placeholder='category description', maxlength=500)
+												textarea.form-control(type='text', rows=3, name='desc', v-form-ctrl, v-model='formData3.desc', placeholder='category description', maxlength=500)
 												div(v-show='form3.desc.$dirty && form3.desc.$invalid')
 													.alert.alert-danger(v-show='form3.desc.$error.maxlength') more than 500 chars
 
 											.form-group
 												label slug(<mark>a-z</mark>, <mark>A-Z</mark>, <mark>1-9</mark>, <mark>-</mark> only)
-												input.form-control(type='text', name='slug', v-form-ctrl, v-model='formData3.slug', placeholder='post slug', pattern='([a-zA-Z0-9\\-]{1,24})?')
+												input.form-control(type='text', name='slug', v-form-ctrl, v-model='formData3.slug', placeholder='post slug', pattern='([a-zA-Z0-9\\-]{1,100})?', required)
 												div(v-show='form3.slug.$dirty && form3.slug.$invalid')
-													.alert.alert-danger(v-show='form3.slug.$error.pattern') <mark>a-z</mark>, <mark>A-Z</mark>, <mark>1-9</mark>, <mark>-</mark> only
+													.alert.alert-danger(v-show='form3.slug.$error.required') required
+													.alert.alert-danger(v-else='form3.slug.$error.pattern') <mark>a-z</mark>, <mark>A-Z</mark>, <mark>1-9</mark>, <mark>-</mark> only
 
 											.form-group
 												label tags(seprated by <mark>,</mark>)
-												input.form-control(type='text', rows=3, name='tags', v-form-ctrl, v-model='formData3.tags', placeholder='tags', maxlength=300)
+												input.form-control(type='text', rows=3, name='tags', v-form-ctrl, v-model='formData3.tags', placeholder='tags', maxlength=100)
 												div(v-show='form3.tags.$dirty && form3.tags.$invalid')
-													.alert.alert-danger(v-else='form3.tags.$error.maxlength') more than 300 chars
+													.alert.alert-danger(v-show='form3.tags.$error.maxlength') more than 100 chars
 
 											include ../parts/post-file-edit
 
@@ -127,13 +128,13 @@ include ../parts/head2
 													button.cat.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='cat in cats', :class='{ "btn-primary": inCats(cat, formData3.cats), "btn-secondary": !inCats(cat, formData3.cats) }', @click='toggleCat(cat, formData3.cats)') {{cat.name}}
 
 											p
-												a(href='#', @click.prevent='toggleShowMore(3)')
+												a.toggle-more(href='#', @click.prevent='toggleShowMore(3)')
 													span(v-show='showMoreOption3') hide more option
 													span(v-show='!showMoreOption3') show more option
 
 											.more(v-show='showMoreOption3')
 
-												.form-group
+												.form-group.style-control
 													label
 														|stylus 
 														a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
@@ -143,13 +144,13 @@ include ../parts/head2
 													div(v-show='form3.style.$dirty && form3.style.$invalid')
 														.alert.alert-danger(v-show='form3.style.$error.maxlength') more than 5000 chars
 													.p-y-1
-														button.btn.btn-warning.btn-sm(type='button', @click='validateStyle(3)')
+														button.btn.btn-warning.btn-sm.validate-style(type='button', @click='validateStyle(3)')
 															span(v-show='!onValidateStyle3') validate css
 															span(v-show='onValidateStyle3') validating...
 
-														span(v-show='validateStyleMsg3.hasResult')
-															span(v-show='validateStyleMsg3.pass')
-																span.icon-ok-circled.text-success
+														span.style-control-msg(v-show='validateStyleMsg3.hasResult')
+															span.text-success(v-show='validateStyleMsg3.pass')
+																span.icon-ok-circled
 															span.text-danger(v-show='!validateStyleMsg3.pass')
 																span.icon-cancel-circled
 																span {{validateStyleMsg3.msg}}
@@ -189,26 +190,26 @@ include ../parts/head2
 										.alert.alert-danger(v-else='form2.title.$error.maxlength') more than 50 chars
 
 								.form-group
-									button.btn(type='button', @click='set("formData2.published", !formData2.published)', :class='{ "btn-muted": !formData2.published, "btn-primary": formData2.published}') publish right away
+									button.btn.publish-control(type='button', @click='set("formData2.published", !formData2.published)', :class='{ "btn-muted": !formData2.published, "btn-primary": formData2.published}') publish right away
 	
 
 								.form-group
 									label description
-									input.form-control(type='text', rows=3, name='desc', v-form-ctrl, v-model='formData2.desc', placeholder='category description', maxlength=500)
+									textarea.form-control(type='text', rows=3, name='desc', v-form-ctrl, v-model='formData2.desc', placeholder='category description', maxlength=500)
 									div(v-show='form2.desc.$dirty && form2.desc.$invalid')
 										.alert.alert-danger(v-show='form2.desc.$error.maxlength') more than 500 chars
 
 								.form-group
 									label slug(<mark>a-z</mark>, <mark>A-Z</mark>, <mark>1-9</mark>, <mark>-</mark> only)
-									input.form-control(type='text', name='slug', v-form-ctrl, v-model='formData2.slug', placeholder='post slug', pattern='([a-zA-Z0-9\\-]{1,24})?')
+									input.form-control(type='text', name='slug', v-form-ctrl, v-model='formData2.slug', placeholder='post slug', pattern='([a-zA-Z0-9\\-]{1,100})?')
 									div(v-show='form2.slug.$dirty && form2.slug.$invalid')
 										.alert.alert-danger(v-show='form2.slug.$error.pattern') <mark>a-z</mark>, <mark>A-Z</mark>, <mark>1-9</mark>, <mark>-</mark> only
 
 								.form-group
 									label tags(seprated by <mark>,</mark>)
-									input.form-control(type='text', rows=3, name='tags', v-form-ctrl, v-model='formData2.tags', placeholder='tags', maxlength=300)
+									input.form-control(type='text', rows=3, name='tags', v-form-ctrl, v-model='formData2.tags', placeholder='tags', maxlength=100)
 									div(v-show='form2.tags.$dirty && form2.tags.$invalid')
-										.alert.alert-danger(v-else='form2.tags.$error.maxlength') more than 300 chars
+										.alert.alert-danger(v-show='form2.tags.$error.maxlength') more than 100 chars
 
 								include ../parts/post-file-new
 
@@ -219,13 +220,13 @@ include ../parts/head2
 										button.cat.btn.btn-sm.m-r-1.m-b-1(type='button', v-for='cat in cats', :class='{ "btn-primary": inCats(cat, formData2.cats), "btn-secondary": !inCats(cat, formData2.cats) }', @click='toggleCat(cat, formData2.cats)') {{cat.name}}
 
 								p
-									a(href='#', @click.prevent='toggleShowMore(2)')
+									a.toggle-more(href='#', @click.prevent='toggleShowMore(2)')
 										span(v-show='showMoreOption2') hide more option
 										span(v-show='!showMoreOption2') show more option
 
 								.more(v-show='showMoreOption2')
 
-									.form-group
+									.form-group.style-control
 										label
 											|stylus 
 											a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
@@ -235,18 +236,18 @@ include ../parts/head2
 										div(v-show='form2.style.$dirty && form2.style.$invalid')
 											.alert.alert-danger(v-show='form2.style.$error.maxlength') more than 5000 chars
 										.p-y-1
-											button.btn.btn-warning.btn-sm(type='button', @click='validateStyle(2)')
+											button.btn.btn-warning.btn-sm.validate-style(type='button', @click='validateStyle(2)')
 												span(v-show='!onValidateStyle2') validate css
 												span(v-show='onValidateStyle2') validating...
 
-											span(v-show='validateStyleMsg2.hasResult')
-												span(v-show='validateStyleMsg2.pass')
-													span.icon-ok-circled.text-success
+											span.style-control-msg(v-show='validateStyleMsg2.hasResult')
+												span.text-success(v-show='validateStyleMsg2.pass')
+													span.icon-ok-circled
 												span.text-danger(v-show='!validateStyleMsg2.pass')
 													span.icon-cancel-circled
 													span {{validateStyleMsg2.msg}}
 
-									.form-group
+									.form-group.js-control
 										label js
 										div(name='script', v-form-ctrl='formData2.script', maxlength=5000)
 											jadeeditor(:content.sync='formData2.script', :rows='rows')

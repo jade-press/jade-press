@@ -15,7 +15,7 @@ let config = require('../config')
 ]
 
 //disable
-exports['@disabled'] = false
+exports['@disabled'] = true
 
 tests.forEach(function(test) {
 

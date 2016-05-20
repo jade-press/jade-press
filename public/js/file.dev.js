@@ -136,7 +136,7 @@
 					var it = arr[i]
 					if(md5 === it.md5) {
 						this.animate(i, 'tada')
-						$alert(it.name + ' already uploaded', 'danger', '#msg3', 10000)
+						$alert(it._id + '.' + it.ext + ' already uploaded', 'danger', '#msg3', 10000)
 						return it
 					}
 				}
@@ -238,7 +238,7 @@
 				.then(function(file) {
 					if(file) data.submit()
 				}, function(e) {
-					return $alert(s.stack || e, 'danger', '#file-err2')
+					return $alert(e.stack || e, 'danger', '#file-err2')
 				})
 
 				

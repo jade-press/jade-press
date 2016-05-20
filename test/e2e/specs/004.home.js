@@ -13,7 +13,7 @@ let config = require('../config')
 }
 
 //disable
-exports['@disabled'] = false
+exports['@disabled'] = true
 
 exports[test.title] = function(browser) {
 	browser

@@ -25,14 +25,14 @@ module.exports = {
 	,slug: {
 		type: 'string'
 		,desc: 'url safe charactor only'
-		,reg: /^[a-zA-Z_][a-zA-Z_0-9]{1,24}$/
+		,reg: /^[a-zA-Z_][a-zA-Z_0-9\-]{1,100}$/
 		,default: 'defaultPostSlugPromise'
 		,required: true
 	}
 	,tags: {
 		type: 'string'
 		,minLen: 1
-		,maxLen: 200
+		,maxLen: 100
 		,required: true
 		,default: 'titleAsTagsPromise'
 	}

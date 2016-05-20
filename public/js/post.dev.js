@@ -333,6 +333,7 @@
 					,files: []
 					,featuredFile: {}
 				}
+				this.validateStyleMsg2 = {}
 			}
 			,add: function() {
 				var pi = this
@@ -387,6 +388,7 @@
 						pi.list.$set(pi.editIndex, pi.formData3)
 						pi.state = 'list'
 						pi.currentEditItem = {}
+						$alert('post updated', 'success', '#msg3', 3000)
 					}
 					
 				}, function(res) {
@@ -596,25 +598,118 @@
 						,done: function (e, data) {
 							var res = data.result
 							if(res.errorMsg || res.errs) {
-								return $alert(res.errorMsg || res.errs.join(';'), 'danger', '#file-err3')
+								return $alert(res.errorMsg || res.errs.join(';'), 'danger', '#file-err3', 20000)
 							}
 							app.files.push(res.result)
-							app.formData3.files.push(res.result)
+							app.formData2.files.push(res.result)
 							app.filesTotal ++
 						}
 						,error: function(jqxhr, str) {
-							return $alert(str + ' please retry', 'danger', '#file-err3')
+							return $alert(str + ':please retry', 'danger', '#file-err3')
 						}
 						,progressall: function(e, data) {
 							app.uploadProgress = Math.floor(data.loaded * 100/data.total)
 						}
 						,add: function(e, data) {
-							console.log(data)
-							data.submit()
+
+							app.md5Check(data.files, '#file-err3')
+							.then(function(file) {
+								if(file) data.submit()
+							}, function(e) {
+								return $alert(e.stack || e, 'danger', '#file-err3')
+							})
 						}
 					})
 				})
 
+			}
+			,animate: function(sel, index, type) {
+				this.fileTab = 'file-list'
+				var cls = 'animated ' + type
+				var elem = $(sel).eq(index)
+				elem.addClass(cls)
+				setTimeout(function() {
+					elem.removeClass(cls)
+				}, 1000)
+			}
+			,findFile: function(md5, arr, wrap) {
+				var sel = wrap.indexOf('2') > -1?
+					'.files-control2 .files-list2 .list-group-item'
+					:'.files-control3 .files-list2 .list-group-item'
+				for(var i = 0, len = arr.length;i < len;i ++) {
+					var it = arr[i]
+					if(md5 === it.md5) {
+						this.animate(sel, i, 'tada')
+						$alert(it._id + '.' + it.ext + ' already uploaded', 'danger', wrap, 10000)
+						return it
+					}
+				}
+				return false
+			}
+			,md5Check: function(files, wrap) {
+				var pi = this
+				return pi.getMd5(files[0], wrap)
+				.then(pi.checkFile)
+			}
+			,checkFile: function(obj) {
+				var file = obj.file
+				var wrap = obj.wrap
+				var pi = this
+				var ref = wrap.indexOf('2') > -1?'formData2':'formData3'
+				return new Promise(function(resolve, reject) {
+
+					var f = pi.findFile(file.md5, pi.files, wrap)
+					if(f) return resolve(false)
+					$.ajax({
+						type: 'post'
+						,url: h5.host + '/api/file/get'
+						,data: {
+							md5: file.md5
+							,page: 1
+							,pageSize: 1
+							,fields: {
+								_id: 1
+								,md5: 1
+								,filename: 1
+								,ext: 1
+							}
+						}
+					})
+					.then(function(res) {
+						var data = res
+						if(data.errorMsg || data.errs) {
+							$alert(data.errorMsg || data.errs.join(';'), 'danger', wrap, 5000)
+							resolve(true)
+						} else {
+							if(data.total) {
+								var obj = data.result[0]
+								pi.files.push(obj)
+								pi[ref].files.push(obj)
+								$alert(file.name + ' uploaded', 'success', wrap, 5000)
+								resolve(false)
+							} else resolve(true)
+						}
+						
+					}, function(res) {
+						$alert('get list failed', 'danger', wrap, 5000)
+						resolve(true)
+					})
+				})
+			}
+			,getMd5: function(file, wrap) {
+				return new Promise(function(resolve, reject) {
+					browserMD5File(file, function (err, md5) {
+						if(err) reject(err)
+						else {
+							//console.log(file.name, md5)
+							file.md5 = md5
+							resolve({
+								file: file
+								,wrap: wrap
+							})
+						}
+					})
+				})
 			}
 
 			//end methods
@@ -645,14 +740,19 @@
 				app.filesTotal ++
 			}
 			,error: function(jqxhr, str) {
-				return $alert(str + ' please retry', 'danger', '#file-err2')
+				return $alert(str + ':please retry', 'danger', '#file-err2')
 			}
 			,progressall: function(e, data) {
 				app.uploadProgress = Math.floor(data.loaded * 100/data.total)
 			}
 			,add: function(e, data) {
-				console.log(data)
-				data.submit()
+
+				app.md5Check(data.files, '#file-err2')
+				.then(function(file) {
+					if(file) data.submit()
+				}, function(e) {
+					return $alert(e.stack || e, 'danger', '#file-err2')
+				})
 			}
 		})
 
