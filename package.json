@@ -4,9 +4,8 @@
   "version": "0.9.5",
   "main": "app/start.js",
   "scripts": {
-    "test": "npm run e2e && npm run api",
-    "e2e": "node test/e2e/runner.js",
-    "api": "mocha --require mocha-steps test/api/runner.js"
+    "test": "npm run e2e",
+    "e2e": "node test/e2e/runner.js"
   },
   "repository": {
     "type": "git",
