@@ -10,7 +10,7 @@ cms based on mongodb, nodejs, koa, vue and more
 
 ## features
 
-- based on mongodb(database and session), nodejs 5+, koa...
+- based on mongodb(database and session), nodejs 5+, koa, vue.js...
 - built in jade editor
 - file upload (to mongodb gridfs), insert, manage
 - custom routes
@@ -22,34 +22,27 @@ cms based on mongodb, nodejs, koa, vue and more
 - custom style & script & features file/image for every post
 - can be used as a module to extend
 
-## use
+## baisc use
 ```bash
 
-#install mongodb if needed(ubuntu14.04)
-# sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
-# echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
-# sudo apt-get install -y mongodb-org
+# make sure your mongodb running
+# visit https://www.mongodb.com/download-center?jmp=nav#community for more info
 
-#for mongodb driver ubuntu
-#sudo apt-get install libkrb5-dev
-#or visit https://github.com/mongodb/node-mongodb-native#troubleshooting for more
+# make sure cairo installed,
+# visit https://github.com/Automattic/node-canvas/wiki/_pages for system spec
 
-#for canvas ubuntu
-#sudo apt-get install libcairo2-dev libjpeg8-dev libpango1.0-dev libgif-dev build-essential g++
-#visit https://www.npmjs.com/package/canvas for more platform
-
-git clone https://github.com/jade-press/jade-press.git
+git clone git@github.com:jade-press/jade-press.git
 cd jade-press
 npm install
 bower install
 cp config-sample.js config.js
 
-#read and edit config.js to define all the settings 
+# read and edit config.js to define all the settings 
 
-#install plugins
+# install plugins if have plugins
 gulp install
 
-# need your mongodb ready to connect
+# run it
 node app
 
 ```
@@ -58,14 +51,59 @@ then visit (by default) [http://127.0.0.1:7200](http://127.0.0.1:7200)
 
 ## use jade-press as a module
 
+```javascript
+
+//config.js
+
+//.... other setting
+    ,theme: {
+        path: __dirname
+        ,name: 'your-name'
+        ,version: 'xx.xx.xx'
+    }
+//.... other setting
+
+```
+
+```javascript
+
+//app.js
+
+/*!
+ * main entrance
+**/
+
+'use strict'
+
+let init = require('jade-press').init
+,co = require('co')
+,config = require('./config')
+
+co(function() {
+
+    let app = init(config)
+    let port = config.local.port
+
+    app.listen(port, '127.0.0.1', function() {
+        console.log('' + new Date(), config.local.siteName, 'runs on port', port)
+    })
+
+}).catch(function(err) {
+    console.error(err.stack || err)
+})
+
+```
+
+example:
+
 [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org)
 
-## example theme
-
+## theme
+check the example:
 [https://github.com/jade-press/jadepress-theme-pi](https://github.com/jade-press/jadepress-theme-pi)
 
-## example plugin
-
+## plugin
+check the example:
 [https://github.com/jade-press/jadepress-plugin-qr](https://github.com/jade-press/jadepress-plugin-qr)
 
 ## todo
