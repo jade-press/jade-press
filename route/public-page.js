@@ -27,6 +27,17 @@ let _ = publics._ = require('lodash')
 
 exports.publicExports = publics
 
+var basicPostFields = {
+	id: 1
+	,desc: 1
+	,cats: 1
+	,title: 1
+	,tags: 1
+	,slug: 1
+	,files: 1
+	,featuredFile: 1
+}
+
 exports.home = function* (next) {
 
 	try {
@@ -43,6 +54,7 @@ exports.home = function* (next) {
 		let obj = yield getPosts({
 			page: page
 			,pageSize: pageSize
+			,fields: basicPostFields
 		})
 
 		let pagerHtml = pager.render({
@@ -88,7 +100,11 @@ exports.post = function* (next) {
 
 		let user = this.session.user
 		this.local.user = user
-
+		sea.fields = Object.assign({}, basicPostFields, {
+			html: 1
+			,css: 1
+			,script: 1
+		})
 		let post = yield getPosts(sea)
 
 		if(!post) return yield next
@@ -140,6 +156,7 @@ exports.cat = function* (next) {
 			page: page
 			,pageSize: pageSize
 			,catId: catObj._id
+			,fields: basicPostFields
 		})
 
 		var objc = yield getCats()
@@ -195,6 +212,7 @@ exports.search = function* (next) {
 			page: page
 			,pageSize: pageSize
 			,title: query.title
+			,fields: basicPostFields
 		})
 
 		var objc = yield getCats()
