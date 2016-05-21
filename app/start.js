@@ -82,9 +82,9 @@ exports.start = function() {
 		let op = serve( themeResPath, {
 			maxAge: oneYear
 		})
-		middlewares.push( mount('/' + (setting.theme.name || setting.theme), op) )
+		middlewares.push( mount('/' + (setting.theme.staticAlias || setting.theme.name || setting.theme), op) )
 	} catch(e) {
-		console.warn(setting.theme, 'has no theme res')
+		console.warn(setting.theme, 'has no public')
 	}
 
 	//view engine

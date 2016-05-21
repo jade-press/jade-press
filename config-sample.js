@@ -70,6 +70,7 @@ exports.setting = {
 		path: '/home/zxd/dev/jade-press.org'
 		,name: 'jade-press-org'
 		,version: 'v0.1.0'
+		,staticAlias: 'jade-press-org' //optional, if not exist, will use theme.name || theme
 	}
 	*/
 
