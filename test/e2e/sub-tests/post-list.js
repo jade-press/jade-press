@@ -139,10 +139,10 @@ module.exports = function($) {
 
 	//publish/unpublish
 	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish', function() {
-		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-info', 1000)
+		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-info', 1500)
 	})
 	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish', function() {
-		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-success', 1000)
+		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-success', 1500)
 	})
 
 	//delete
