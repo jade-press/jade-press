@@ -137,18 +137,20 @@ pluginsArr.forEach(function(pln) {
 		let ver = plugins[name]
 		let ext = ''
 
+		//if(ver === '*') ver = 'latest'
+
 		if(
 			/^(\.{1,2})?\//.test(ext) ||
 			/\:/.test(ext) ||
 			/\//.test(ext)
 		) ext = ver
 
-		else ext = name + '@' + ver
+		else ext = name + '#' + ver
 
 		exec('bower install ' + ext, function (err, stdout, stderr) {
 			console.log(stdout)
 			console.error(stderr)
-			cb(err)
+			cb(null)
 		})
 
 	})
