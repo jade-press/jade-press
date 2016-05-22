@@ -100,14 +100,16 @@ gulp.task('watch',  function () {
 
 let plugins = config.setting.plugins
 let pluginsArr = Object.keys(plugins)
-let tasks = pluginsArr.map(function(v) {
-	return 'install-plugin-' + v
+let tasks = []
+pluginsArr.forEach(function(v) {
+	tasks.push('npm-install-plugin-' + v)
+	tasks.push('bower-install-plugin-' + v)
 })
 
 pluginsArr.forEach(function(pln) {
 
 
-	gulp.task('install-plugin-' + pln, function(cb) {
+	gulp.task('npm-install-plugin-' + pln, function(cb) {
 
 		let name = pln
 		let ver = plugins[name]
@@ -129,7 +131,27 @@ pluginsArr.forEach(function(pln) {
 
 	})
 
+	gulp.task('bower-install-plugin-' + pln, function(cb) {
 
+		let name = pln
+		let ver = plugins[name]
+		let ext = ''
+
+		if(
+			/^(\.{1,2})?\//.test(ext) ||
+			/\:/.test(ext) ||
+			/\//.test(ext)
+		) ext = ver
+
+		else ext = name + '@' + ver
+
+		exec('bower install ' + ext, function (err, stdout, stderr) {
+			console.log(stdout)
+			console.error(stderr)
+			cb(err)
+		})
+
+	})
 
 })
 
