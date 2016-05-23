@@ -36,6 +36,9 @@ var basicPostFields = {
 	,slug: 1
 	,files: 1
 	,featuredFile: 1
+	,createBy: 1
+	,createTime: 1
+	,html: 1
 }
 
 exports.home = function* (next) {
@@ -101,8 +104,7 @@ exports.post = function* (next) {
 		let user = this.session.user
 		this.local.user = user
 		sea.fields = Object.assign({}, basicPostFields, {
-			html: 1
-			,css: 1
+			css: 1
 			,script: 1
 		})
 		let post = yield getPosts(sea)

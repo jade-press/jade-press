@@ -13,8 +13,9 @@ include ../parts/head2
 
 		.p-y-3
 		h1.h3
-			span.icon-jadepress1
-			| Login to #{siteName}
+			a(href='#{host}')
+				span.icon-jadepress1
+				| Login to #{siteName}
 		hr.m-b-2
 		form(name='form1', @submit.prevent='submit()', novalidate, v-form, hook='formHook2')
 			
