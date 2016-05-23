@@ -236,13 +236,14 @@ exports.search = function* (next) {
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
+			,keyword: query.title
 		})
 
-		this.render(baseThemeViewPath + 'category', this.local)
+		this.render(baseThemeViewPath + 'search', this.local)
 
 	} catch(e) {
 
-		err('failed render cat page', e)
+		err('failed render search page', this.href, e)
 		this.status = 500
 		this.local.error = e
 		this.render(setting.path500, this.local)
