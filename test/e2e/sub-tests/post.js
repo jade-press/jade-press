@@ -148,12 +148,31 @@ module.exports = function($) {
 	//upload same file agian
 	.setValue('input#file2', resolve(__dirname, '../../../public/img/jade-press-logo.png'))
 	.waitForElementVisible('.files-control2 .alert.alert-danger', 1500)
-	.waitForJqueryElement('.files-control2 .list-group-item.tada', 200)
+	.waitForJqueryElement('.files-control2 .list-group-item.tada', 500)
 
 	//try another file
 	.setValue('input#file2', resolve(__dirname, '../../data/p1.png'))
 	.pause(100)
 	.assert.elementCount('.files-control2 .files-list1 .list-group-item', 2)
+
+	//insert file
+	.jqueryClick('form[name=form2] .files-control2 .files-list1 .list-group-item:eq(0) .insert-file', function() {
+		$.getValue('form[name=form2] [name=content] textarea', function(result) {
+			console.log(result.value)
+			this.assert.equal(result.value.indexOf('img') > -1, true)
+		})
+	})
+	.clearValue('form[name=form2] [name=content] textarea')
+
+	//setFeaturedFile
+	.jqueryClick('form[name=form2] .files-control2 .files-list1 .list-group-item:eq(0) .set-file', function() {
+		$.assert.elementCount('.files-control2 .featured-file img', 1)
+	})
+
+	//unsetFeaturedFile
+	.jqueryClick('form[name=form2] .files-control2 .unset-featured', function() {
+		$.assert.elementCount('.files-control2 .featured-file img', 0)
+	})
 
 	//more options
 	.click('form[name=form2] .toggle-more')
@@ -179,6 +198,14 @@ module.exports = function($) {
 		.waitForElementVisible('form[name=form2] .style-control-msg .text-success', 1000)
 
 	})
+
+	//content editor buttons
+	.click('form[name=form2] .editor-buttons .je-i', function() {
+		$.getValue('form[name=form2] [name=content] textarea', function(result) {
+			this.assert.equal(result.value, '<i></i>')
+		})
+	})
+	.clearValue('form[name=form2] [name=content] textarea')
 
 	//submit ok
 	.click('form[name=form2] button[type="submit"]')

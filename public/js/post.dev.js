@@ -16,8 +16,12 @@
 			,form2: null
 			,form3: null
 			,files: []
-			,editor2: 'formData2'
-			,editor3: 'formData3'
+			,editor2html: 'editor2html'
+			,editor3html: 'editor3html'
+			,editor2js: 'editor2js'
+			,editor3js: 'editor3js'
+			,editor2style: 'editor2style'
+			,editor3style: 'editor3style'
 			,uploadProgress: 0
 			,formData1: {
 				page: 1
@@ -78,7 +82,6 @@
 			,filesTotal: 0
 		}
 		,methods: {
-
 			setTab: function(tab) {
 				this.tab = tab
 			}
@@ -88,6 +91,10 @@
 			,setFileTab: function(tab) {
 				if(tab === 'file-list') this.getFiles()
 				this.fileTab = tab
+			}
+			,updateEditor: function() {
+				var args = Array.prototype.slice.call(arguments)
+				this.$broadcast.apply(this, args)
 			}
 			,unsetFeatured: function(obj) {
 				obj.featuredFile = {}
@@ -103,8 +110,9 @@
 				var ht = this.isImg(f)?
 						"\nimg(src='" + this.createImgSrc(f) + "', alt='" + f.filename + "')\n": 
 						"\na(href='" + this.createImgSrc(f) + "') " + f.filename + "\n"
+				var fid = id.indexOf('2') > -1?'formData2':'formData3'
 				this.$broadcast('je-insert-content', ht, id)
-				if(!this.inCats(f, this[id].files)) this[id].files.push(f)
+				if(!this.inCats(f, this[fid].files)) this[fid].files.push(f)
 			}
 			,setAsFeatured: function(f, obj) {
 				obj.featuredFile = f

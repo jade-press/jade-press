@@ -2,7 +2,8 @@ include ../parts/head1
 title posts - #{siteName}
 include ../parts/head2
 #wrapper
-	
+	include ../parts/editor-buttons
+	include ../parts/post-file
 	include ../parts/loading
 	#content.container-fluid(v-cloak)
 
@@ -118,7 +119,7 @@ include ../parts/head2
 												div(v-show='form3.tags.$dirty && form3.tags.$invalid')
 													.alert.alert-danger(v-show='form3.tags.$error.maxlength') more than 100 chars
 
-											include ../parts/post-file-edit
+											+postFile(3)
 
 											.form-group
 												label category
@@ -140,7 +141,7 @@ include ../parts/head2
 														a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
 															span.icon-help-circled
 													div(name='style', v-form-ctrl='formData3.style', maxlength=5000)
-														jadeeditor(:content.sync='formData3.style', :rows='rows')
+														jadeeditor(:content.sync='formData3.style', :rows='rows', :id='editor3style')
 													div(v-show='form3.style.$dirty && form3.style.$invalid')
 														.alert.alert-danger(v-show='form3.style.$error.maxlength') more than 5000 chars
 													.p-y-1
@@ -158,7 +159,7 @@ include ../parts/head2
 												.form-group
 													label js
 													div(name='script', v-form-ctrl='formData3.script', maxlength=5000)
-														jadeeditor(:content.sync='formData3.script', :rows='rows', :id='editor3')
+														jadeeditor(:content.sync='formData3.script', :rows='rows', :id='editor3js')
 													div(v-show='form3.script.$dirty && form3.script.$invalid')
 														.alert.alert-danger(v-show='form3.script.$error.maxlength') more than 5000 chars
 
@@ -171,7 +172,7 @@ include ../parts/head2
 															include ../parts/spin
 															|updating...
 
-													button.btn.btn-danger(type='button', @click='cancelEdit(item)') Cancel
+													button.btn.btn-danger.btn-cancel-edit(type='button', @click='cancelEdit(item)') Cancel
 
 							div(v-show='total > formData1.pageSize')
 								zpagenav(:page.sync='formData1.page', :page-size.sync='formData1.pageSize', :total.sync='total', :max-link.sync='formData1.maxLink')
@@ -211,7 +212,7 @@ include ../parts/head2
 									div(v-show='form2.tags.$dirty && form2.tags.$invalid')
 										.alert.alert-danger(v-show='form2.tags.$error.maxlength') more than 100 chars
 
-								include ../parts/post-file-new
+								+postFile(2)
 
 								.form-group
 									label category
@@ -232,7 +233,7 @@ include ../parts/head2
 											a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
 												span.icon-help-circled
 										div(name='style', v-form-ctrl='formData2.style', maxlength=5000)
-											jadeeditor(:content.sync='formData2.style', :rows='rows')
+											jadeeditor(:content.sync='formData2.style', :rows='rows', :id='editor3style')
 										div(v-show='form2.style.$dirty && form2.style.$invalid')
 											.alert.alert-danger(v-show='form2.style.$error.maxlength') more than 5000 chars
 										.p-y-1
@@ -250,7 +251,7 @@ include ../parts/head2
 									.form-group.js-control
 										label js
 										div(name='script', v-form-ctrl='formData2.script', maxlength=5000)
-											jadeeditor(:content.sync='formData2.script', :rows='rows')
+											jadeeditor(:content.sync='formData2.script', :rows='rows', :id='editor3js')
 										div(v-show='form2.script.$dirty && form2.script.$invalid')
 											.alert.alert-danger(v-show='form2.script.$error.maxlength') more than 5000 chars
 

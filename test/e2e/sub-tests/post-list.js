@@ -20,7 +20,7 @@ module.exports = function($) {
 	})
 
 	//cancel
-	.jqueryClick('.post-list > .list-group-item:last form[name=form3] .btn-danger', function() {
+	.jqueryClick('.post-list > .list-group-item:last form[name=form3] .btn-cancel-edit', function() {
 		$.assert.elementCount('.post-list > .list-group-item:last form[name=form3]', 0)
 	})
 
@@ -96,13 +96,32 @@ module.exports = function($) {
 
 	//upload same file agian
 	.setValue('input#file3', resolve(__dirname, '../../../public/img/jade-press-logo.png'))
+	.waitForJqueryElement('form[name=form3] .files-control3 .list-group-item.tada', 900)
 	.waitForElementVisible('form[name=form3] .files-control3 .alert.alert-danger', 1500)
-	.waitForJqueryElement('form[name=form3] .files-control3 .list-group-item.tada', 200)
+	
 
 	//try another file
 	.setValue('input#file3', resolve(__dirname, '../../data/p2.png'))
 	.pause(100)
 	.assert.elementCount('.files-control3 .files-list1 .list-group-item', 2)
+
+	//insert file
+	.jqueryClick('form[name=form3] .files-control3 .files-list1 .list-group-item:eq(0) .insert-file', function() {
+		$.getValue('form[name=form3] [name=content] textarea', function(result) {
+			this.assert.equal(result.value.indexOf('img') > -1, true)
+		})
+	})
+	.clearValue('form[name=form3] [name=content] textarea')
+
+	//setFeaturedFile
+	.jqueryClick('form[name=form3] .files-control3 .files-list1 .list-group-item:eq(0) .set-file', function() {
+		$.assert.elementCount('.files-control3 .featured-file img', 1)
+	})
+
+	//unsetFeaturedFile
+	.jqueryClick('form[name=form3] .files-control3 .unset-featured', function() {
+		$.assert.elementCount('.files-control3 .featured-file img', 0)
+	})
 
 	//more options
 	.click('form[name=form3] .toggle-more')
@@ -128,6 +147,13 @@ module.exports = function($) {
 		.click('form[name=form3] button.validate-style')
 		.waitForElementVisible('form[name=form3] .style-control-msg .text-success', 1000)
 
+	})
+
+	//content editor buttons
+	.click('form[name=form3] .editor-buttons .je-b', function() {
+		$.getValue('form[name=form3] [name=content] textarea', function(result) {
+			this.assert.equal(result.value, '<b></b>')
+		})
 	})
 
 	//submit ok
