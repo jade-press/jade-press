@@ -165,11 +165,10 @@ module.exports = function($) {
 
 	//publish/unpublish
 	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish', function() {
-		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-info', 1500)
+		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-info', 2500)
 	})
 	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish')
-	.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-success', 1500)
-	.pause(100)
+	.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-success', 2500)
 
 	//delete
 	.jqueryClick('.post-list > .list-group-item:last .btns .btn-warning:first', function() {
