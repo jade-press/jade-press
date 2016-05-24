@@ -164,11 +164,16 @@ module.exports = function($) {
 	.waitForElementPresent('#msg3 .alert.alert-success', 1500)
 
 	//publish/unpublish
-	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish', function() {
-		$.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-info', 500)
-	})
-	.jqueryClick('.post-list > .list-group-item:last .pull-xs-right .toggle-publish')
-	.assert.jqueryElementPresent('.post-list > .list-group-item:last .pull-xs-right .toggle-publish.btn-success', 500)
+	// .click('.post-list .toggle-publish:last', function() {
+	// 		$.waitForAttribute('.post-list .toggle-publish:last', 'class', function(cls) {
+	// 				return cls.indexOf('btn-info') > -1
+	// 		}, 1200)
+	// })
+	// .click('.post-list .toggle-publish:last', function() {
+	// 		$.waitForAttribute('.post-list .toggle-publish:last', 'class', function(cls) {
+	// 				return cls.indexOf('btn-success') > -1
+	// 		}, 1200)
+	// })
 
 	//delete
 	.jqueryClick('.post-list > .list-group-item:last .btns .btn-warning:first', function() {

@@ -43,7 +43,8 @@ module.exports = function($) {
 	.keys($.Keys.ARROW_DOWN)
 	.keys($.Keys.ENTER)
 	.click('form[name=form1] button[type="submit"]')
-	.pause(300)
+	.waitForJqueryAjaxRequest()
+	.pause(100)
 	.assert.elementCount('.list-group-item', 0)
 
 	//group select 1 result
@@ -51,20 +52,24 @@ module.exports = function($) {
 	.keys($.Keys.ARROW_UP)
 	.keys($.Keys.ENTER)
 	.click('form[name=form1] button[type="submit"]')
-	.pause(300)
+	.waitForJqueryAjaxRequest()
+	.pause(100)
 	.assert.elementCount('.list-group-item', 1)
 
 	//publish status
 	.jqueryClick('form[name=form1] .btn-group .btn:eq(1)')
-	.pause(300)
+	.waitForJqueryAjaxRequest()
+	.pause(100)
 	.assert.elementCount('.list-group-item', 1)
 
 	.jqueryClick('form[name=form1] .btn-group .btn:eq(2)')
-	.pause(300)
+	.waitForJqueryAjaxRequest()
+	.pause(100)
 	.assert.elementCount('.list-group-item', 0)
 
 	.jqueryClick('form[name=form1] .btn-group .btn:eq(0)')
-	.pause(300)
+	.waitForJqueryAjaxRequest()
+	.pause(100)
 	.assert.elementCount('.list-group-item', 1)
 
 	//new user
