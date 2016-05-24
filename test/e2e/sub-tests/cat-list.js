@@ -45,6 +45,7 @@ module.exports = function($) {
 	.click('form[name=form3] button[type="submit"]')
 
 	//success alert-success
+	.waitForJqueryAjaxRequest()
 	.waitForElementPresent('#msg3 .alert.alert-success', 800)
 
 	//delete
