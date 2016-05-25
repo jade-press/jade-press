@@ -105,8 +105,12 @@ mixin postFile(fid)
 
 			
 			+editorButtons(eid)
+			p #{eid}OnPreview:{{#{eid}OnPreview}}
+			jadeeditor(:content.sync='formData#{fid}.content', :rows='rows', :id='editor#{fid}html', v-show='!#{eid}OnPreview')
+			.preview-wrap(v-show='#{eid}OnPreview')
+				p(v-show='#{eid}OnLoad') loading...
+				div(v-show='!#{eid}OnLoad', id='#{eid}-preview')
 
-			jadeeditor(:content.sync='formData#{fid}.content', :rows='rows', :id='editor#{fid}html')
 			include editor-tip
 		div(v-show='form#{fid}.content.$dirty && form#{fid}.content.$invalid')
 			.alert.alert-danger(v-show='form#{fid}.content.$error.maxlength') more than 10000 chars

@@ -1,5 +1,10 @@
 include ../parts/head1
 title posts - #{siteName}
+style.
+	.preview-wrap {
+		border: 1px dotted #aaa;
+		padding: 8px;
+	}
 include ../parts/head2
 #wrapper
 	include ../parts/editor-buttons
@@ -66,8 +71,8 @@ include ../parts/head2
 									div(v-show='currentEditItem._id !== item._id')
 										p
 											span.small.label.label-success.m-r-1(v-show='item.published') published
-											a(:href='createUrl(item)', target='_blank') {{item.title}} 
-											small
+											a.post-link(:href='createUrl(item)', target='_blank') {{item.title}} 
+											small.post-cats
 												span.small in:
 												span {{renderItemCats(item)}}
 											span.pull-xs-right

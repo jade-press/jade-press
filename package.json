@@ -1,7 +1,7 @@
 {
   "name": "jade-press",
   "description": "cms based on mongodb, nodejs, koa, vue and more",
-  "version": "0.10.1",
+  "version": "0.11.0",
   "main": "app/start.js",
   "scripts": {
     "test": "npm run e2e",
@@ -24,6 +24,7 @@
   "dependencies": {
     "canvas-captcha": "^2.0.1",
     "co": "^4.6.0",
+    "compare-versions": "^2.0.1",
     "koa": "^1.2.0",
     "koa-bodyparser": "^2.0.1",
     "koa-compress": "^1.0.9",

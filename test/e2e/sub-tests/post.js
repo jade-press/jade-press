@@ -25,6 +25,16 @@ module.exports = function($) {
 	$
 	.assert.elementCount('.list-group-item', 1)
 
+	//list content
+	.assert.elementCount('.list-group-item .post-cats', 1)
+	.assert.elementCount('.list-group-item .post-link', 1)
+	.waitForText('.list-group-item .post-link', function(text) {
+			return text.indexOf('hello') > -1
+	}, 10)
+	.waitForText('.list-group-item .post-cats', function(text) {
+			return text.indexOf('default') > -1
+	}, 10)
+
 	//search no result
 	.setValue('form[name=form1] input[name=title]', '111')
 	.click('form[name=form1] button[type="submit"]')
@@ -210,6 +220,25 @@ module.exports = function($) {
 			this.assert.equal(result.value, '<i></i>')
 		})
 	})
+	.clearValue('form[name=form2] [name=content] textarea')
+
+	//preview button
+	.click('form[name=form2] .editor-buttons .preview-content', function() {
+		$.waitForElementVisible('form[name=form2] .preview-wrap', 1000)
+	})
+	.click('form[name=form2] .editor-buttons .preview-content', function() {
+		$.waitForElementNotVisible('form[name=form2] .preview-wrap', 1000)
+	})
+	.setValue('form[name=form2] [name=content] textarea', 'ul\n    li xxxx',  function() {
+		$.click('form[name=form2] .editor-buttons .preview-content', function() {
+			$.waitForElementVisible('form[name=form2] .preview-wrap', 1000)
+		})
+		.waitForJqueryAjaxRequest()
+		.waitForText('form[name=form2] .preview-wrap', function(text) {
+				return text.indexOf('xxxx') > -1
+		}, 10)
+	})
+
 	.clearValue('form[name=form2] [name=content] textarea')
 
 	//submit ok

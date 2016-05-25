@@ -17,7 +17,11 @@
 			,form3: null
 			,files: []
 			,editor2html: 'editor2html'
+			,editor2htmlOnPreview: false
+			,editor2htmlOnLoad: false
 			,editor3html: 'editor3html'
+			,editor3htmlOnPreview: false
+			,editor3htmlOnLoad: false
 			,editor2js: 'editor2js'
 			,editor3js: 'editor3js'
 			,editor2style: 'editor2style'
@@ -95,6 +99,40 @@
 			,updateEditor: function() {
 				var args = Array.prototype.slice.call(arguments)
 				this.$broadcast.apply(this, args)
+			}
+			,previewContent: function(editorId) {
+				var pi = this
+				var stat = pi[editorId + 'OnPreview']
+				pi[editorId + 'OnPreview'] = !stat
+
+				var onload = pi[editorId + 'OnLoad']
+				var body = editorId.indexOf('2') > -1?pi.formData2:pi.formData3
+				var ewrap = '#' + editorId + '-preview'
+
+				if(onload) return
+				onload = true
+
+				$.ajax({
+					type: 'post'
+					,url: h5.host + '/api/post/preview-html'
+					,data: body
+				})
+				.then(function(res) {
+					onload = false
+					var data = res
+					if(data.errorMsg || data.errs) {
+						var errsm = data.errorMsg || data.errs.join(';')
+						$alert(errsm, 'danger', ewrap, 5000)
+					} else {
+						$(ewrap).html(data.result)
+					}
+					
+				}, function(res) {
+					onload = false
+					$alert('parse html failed', 'danger', ewrap, 5000)
+				})
+
+				//end func	
 			}
 			,unsetFeatured: function(obj) {
 				obj.featuredFile = {}

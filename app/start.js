@@ -23,6 +23,7 @@ koa = require('koa')
 ,tools = require('../lib/tools')
 ,oneYear = 1000 * 60 * 60 * 24 * 365
 ,plugins = require('../lib/plugins').plugins
+,pack = require('../package.json')
 
 exports.publicExports = {
 	tools: tools
@@ -154,11 +155,15 @@ exports.init = function* (config) {
 
 	if(!hasMeta) yield require('../lib/init').init(config.init)
 
+	yield require('../lib/update').check()
+
 	local.themeVersion = setting.theme.version?setting.theme.version:(setting.plugins[setting.theme] || '*')
 
 	plugins.loadPlugins()
 
 	let app = exports.start()
+
+	log('jade-press', 'version', pack.version)
 
 	return Promise.resolve(app)
 

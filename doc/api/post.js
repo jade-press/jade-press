@@ -64,3 +64,21 @@ exports['/api/post/validate-style'] = {
 	,lib: 'lib/post'
 	,func: 'validateStyle'
 }
+
+exports['/api/post/preview-html'] = {
+	url: '/api/post/preview-html'
+	,method: 'post'
+	,name: 'preview-html'
+	,desc: 'preview-html'
+	,lib: 'lib/post'
+	,func: 'previewHtml'
+}
+
+exports['/api/post/validate-script'] = {
+	url: '/api/post/validate-script'
+	,method: 'post'
+	,name: 'validate-script'
+	,desc: 'validate-script'
+	,lib: 'lib/post'
+	,func: 'validateScript'
+}

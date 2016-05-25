@@ -21,6 +21,7 @@ cms based on mongodb, nodejs, koa, vue and more
 - post and category
 - custom style & script & features file/image for every post
 - can be used as a module to extend
+- auto-database-update between different versions
 
 ## baisc use
 ```bash
