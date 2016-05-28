@@ -5,7 +5,7 @@
 
 'use strict'
 
-only support node 6+
+//only support node 6+
 const verCompare = require('compare-versions')
 if( verCompare(process.versions.node, '6.0.0') < 0 ) throw new Error('jade-press only support nodejs version 6.0.0+, please update your nodejs')
 
