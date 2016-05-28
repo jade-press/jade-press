@@ -2,14 +2,11 @@
 
 'use strict'
 
-
-let _ = require('lodash')
-let packageInfo = require('../package.json')
-let sid = require('shortid')
-let resolve = require('path').resolve
-let fs = require('fs')
-let path = require('path')
-let cols = fs.readdirSync( path.resolve(__dirname, '../doc/db') ).map(function(v) {
+const
+packageInfo = require('../package.json')
+,resolve = require('path').resolve
+,fs = require('fs')
+,cols = fs.readdirSync( resolve(__dirname, '../doc/db') ).map(function(v) {
 	return v.replace(/\.js$/, '')
 })
 

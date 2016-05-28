@@ -1,9 +1,4 @@
-var 
-_ = require('lodash')
-,packageInfo = require('../package.json')
-,sid = require('shortid')
-,resolve = require('path').resolve
-,fs = require('fs')
+const packageInfo = require('../package.json')
 
 module.exports = {
 	siteName: 'jadepress'

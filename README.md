@@ -10,7 +10,7 @@ cms based on mongodb, nodejs, koa, vue and more
 
 ## features
 
-- based on mongodb(database and session), nodejs 5+, koa, vue.js...
+- based on mongodb(database and session), nodejs 6+, koa, vue.js...
 - built in jade editor
 - file upload (to mongodb gridfs), insert, manage
 - custom routes
@@ -26,11 +26,14 @@ cms based on mongodb, nodejs, koa, vue and more
 ## baisc use
 ```bash
 
-# make sure your mongodb running
+# make sure your mongodb running,
 # visit https://www.mongodb.com/download-center?jmp=nav#community for more info
 
 # make sure cairo installed,
 # visit https://github.com/Automattic/node-canvas/wiki/_pages for system spec
+
+# install nodejs & npm,
+# visit https://github.com/creationix/nvm
 
 git clone git@github.com:jade-press/jade-press.git
 cd jade-press
