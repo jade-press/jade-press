@@ -133,13 +133,14 @@ exports.start = function() {
 
 exports.init = function* (config) {
 
-	let
+	const
 	setting = require('./setting')
 	,local = require('./local')
+
 	Object.assign(setting, config.setting)
 	Object.assign(local, config.local)
 
-	let
+	const
 	tools = require('../lib/tools')
 	,log = tools.log
 	,err = tools.err
@@ -151,7 +152,7 @@ exports.init = function* (config) {
 	//load db
 	yield dbRef.init()
 
-	var db = dbRef.db
+	const db = dbRef.db
 
 	var hasMeta = yield db.collection('meta').findOne()
 
@@ -167,7 +168,7 @@ exports.init = function* (config) {
 
 	plugins.loadPlugins()
 
-	let app = exports.start()
+	const app = exports.start()
 
 	log('jade-press', 'version', pack.version)
 
