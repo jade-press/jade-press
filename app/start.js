@@ -9,7 +9,6 @@
 const verCompare = require('compare-versions')
 if( verCompare(process.versions.node, '6.0.0') < 0 ) throw new Error('jade-press only support nodejs version 6.0.0+, please update your nodejs')
 
-
 //imports
 const
 koa = require('koa')
@@ -79,6 +78,12 @@ exports.start = function() {
 	//middleware
 	app.keys = [setting.secret]
 
+	//escape filter
+	require(
+		'jade'
+	).filters.code = function( block ) {
+		return block.replace( /</g, '&lt;'   )
+	}
 
 	//load theme res
 	let themeResPath = setting.theme.path?setting.theme.path + '/public'
