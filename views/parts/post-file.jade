@@ -102,10 +102,8 @@ mixin postFile(fid)
 						zpagenav(:page.sync='formDataf.page', :page-size='formDataf.pageSize', :total='filesTotal', :max-link='formDataf.maxLink')
 
 		div(name='content', v-form-ctrl='formData#{fid}.content', maxlength=10000)
-
-			
+	
 			+editorButtons(eid)
-			p #{eid}OnPreview:{{#{eid}OnPreview}}
 			jadeeditor(:content.sync='formData#{fid}.content', :rows='rows', :id='editor#{fid}html', v-show='!#{eid}OnPreview')
 			.preview-wrap(v-show='#{eid}OnPreview')
 				p(v-show='#{eid}OnLoad') loading...

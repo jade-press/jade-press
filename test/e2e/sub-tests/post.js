@@ -229,13 +229,15 @@ module.exports = function($) {
 	.click('form[name=form2] .editor-buttons .preview-content', function() {
 		$.waitForElementNotVisible('form[name=form2] .preview-wrap', 1000)
 	})
-	.setValue('form[name=form2] [name=content] textarea', 'ul\n    li xxxx',  function() {
+	.setValue('form[name=form2] [name=content] textarea', 'ul\n    li xxxx<bbf>fggg</bbf>',  function() {
 		$.click('form[name=form2] .editor-buttons .preview-content', function() {
 			$.waitForElementVisible('form[name=form2] .preview-wrap', 1000)
 		})
 		.waitForJqueryAjaxRequest()
 		.waitForText('form[name=form2] .preview-wrap', function(text) {
-				return text.indexOf('xxxx') > -1
+			console.log(text)
+				return text.indexOf('xxxx') > -1 && text.indexOf('fggg') === -1
+				//iframe should be filtere
 		}, 10)
 	})
 

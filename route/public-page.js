@@ -19,8 +19,8 @@ let _ = publics._ = require('lodash')
 			process.cwd() + '/node_modules/' + setting.theme + '/views/'
 ,Pager = publics.Pager = new require('zpager')
 ,pager = publics.pager = new Pager()
-,getCats = publics.getCats = require('../lib/cat').public.getCats
-,getPosts = publics.getPosts = require('../lib/post').public.getPosts
+,getCats = publics.getCats = require('../lib/cat').publics.getCats
+,getPosts = publics.getPosts = require('../lib/post').publics.getPosts
 ,fs = require('fs')
 ,plugins = require('../lib/plugins').plugins
 ,buildThemeRes = tools.buildThemeRes
