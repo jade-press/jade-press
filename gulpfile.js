@@ -100,6 +100,7 @@ gulp.task('watch',  function () {
 
 let plugins = config.setting.plugins
 let pluginsArr = Object.keys(plugins)
+if(config.setting.theme && !config.setting.theme.name) pluginsArr.push(config.setting.theme)
 let tasks = []
 pluginsArr.forEach(function(v) {
 	tasks.push('npm-install-plugin-' + v)
@@ -121,7 +122,7 @@ pluginsArr.forEach(function(pln) {
 			/\//.test(ext)
 		) ext = ver
 
-		else ext = name + '@' + ver
+		else ext = name + '@' + (ver || '*')
 
 		exec('npm install ' + ext, function (err, stdout, stderr) {
 			console.log(stdout)

@@ -79,9 +79,7 @@ exports.setting = {
 	//plugins, format just like dependencies in package.json
 	//make sure your theme is in plugins too
 	//plugins will be installed by run "gulp install"
-	,plugins: {
-		"jadepress-theme-pi": "*"
-	}
+	,plugins: {}
 
 	//use public cdn or not
 	,usePublicCdn: false
