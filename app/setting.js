@@ -59,7 +59,6 @@ module.exports = {
 	,dbCols: cols
 	,sessionName: 'jdp'
 	,maxFilesSize: 200000 * 1024
-	,pageSize: 20
 
 	/* mail server info
 	,mailSender: {

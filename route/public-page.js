@@ -48,8 +48,8 @@ exports.home = function* (next) {
 		let query = this.query
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
-		let pageSize = query.pageSize || setting.pageSize
-		pageSize = parseInt(pageSize, 10) || setting.pageSize
+		let pageSize = query.pageSize || local.pageSize
+		pageSize = parseInt(pageSize, 10) || local.pageSize
 
 		let user = this.session.user
 		this.local.user = user
@@ -148,8 +148,8 @@ exports.cat = function* (next) {
 
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
-		let pageSize = query.pageSize || setting.pageSize
-		pageSize = parseInt(pageSize, 10) || setting.pageSize
+		let pageSize = query.pageSize || local.pageSize
+		pageSize = parseInt(pageSize, 10) || local.pageSize
 
 		let user = this.session.user
 		this.local.user = user
@@ -204,8 +204,8 @@ exports.search = function* (next) {
 
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
-		let pageSize = query.pageSize || setting.pageSize
-		pageSize = parseInt(pageSize, 10) || setting.pageSize
+		let pageSize = query.pageSize || local.pageSize
+		pageSize = parseInt(pageSize, 10) || local.pageSize
 
 		let user = this.session.user
 		this.local.user = user

@@ -6,4 +6,6 @@ module.exports = {
 	,version: packageInfo.version
 	,jadepress: 'http://jadepress.org'
 	,siteKeywords: 'jade-press'
+	,pageSize: 20
+	,maxLink: 5
 }

@@ -32,6 +32,12 @@ exports.local = {
 	//site keywords, you should edit it
 	,siteKeywords: 'jade-press,nodejs,mongodb'
 
+	//pagesize
+	,pageSize: 20
+
+	//maxlink to show
+	,maxLink: 5
+
 	/* only if you use seprate domain to serve static resources
 	,cdn: 'http://mycdn.com'
 	*/
