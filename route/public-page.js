@@ -157,7 +157,7 @@ exports.cat = function* (next) {
 		let obj = yield getPosts({
 			page: page
 			,pageSize: pageSize
-			,catId: catObj._id
+			,cat_id: catObj._id
 			,fields: basicPostFields
 		})
 
