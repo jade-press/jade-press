@@ -41,18 +41,18 @@ var basicPostFields = {
 	,html: 1
 }
 
-exports.home = function* (next) {
+exports.home = async (ctx, next) => {
 
 	try {
 
-		let query = this.query
+		let query = ctx.query
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
 		let pageSize = query.pageSize || local.pageSize
 		pageSize = parseInt(pageSize, 10) || local.pageSize
 
-		let user = this.session.user
-		this.local.user = user
+		let user = ctx.session.user
+		ctx.local.user = user
 
 		let obj = yield getPosts({
 			page: page
@@ -64,45 +64,45 @@ exports.home = function* (next) {
 			page: page
 			,pageSize: pageSize
 			,total: obj.total
-			,url: this.path
+			,url: ctx.path
 		})
 
 		var objc = yield getCats()
 
-		_.extend(this.local, {
+		_.extend(ctx.local, {
 			pager: pagerHtml
 			,pageSize: pageSize
 			,total: obj.total
 			,posts: obj.posts
-			,themeRes: buildThemeRes(this.local.host)
+			,themeRes: buildThemeRes(ctx.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
 		})
 
-		this.render(baseThemeViewPath + 'home', this.local)
+		ctx.render(baseThemeViewPath + 'home', ctx.local)
 
 	} catch(e) {
 
 		err('failed render home page', e)
-		this.status = 500
-		this.local.error = e
-		this.render(setting.path500, this.local)
+		ctx.status = 500
+		ctx.local.error = e
+		ctx.render(setting.path500, ctx.local)
 
 	}
 
 }
 
-exports.post = function* (next) {
+exports.post = async (ctx, next) => {
 
 	try {
 
-		let params = this.params
+		let params = ctx.params
 		let sea = tools.createQueryObj(params, [':_id', ':id', ':slug'])
 		if(!sea) return yield next
 
-		let user = this.session.user
-		this.local.user = user
+		let user = ctx.session.user
+		ctx.local.user = user
 		sea.fields = Object.assign({}, basicPostFields, {
 			css: 1
 			,script: 1
@@ -113,33 +113,33 @@ exports.post = function* (next) {
 
 		var obj = yield getCats()
 
-		_.extend(this.local, {
+		_.extend(ctx.local, {
 			post: post
 			,publicRoute: setting.publicRoute
 			,createUrl:tools.createUrl
-			,themeRes: buildThemeRes(this.local.host)
+			,themeRes: buildThemeRes(ctx.local.host)
 			,cats: obj.cats
 		})
 		
-		this.render(baseThemeViewPath + '/post', this.local)
+		ctx.render(baseThemeViewPath + '/post', ctx.local)
 
 	} catch(e) {
 
 		err('failed render single post page', e)
-		this.status = 500
-		this.local.error = e
-		this.render(setting.path500, this.local)
+		ctx.status = 500
+		ctx.local.error = e
+		ctx.render(setting.path500, ctx.local)
 
 	}
 
 }
 
-exports.cat = function* (next) {
+exports.cat = async (ctx, next) => {
 
 	try {
 
-		let params = this.params
-		let query = this.query
+		let params = ctx.params
+		let query = ctx.query
 		let sea = tools.createQueryObj(params, [':_id', ':id', ':slug'])
 		if(!sea) return yield next
 
@@ -151,8 +151,8 @@ exports.cat = function* (next) {
 		let pageSize = query.pageSize || local.pageSize
 		pageSize = parseInt(pageSize, 10) || local.pageSize
 
-		let user = this.session.user
-		this.local.user = user
+		let user = ctx.session.user
+		ctx.local.user = user
 
 		let obj = yield getPosts({
 			page: page
@@ -167,48 +167,48 @@ exports.cat = function* (next) {
 			page: page
 			,pageSize: pageSize
 			,total: obj.total
-			,url: this.path
+			,url: ctx.path
 		})
 
-		_.extend(this.local, {
+		_.extend(ctx.local, {
 			posts: obj.posts
 			,page: page
 			,pageSize: pageSize
 			,total: obj.total
 			,cat: catObj
 			,pager: pagerHtml
-			,themeRes: buildThemeRes(this.local.host)
+			,themeRes: buildThemeRes(ctx.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
 		})
 
-		this.render(baseThemeViewPath + 'category', this.local)
+		ctx.render(baseThemeViewPath + 'category', ctx.local)
 
 	} catch(e) {
 
 		err('failed render cat page', e)
-		this.status = 500
-		this.local.error = e
-		this.render(setting.path500, this.local)
+		ctx.status = 500
+		ctx.local.error = e
+		ctx.render(setting.path500, ctx.local)
 
 	}
 
 }
 
-exports.search = function* (next) {
+exports.search = async (ctx, next) => {
 
 	try {
 
-		let query = this.query
+		let query = ctx.query
 
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
 		let pageSize = query.pageSize || local.pageSize
 		pageSize = parseInt(pageSize, 10) || local.pageSize
 
-		let user = this.session.user
-		this.local.user = user
+		let user = ctx.session.user
+		ctx.local.user = user
 
 		let obj = yield getPosts({
 			page: page
@@ -223,30 +223,30 @@ exports.search = function* (next) {
 			page: page
 			,pageSize: pageSize
 			,total: obj.total
-			,url: this.path
+			,url: ctx.path
 		})
 
-		_.extend(this.local, {
+		_.extend(ctx.local, {
 			posts: obj.posts
 			,page: page
 			,pageSize: pageSize
 			,total: obj.total
 			,pager: pagerHtml
-			,themeRes: buildThemeRes(this.local.host)
+			,themeRes: buildThemeRes(ctx.local.host)
 			,publicRoute: setting.publicRoute
 			,createUrl: tools.createUrl
 			,cats: objc.cats
 			,keyword: query.title
 		})
 
-		this.render(baseThemeViewPath + 'search', this.local)
+		ctx.render(baseThemeViewPath + 'search', ctx.local)
 
 	} catch(e) {
 
-		err('failed render search page', this.href, e)
-		this.status = 500
-		this.local.error = e
-		this.render(setting.path500, this.local)
+		err('failed render search page', ctx.href, e)
+		ctx.status = 500
+		ctx.local.error = e
+		ctx.render(setting.path500, ctx.local)
 
 	}
 

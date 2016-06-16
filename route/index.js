@@ -47,7 +47,7 @@ for(let i = 0, len = apis.length;i < len;i ++) {
 
 exports.middlewares.push( route.routes() )
 exports.middlewares.push( route.allowedMethods() )
-exports.middlewares.push( function* (next) {
-	this.status =  404
-	this.render(setting.path404, this.local)
+exports.middlewares.push( async (ctx, next) => {
+	ctx.status =  404
+	ctx.render(setting.path404, this.local)
 } )

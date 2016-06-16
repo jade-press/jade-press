@@ -9,13 +9,18 @@
 const verCompare = require('compare-versions')
 if( verCompare(process.versions.node, '6.0.0') < 0 ) throw new Error('jade-press only support nodejs version 6.0.0+, please update your nodejs')
 
-
 //use bluebird as global promise for better performace
 global.Promise = require('bluebird')
+
+// set babel 
+require('babel-core/register')({
+  presets: ['node6', 'stage-3']
+})
 
 //imports
 const
 koa = require('koa')
+,convert = require('koa-convert')
 ,compress = require('koa-compress')
 ,serve = require('koa-static')
 ,conditional = require('koa-conditional-get')
@@ -114,14 +119,18 @@ exports.start = function() {
 		,noCache: local.env !== 'production'
 	})
 
-	middlewares.push(jade.middleware)
+	middlewares.push( convert(jade.middleware) )
 
 	//session
-	middlewares.push(session({
-		key: setting.sessionName
-		,rolling: true
-		,store: new MongoStore(setting.mongoStoreOptions)
-	}))
+	middlewares.push(
+		convert(
+			session({
+				key: setting.sessionName
+				,rolling: true
+				,store: new MongoStore(setting.mongoStoreOptions)
+			})
+		)
+	)
 
 	//routes
 	middlewares = middlewares.concat(routes.middlewares)
@@ -140,7 +149,7 @@ exports.start = function() {
 	return app
 }
 
-exports.init = function* (config) {
+exports.init = async function (config) {
 
 	const
 	setting = require('./setting')
@@ -159,19 +168,19 @@ exports.init = function* (config) {
 
 
 	//load db
-	yield dbRef.init()
+	await dbRef.init()
 
 	const db = dbRef.db
 
-	var hasMeta = yield db.collection('meta').findOne()
+	var hasMeta = await db.collection('meta').findOne()
 
 	tools.loadTheme404500()
 
-	setting.mailServiceReady = yield mail.checkMailService()
+	setting.mailServiceReady = await mail.checkMailService()
 
-	if(!hasMeta) yield require('../lib/init').init(config.init)
+	if(!hasMeta) await require('../lib/init').init(config.init)
 
-	yield require('../lib/update').check()
+	await require('../lib/update').check()
 
 	local.themeVersion = setting.theme.version?setting.theme.version:(setting.plugins[setting.theme] || '*')
 

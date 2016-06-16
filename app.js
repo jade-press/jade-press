@@ -10,13 +10,14 @@ let init = require('./app/start').init
 ,setting = config.setting
 ,local = config.local
 
-co(init(config))
-.then(function(app) {
+try {
+
+	var app = await init(config)
 
 	app.listen(local.port, setting.listenAddress, function() {
 		console.log('' + new Date(), local.siteName, 'runs on port', local.port)
 	})
 
-}, function(err) {
+} catch(err) {
 	console.error(err.stack || err)
-})
+}
