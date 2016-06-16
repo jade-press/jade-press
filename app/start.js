@@ -9,6 +9,10 @@
 const verCompare = require('compare-versions')
 if( verCompare(process.versions.node, '6.0.0') < 0 ) throw new Error('jade-press only support nodejs version 6.0.0+, please update your nodejs')
 
+
+//use bluebird as global promise for better performace
+global.Promise = require('bluebird')
+
 //imports
 const
 koa = require('koa')
