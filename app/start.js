@@ -12,10 +12,7 @@ if( verCompare(process.versions.node, '6.0.0') < 0 ) throw new Error('jade-press
 //use bluebird as global promise for better performace
 global.Promise = require('bluebird')
 
-// set babel 
-require('babel-core/register')({
-  presets: ['node6', 'stage-3']
-})
+
 
 //imports
 const
@@ -81,7 +78,7 @@ exports.start = function() {
 
 	
 	// all environments
-	,app = koa()
+	,app = new koa()
 	,middlewares = exports.middlewares
 
 	//middleware

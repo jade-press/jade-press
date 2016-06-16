@@ -54,7 +54,7 @@ exports.home = async (ctx, next) => {
 		let user = ctx.session.user
 		ctx.local.user = user
 
-		let obj = yield getPosts({
+		let obj = await getPosts({
 			page: page
 			,pageSize: pageSize
 			,fields: basicPostFields
@@ -67,7 +67,7 @@ exports.home = async (ctx, next) => {
 			,url: ctx.path
 		})
 
-		var objc = yield getCats()
+		var objc = await getCats()
 
 		_.extend(ctx.local, {
 			pager: pagerHtml
@@ -99,7 +99,7 @@ exports.post = async (ctx, next) => {
 
 		let params = ctx.params
 		let sea = tools.createQueryObj(params, [':_id', ':id', ':slug'])
-		if(!sea) return yield next
+		if(!sea) return await next()
 
 		let user = ctx.session.user
 		ctx.local.user = user
@@ -107,11 +107,11 @@ exports.post = async (ctx, next) => {
 			css: 1
 			,script: 1
 		})
-		let post = yield getPosts(sea)
+		let post = await getPosts(sea)
 
-		if(!post) return yield next
+		if(!post) return await next()
 
-		var obj = yield getCats()
+		var obj = await getCats()
 
 		_.extend(ctx.local, {
 			post: post
@@ -141,10 +141,10 @@ exports.cat = async (ctx, next) => {
 		let params = ctx.params
 		let query = ctx.query
 		let sea = tools.createQueryObj(params, [':_id', ':id', ':slug'])
-		if(!sea) return yield next
+		if(!sea) return await next()
 
-		let catObj = yield getCats(sea)
-		if(!catObj) return yield next
+		let catObj = await getCats(sea)
+		if(!catObj) return await next()
 
 		let page = query.page || 1
 		page = parseInt(page, 10) || 1
@@ -154,14 +154,14 @@ exports.cat = async (ctx, next) => {
 		let user = ctx.session.user
 		ctx.local.user = user
 
-		let obj = yield getPosts({
+		let obj = await getPosts({
 			page: page
 			,pageSize: pageSize
 			,cat_id: catObj._id
 			,fields: basicPostFields
 		})
 
-		var objc = yield getCats()
+		var objc = await getCats()
 
 		let pagerHtml = pager.render({
 			page: page
@@ -210,14 +210,14 @@ exports.search = async (ctx, next) => {
 		let user = ctx.session.user
 		ctx.local.user = user
 
-		let obj = yield getPosts({
+		let obj = await getPosts({
 			page: page
 			,pageSize: pageSize
 			,title: query.title
 			,fields: basicPostFields
 		})
 
-		var objc = yield getCats()
+		var objc = await getCats()
 
 		let pagerHtml = pager.render({
 			page: page
