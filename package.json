@@ -1,7 +1,7 @@
 {
   "name": "jade-press",
   "description": "cms based on mongodb, nodejs, koa, vue and more",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "main": "app/start.js",
   "scripts": {
     "test": "npm run e2e",
@@ -43,11 +43,11 @@
     "multiparty": "^4.1.2",
     "nodemailer": "^2.3.2",
     "request": "^2.72.0",
-    "s-validater": "^2.2.0",
+    "s-validater": "*",
     "shortid": "^2.2.6",
     "stylus": "^0.54.3",
     "useragent": "^2.1.9",
-    "zpager": "^1.1.0"
+    "zpager": "*"
   },
   "devDependencies": {
     "chromedriver": "^2.21.2",
