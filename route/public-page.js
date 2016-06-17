@@ -8,19 +8,19 @@
 let publics = {}
 
 let _ = publics._ = require('lodash')
-,local = publics.local = require('../app/local')
-,setting = publics.setting = require('../app/setting')
-,tools = publics.tools = require('../lib/tools')
-,log = publics.log = tools.log
-,err = publics.err = tools.err
-,db = publics.db = require('../lib/db').db
+,local  = require('../app/local')
+,setting = require('../app/setting')
+,tools = require('../lib/tools')
+,log = tools.log
+,err = tools.err
+,db = require('../lib/db').db
 ,path = require('path')
 ,baseThemeViewPath = publics.baseThemeViewPath = setting.theme.path?setting.theme.path + '/views/':
 			process.cwd() + '/node_modules/' + setting.theme + '/views/'
-,Pager = publics.Pager = new require('zpager')
-,pager = publics.pager = new Pager()
-,getCats = publics.getCats = require('../lib/cat').publics.getCats
-,getPosts = publics.getPosts = require('../lib/post').publics.getPosts
+,Pager = new require('zpager')
+,pager = new Pager()
+,getCats = require('../lib/cat').publics.getCats
+,getPosts = require('../lib/post').publics.getPosts
 ,fs = require('fs')
 ,plugins = require('../lib/plugins').plugins
 ,buildThemeRes = tools.buildThemeRes
