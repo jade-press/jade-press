@@ -191,11 +191,11 @@
 					,':_id': function(url, item) {
 						return url.replace( ':_id',  item._id)
 					}
-					,':catSlug': function(url, item) {
-						return url.replace( ':catSlug',  item.cats[0].slug)
+					,':catslug': function(url, item) {
+						return url.replace( ':catslug',  item.cats[0].slug)
 					}
-					,':catId': function(url, item) {
-						return url.replace( ':catId',  item.cats[0].id)
+					,':catid': function(url, item) {
+						return url.replace( ':catid',  item.cats[0].id)
 					}
 					,':cat_id': function(url, item) {
 						return url.replace( ':cat_id',  item.cats[0]._id)
@@ -408,7 +408,7 @@
 					
 				}, function(res) {
 					pi.onSubmit2 = false
-					$alert('add cat failed', 'danger', '#msg1')
+					$alert('add post failed', 'danger', '#msg1')
 				})
 
 				//end func
