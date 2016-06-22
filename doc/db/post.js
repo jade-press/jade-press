@@ -52,6 +52,7 @@ module.exports = {
 	,html: {
 		type: 'string'
 		,required: true
+		,default: 'emptyStringPromise'
 	}
 	,style: {
 		type: 'string'
@@ -62,6 +63,7 @@ module.exports = {
 	,css: {
 		type: 'string'
 		,required: true
+		,default: 'emptyStringPromise'
 	}
 	,script: {
 		type: 'string'
