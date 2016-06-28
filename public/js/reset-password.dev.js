@@ -57,14 +57,16 @@
 						$alert(data.errorMsg || data.errs.join(';'), 'danger', '#msg2')
 						
 					} else {
+
 						pi.onRedirect = true
 						pi.formData1 = {}
 						pi.setPristine()
 						pi.hideForm = true
-						$alert('reset password done', 'success', '#msg2', 10000)
+						$alert('reset password done, redirecting...', 'success', '#msg2', 10000)
 						setTimeout(function() {
 							location.href = data.redirect || h5.host
-						}, 3000)
+						}, 1500)
+
 					}
 					
 				}, function(res) {
