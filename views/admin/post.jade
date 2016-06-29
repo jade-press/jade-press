@@ -273,9 +273,15 @@ include ../parts/head2
 include ../parts/footer-js
 script.
 	//todo add cats links, tag links...
-	h5.routes = {}
-	h5.routes.post = '#{publicRoute.post}'
-	h5.access = !{JSON.stringify(user.group.access)}
+	(function() {
+		window.h5.routes = {}
+		window.h5.routes.post = '#{publicRoute.post}'
+		window.h5.access = !{JSON.stringify(user.group.access)}
+		var exports = {}
+		exports.replace = !{serialize(replace)}
+		window.h5.createUrl = !{serialize(createUrl)}
+	}())
+
 script(src='#{cdn}/browser-md5-file/dist/browser-md5-file.min.js')
 script(src='#{cdn}/blueimp-file-upload/js/vendor/jquery.ui.widget.js')
 script(src='#{cdn}/blueimp-file-upload/js/jquery.fileupload.js')

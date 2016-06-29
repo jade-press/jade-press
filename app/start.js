@@ -109,7 +109,6 @@ exports.start = function() {
 		,debug: false
 		,pretty: false
 		,compileDebug: local.env !== 'production'
-		,locals: { _:_ }
 		//basedir: 'path/for/jade/extends',
 		,noCache: local.env !== 'production'
 	})
