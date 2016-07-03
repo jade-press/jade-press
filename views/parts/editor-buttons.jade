@@ -4,9 +4,9 @@ mixin editorButtons(editorId)
 			button.btn.btn-warning.je-i(type='button', @click='updateEditor("je-paired-tag", "i", "#{editorId}")') i
 			button.btn.btn-warning.je-b(type='button', @click='updateEditor("je-paired-tag", "b", "#{editorId}")') b
 			button.btn.btn-info.je-untab(type='button', @click='updateEditor("je-untab", "#{editorId}")')
-				span.icon-left-dir
+				span.icon !{icons['left-dir']}
 			button.btn.btn-info.je-tab(type='button', @click='updateEditor("je-tab", "#{editorId}")')
-				span.icon-right-dir
+				span.icon !{icons['right-dir']}
 
 		.btn-group.btn-group-sm
 			button.btn.btn-danger.preview-content(type='button', @click='previewContent("#{editorId}")')

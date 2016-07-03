@@ -144,7 +144,7 @@ include ../parts/head2
 													label
 														|stylus 
 														a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
-															span.icon-help-circled
+															span.icon !{icons['help-circled']}
 													div(name='style', v-form-ctrl='formData3.style', maxlength=5000)
 														jadeeditor(:content.sync='formData3.style', :rows='rows', :id='editor3style')
 													div(v-show='form3.style.$dirty && form3.style.$invalid')
@@ -156,9 +156,9 @@ include ../parts/head2
 
 														span.style-control-msg(v-show='validateStyleMsg3.hasResult')
 															span.text-success(v-show='validateStyleMsg3.pass')
-																span.icon-ok-circled
+																span.icon !{icons['ok-circled']}
 															span.text-danger(v-show='!validateStyleMsg3.pass')
-																span.icon-cancel-circled
+																span.icon !{icons['cancel-circled']}
 																span {{validateStyleMsg3.msg}}
 
 												.form-group
@@ -236,7 +236,7 @@ include ../parts/head2
 										label
 											|stylus 
 											a(href='http://styleus-lang.com/', target='_blank', title='what is styleus')
-												span.icon-help-circled
+												span.icon !{icons['help-circled']}
 										div(name='style', v-form-ctrl='formData2.style', maxlength=5000)
 											jadeeditor(:content.sync='formData2.style', :rows='rows', :id='editor3style')
 										div(v-show='form2.style.$dirty && form2.style.$invalid')
@@ -248,9 +248,9 @@ include ../parts/head2
 
 											span.style-control-msg(v-show='validateStyleMsg2.hasResult')
 												span.text-success(v-show='validateStyleMsg2.pass')
-													span.icon-ok-circled
+													span.icon !{icons['ok-circled']}
 												span.text-danger(v-show='!validateStyleMsg2.pass')
-													span.icon-cancel-circled
+													span.icon !{icons['cancel-circled']}
 													span {{validateStyleMsg2.msg}}
 
 									.form-group.js-control

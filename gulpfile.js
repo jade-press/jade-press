@@ -3,6 +3,8 @@
 
 let
 ugly = require('gulp-uglify')
+,fs = require('fs')
+,path = require('path')
 ,gulp = require('gulp')
 ,watch = require('gulp-watch')
 ,plumber = require('gulp-plumber')
@@ -68,6 +70,30 @@ gulp.task('ugly', function() {
 
 })
 
+gulp.task('svg', function() {
+
+
+	const reader = require('svg-reader')
+	const resolve = path.resolve
+	const iconsPath = resolve(__dirname, 'public/font/jade-press.svg')
+	var icons = reader( iconsPath )
+
+	var iconsObj = Object.keys(icons).reduce(function(prev, iconName) {
+		prev[iconName] = icons[iconName].svg
+		return prev
+	}, {})
+
+	var str = JSON.stringify(iconsObj)
+
+	var localStr = fs.readFileSync('app/local.js', 'utf-8')
+	localStr = localStr.replace(/\/\/icons\s+.+\s+\/\/icons/, '//icons\n' + str + '\n\t\t//icons')
+
+	fs.writeFileSync('app/local.js', localStr)
+
+
+})
+
+
 gulp.task('ugly-vender', function() {
 
 	onces.forEach(function(fpath) {
@@ -93,6 +119,10 @@ gulp.task('watch',  function () {
 
 	watch(jsFolder + '/*.dev.js', function() {
 		runSequence('ugly')
+	})
+
+	watch('./public/font/*.svg', function() {
+		runSequence('svg')
 	})
 
 })

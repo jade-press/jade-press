@@ -6,7 +6,7 @@ mixin postFile(fid)
 		label
 			|content( jade(pug) template
 			a(href='http://jade-lang.com/', target='_blank', title='what is jade(pug)')
-				span.icon-help-circled
+				span.icon !{icons['help-circled']}
 			|)
 
 		div(class='files-control#{fid}')
@@ -19,7 +19,7 @@ mixin postFile(fid)
 						|{{formData#{fid}.featuredFile._id}}.{{formData#{fid}.featuredFile.ext}}
 						span.label.label-default featured
 						a.pull-xs-right.text-muted.unset-featured(title='unset featured file', href='#', @click.prevent='unsetFeatured(formData#{fid})')
-							i.icon-cancel-circled
+							i.icon !{icons['cancel-circled']}
 					.img(v-if='isImg(formData#{fid}.featuredFile)')
 						a(:href='createImgSrc(formData#{fid}.featuredFile)', target='_blank')
 							img(:src='createImgSrc(formData#{fid}.featuredFile)', alt='formData#{fid}.featuredFile.filename', height=30)
@@ -52,14 +52,14 @@ mixin postFile(fid)
 								span.label.label-default(v-show='f._id === formData#{fid}.featuredFile._id') featured
 
 								a.m-x-1(href='#', @click.prevent='remove(f, formData#{fid}.files)')
-									i.icon-cancel-circled
+									i.icon !{icons['cancel-circled']}
 									span delete
 
 								a.m-x-1.insert-file(href='#', @click.prevent='insertFile(f, "#{eid}")')
 									span insert
 
 								a.m-x-1.set-file(href='#', @click.prevent='setAsFeatured(f, formData#{fid})')
-									i.icon-paper-plane
+									i.icon !{icons['paper-plane']}
 									span set as featured
 
 							.img(v-if='isImg(f)')
@@ -91,7 +91,7 @@ mixin postFile(fid)
 									span insert
 
 								a.m-x-1.set-file(href='#', @click.prevent='setAsFeatured(f, formData#{fid})')
-									i.icon-paper-plane
+									i.icon !{icons['paper-plane']}
 									span set as featured
 
 							.img(v-if='isImg(f)')
