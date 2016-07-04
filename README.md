@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://jade-press.github.io/jade-press.org/public/jade-press-logo.png", alt="" />
+    <img src="//jade-press.github.io/jade-press.org/public/jade-press-logo.png", alt="" />
 </h1>
 
 # jade-press
