@@ -101,12 +101,18 @@ example:
 
 ## theme
 check the example:
+
 [https://github.com/jade-press/jadepress-theme-pi](https://github.com/jade-press/jadepress-theme-pi)
+
+[https://github.com/jade-press/jadepress-react-spa](https://github.com/jade-press/jadepress-react-spa)
 
 ## plugin
 check the example:
 [https://github.com/jade-press/jadepress-plugin-qr](https://github.com/jade-press/jadepress-plugin-qr)
 
+[https://github.com/jade-press/jadepress-redis](https://github.com/jade-press/jadepress-redis)
+
+[https://github.com/jade-press/jadepress-static](https://github.com/jade-press/jadepress-static)
 ## todo
 
 visit [issues](https://github.com/jade-press/jade-press/issues)
