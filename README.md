@@ -106,7 +106,7 @@ check the examples:
 
 [react spa theme(react, redux, history api)](https://github.com/jade-press/jadepress-react-spa)
 
-[vue spa theme(vuex, vue-router)](https://github.com/jade-press/jadepress-vue-spa)
+[vue spa theme(vue1.x, vuex, vue-router)](https://github.com/jade-press/jadepress-vue-spa)
 
 ## plugin
 check the example:
