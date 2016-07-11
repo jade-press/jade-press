@@ -99,14 +99,14 @@ example:
 
 [https://github.com/jade-press/blog.jade-press.org](https://github.com/jade-press/blog.jade-press.org)
 
-## theme
-check the example:
+## themes
+check the examples:
 
-[https://github.com/jade-press/jadepress-theme-pi](https://github.com/jade-press/jadepress-theme-pi)
+[basic theme: jadepress-theme-pi](https://github.com/jade-press/jadepress-theme-pi)
 
-[https://github.com/jade-press/jadepress-react-spa](https://github.com/jade-press/jadepress-react-spa)
+[react spa theme(react, redux, history api)](https://github.com/jade-press/jadepress-react-spa)
 
-[https://github.com/jade-press/jadepress-vue-spa](https://github.com/jade-press/jadepress-vue-spa)
+[vue spa theme(vuex, vue-router)](https://github.com/jade-press/jadepress-vue-spa)
 
 ## plugin
 check the example:
