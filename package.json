@@ -1,7 +1,7 @@
 {
   "name": "jade-press",
   "description": "cms based on mongodb, nodejs, koa, vue and more",
-  "version": "0.14.11",
+  "version": "0.14.12",
   "main": "app/start.js",
   "scripts": {
     "test": "npm run e2e",
