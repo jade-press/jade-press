@@ -57,15 +57,14 @@ exports.middlewares = [
 		maxAge: oneYear
 	})
 
-	,serve( process.cwd() + '/bower_components', {
+	,mount('/_bc', serve(process.cwd() + '/bower_components', {
 		maxAge: oneYear
-	})
+	}))
 
 ]
 
 
 exports.start = function() {
-
 
 	let
 
