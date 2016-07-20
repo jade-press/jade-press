@@ -109,7 +109,8 @@ check the examples:
 [vue spa theme(vue1.x, vuex, vue-router)](https://github.com/jade-press/jadepress-vue-spa)
 
 ## plugin
-check the example:
+check the examples:
+
 [https://github.com/jade-press/jadepress-plugin-qr](https://github.com/jade-press/jadepress-plugin-qr)
 
 [https://github.com/jade-press/jadepress-redis](https://github.com/jade-press/jadepress-redis)
