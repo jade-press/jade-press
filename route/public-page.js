@@ -5,9 +5,10 @@
  * catogory
  */
 
-let publics = {}
+const
+publics = {}
 
-let _ = publics._ = require('lodash')
+const _ = publics._ = require('lodash')
 ,local  = require('../app/local')
 ,setting = require('../app/setting')
 ,tools = require('../lib/tools')
@@ -27,7 +28,7 @@ let _ = publics._ = require('lodash')
 
 exports.publicExports = publics
 
-var basicPostFields = {
+let basicPostFields = {
 	id: 1
 	,desc: 1
 	,cats: 1
@@ -67,7 +68,7 @@ exports.home = function* (next) {
 			,url: this.path
 		})
 
-		var objc = yield getCats()
+		let objc = yield getCats()
 
 		_.extend(this.local, {
 			pager: pagerHtml
@@ -111,7 +112,7 @@ exports.post = function* (next) {
 
 		if(!post) return yield next
 
-		var obj = yield getCats()
+		let obj = yield getCats()
 
 		_.extend(this.local, {
 			post: post
@@ -161,7 +162,7 @@ exports.cat = function* (next) {
 			,fields: basicPostFields
 		})
 
-		var objc = yield getCats()
+		let objc = yield getCats()
 
 		let pagerHtml = pager.render({
 			page: page
@@ -217,7 +218,7 @@ exports.search = function* (next) {
 			,fields: basicPostFields
 		})
 
-		var objc = yield getCats()
+		let objc = yield getCats()
 
 		let pagerHtml = pager.render({
 			page: page

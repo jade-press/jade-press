@@ -1,7 +1,7 @@
 
 'use strict'
 
-let
+const
 _ = require('lodash')
 ,publics = {}
 ,setting = require('../app/setting')
@@ -9,10 +9,11 @@ _ = require('lodash')
 ,tools = publics.tools = require('../lib/tools')
 ,ua = require('../lib/ua')
 ,Router = require('koa-router')
-,apis = publics.apis = require('../doc/api').accesses
 ,publicApis = publics.publicApis = require('../doc/public-page').apis
 ,path = require('path')
 ,plugins = require('../lib/plugins').plugins
+
+let apis = publics.apis = require('../doc/api').accesses
 
 let route = new Router()
 
