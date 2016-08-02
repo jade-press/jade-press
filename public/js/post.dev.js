@@ -112,7 +112,7 @@
 				if(onload) return
 				onload = true
 
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/post/preview-html'
 					,data: body
@@ -217,7 +217,7 @@
 				onload = true
 				var style = pi['formData' + tail].style
 
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/post/validate-style'
 					,data: {
@@ -258,7 +258,7 @@
 				if(pi.onloadPost) return
 				pi.onloadPost = true
 
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/post/get'
 					,data: {
@@ -339,7 +339,7 @@
 				if(pi.onSubmit2) return
 				if(pi.form2.$invalid) return this.setDirty()
 				pi.onSubmit2 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/post/add'
 					,data: pi.formData2
@@ -372,7 +372,7 @@
 				if(pi.form3.$invalid) return
 				pi.onSubmit3 = true
 				var url = pi.getUrl('update')
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: url
 					,data: pi.formData3
@@ -402,7 +402,7 @@
 				var pi = this
 
 				var url = pi.getUrl('update')
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: url
 					,data: {
@@ -437,7 +437,7 @@
 				}
 				pi.onDel = true
 				var url = pi.getUrl('del')
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: url
 					,data: data
@@ -468,7 +468,7 @@
 				if(pi.form1.$invalid) return
 
 				pi.onSubmit1 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/post/get'
 					,data: pi.formData1
@@ -496,7 +496,7 @@
 				if(pi.onloadCats) return
 
 				pi.onloadCats = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/cat/get'
 					,data: {
@@ -537,7 +537,7 @@
 				if(pi.onloadFiles) return
 
 				pi.onloadFiles = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/file/get'
 					,data: this.formDataf
@@ -564,7 +564,7 @@
 			,md5check: function() {
 				var pi = this
 
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/file/get'
 					,data: this.formDataf
@@ -659,7 +659,7 @@
 
 					var f = pi.findFile(file.md5, pi.files, wrap)
 					if(f) return resolve(false)
-					$.ajax({
+					$.ajax2({
 						type: 'post'
 						,url: h5.host + '/api/file/get'
 						,data: {

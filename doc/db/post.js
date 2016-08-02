@@ -38,7 +38,6 @@ module.exports = {
 	}
 	,desc: {
 		type: 'string'
-		,minLen: 1
 		,maxLen: 300
 		,default: 'emptyStringPromise'
 		,required: true

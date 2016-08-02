@@ -129,7 +129,7 @@
 				if(pi.onSubmit2) return
 				if(pi.form2.$invalid) return this.setDirty()
 				pi.onSubmit2 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/group/add'
 					,data: pi.formData2
@@ -160,7 +160,7 @@
 				if(pi.onSubmit3) return
 				if(pi.form3.$invalid) return
 				pi.onSubmit3 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/group/update'
 					,data: pi.formData3
@@ -193,7 +193,7 @@
 					_id: this.currentDelItem._id
 				}
 				pi.onDel = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/group/del'
 					,data: data
@@ -223,7 +223,7 @@
 				if(pi.form1.$invalid) return
 
 				pi.onSubmit1 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/group/get'
 					,data: pi.formData1

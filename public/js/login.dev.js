@@ -40,7 +40,7 @@
 				if(pi.form1.$invalid) return this.setDirty()
 				if(!pi.form1.$invalid) {
 					pi.onSubmit = true
-					$.ajax({
+					$.ajax2({
 						type: 'post'
 						,url: h5.host + '/login'
 						,data: pi.formData

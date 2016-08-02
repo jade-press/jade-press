@@ -71,7 +71,7 @@
 				}
 				pi.onDel = true
 				var url = h5.host + '/api/file/del'
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: url
 					,data: data
@@ -102,7 +102,7 @@
 				if(pi.form1.$invalid) return
 
 				pi.onSubmit1 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/api/file/get'
 					,data: pi.formData1
@@ -153,7 +153,7 @@
 
 					var f = pi.findFile(file.md5, pi.list)
 					if(f) return resolve(false)
-					$.ajax({
+					$.ajax2({
 						type: 'post'
 						,url: h5.host + '/api/file/get'
 						,data: {

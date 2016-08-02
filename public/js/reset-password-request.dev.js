@@ -39,7 +39,7 @@
 				if(pi.onSubmit1) return
 				if(pi.form1.$invalid) return this.setDirty()
 				pi.onSubmit1 = true
-				$.ajax({
+				$.ajax2({
 					type: 'post'
 					,url: h5.host + '/reset-password-apply'
 					,data: pi.formData1
