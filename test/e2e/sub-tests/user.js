@@ -52,18 +52,12 @@ module.exports = function($) {
         .assert.elementCount('.list-group-item', 1)
 
     //group select no result
-    .click('form[name=form1] select')
-        .keys($.Keys.ARROW_DOWN)
-        .keys($.Keys.ARROW_DOWN)
-        .keys($.Keys.ENTER)
+    .setValue('form[name=form1] select', 'editor')
         .click('form[name=form1] button[type="submit"]')
         .pause(400)
         .assert.elementCount('.list-group-item', 0)
 
-    //group select 1 result
-    .click('form[name=form1] select')
-        .keys($.Keys.ARROW_UP)
-        .keys($.Keys.ENTER)
+    .setValue('form[name=form1] select', 'admin')
         .click('form[name=form1] button[type="submit"]')
         .pause(400)
         .assert.elementCount('.list-group-item', 1)
