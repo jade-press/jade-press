@@ -38,7 +38,6 @@ cms based on mongodb, nodejs, koa, vue and more
 git clone git@github.com:jade-press/jade-press.git
 cd jade-press
 npm install
-bower install
 cp config-sample.js config.js
 
 # read and edit config.js to define all the settings 
