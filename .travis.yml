@@ -34,7 +34,7 @@ before_install:
   - sudo dpkg -i google-chrome*.deb
   - sudo apt-get install -y mongodb-org
 before_script:
-  - sleep 15
+  - sudo service mongod start
   - npm install -g gulp
   - cp config-sample.js config.js
   - gulp install
