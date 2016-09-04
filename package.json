@@ -78,7 +78,7 @@
         "nightwatch-custom-commands-assertions": "1.0.5",
         "request": "^2.72.0",
         "run-sequence": "1.1.5",
-        "selenium-server": "2.53.1",
+        "selenium-server": "2.53.1"
     },
     "engines": {
         "node": ">=6.0.0"
