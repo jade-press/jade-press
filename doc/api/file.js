@@ -13,7 +13,7 @@ exports['/api/file/add'] = {
 
 exports['/api/file/get'] = {
 	url: '/api/file/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get files'
 	,desc: ''
 	,lib: 'lib/file'

@@ -12,7 +12,7 @@ exports['/api/option/update'] = {
 
 exports['/api/option/get'] = {
 	url: '/api/option/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get option'
 	,desc: ''
 	,lib: 'lib/option'
@@ -21,7 +21,7 @@ exports['/api/option/get'] = {
 
 exports['/api/option/get-system-info'] = {
 	url: '/api/option/get-system-info'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get system info'
 	,desc: ''
 	,lib: 'lib/option'

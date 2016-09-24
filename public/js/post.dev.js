@@ -259,7 +259,7 @@
 				pi.onloadPost = true
 
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/post/get'
 					,data: {
 						_id: item._id
@@ -469,7 +469,7 @@
 
 				pi.onSubmit1 = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/post/get'
 					,data: pi.formData1
 				})
@@ -497,7 +497,7 @@
 
 				pi.onloadCats = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/cat/get'
 					,data: {
 						parentId: '__root_cat'
@@ -538,7 +538,7 @@
 
 				pi.onloadFiles = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/file/get'
 					,data: this.formDataf
 				})
@@ -565,7 +565,7 @@
 				var pi = this
 
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/file/get'
 					,data: this.formDataf
 				})
@@ -660,7 +660,7 @@
 					var f = pi.findFile(file.md5, pi.files, wrap)
 					if(f) return resolve(false)
 					$.ajax2({
-						type: 'post'
+						type: 'get'
 						,url: h5.host + '/api/file/get'
 						,data: {
 							md5: file.md5

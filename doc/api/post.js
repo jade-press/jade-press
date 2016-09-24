@@ -49,7 +49,7 @@ exports['/api/post/update-self'] = {
 
 exports['/api/post/get'] = {
 	url: '/api/post/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get post'
 	,desc: ''
 	,lib: 'lib/post'

@@ -59,7 +59,7 @@ exports['/api/user/change-password'] = {
 
 exports['/api/user/get'] = {
 	url: '/api/user/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get user'
 	,desc: ''
 	,lib: 'lib/user'

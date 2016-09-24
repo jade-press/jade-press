@@ -42,7 +42,7 @@ include ../parts/head2
 					include ../parts/footer-html
 
 include ../parts/footer-js
-script(src='#{cdn}/google-code-prettify/bin/prettify.min.js')
+script(src='#{cdn}/_bc/google-code-prettify/bin/prettify.min.js')
 script.
 
 	;(function () {
@@ -59,8 +59,8 @@ script.
 
 					var pi = this
 
-					$.ajax({
-						type: 'post'
+					$.ajax2({
+						type: 'get'
 						,url: h5.host + '/api/option/get-system-info'
 						,data: {}
 					})

@@ -44,7 +44,9 @@ $(window).on('resize', checkNavBar)
 checkNavBar()
 
 $.ajax2 = function(opt) {
-	if(opt.data) opt.data.csrf = window.h5.csrf
+	opt.headers = {
+		csrf: window.h5.csrf
+	}
 	return $.ajax(opt)
 }
 

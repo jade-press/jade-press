@@ -24,7 +24,6 @@ exports.middlewares = publics.middlewares = [
 	,ua.ua
 	,tools.loginCheck
 	,tools.authCheck
-	,tools.setNoCache
 
 ]
 

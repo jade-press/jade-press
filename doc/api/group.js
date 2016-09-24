@@ -31,7 +31,7 @@ exports['/api/group/update'] = {
 
 exports['/api/group/get'] = {
 	url: '/api/group/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get group'
 	,desc: ''
 	,lib: 'lib/group'
@@ -40,7 +40,7 @@ exports['/api/group/get'] = {
 
 exports['/api/access/get'] = {
 	url: '/api/access/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get access controls url'
 	,desc: ''
 	,lib: 'lib/group'

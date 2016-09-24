@@ -222,7 +222,7 @@
 
 				pi.onSubmit1 = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/user/get'
 					,data: pi.formData1
 				})
@@ -250,7 +250,7 @@
 
 				pi.onloadGroup = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/group/get'
 					,data: {
 						pageSize: 1000

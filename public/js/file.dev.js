@@ -103,7 +103,7 @@
 
 				pi.onSubmit1 = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/file/get'
 					,data: pi.formData1
 				})
@@ -154,7 +154,7 @@
 					var f = pi.findFile(file.md5, pi.list)
 					if(f) return resolve(false)
 					$.ajax2({
-						type: 'post'
+						type: 'get'
 						,url: h5.host + '/api/file/get'
 						,data: {
 							md5: file.md5

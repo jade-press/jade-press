@@ -31,7 +31,7 @@ exports['/api/cat/update'] = {
 
 exports['/api/cat/get'] = {
 	url: '/api/cat/get'
-	,method: 'post'
+	,method: 'get'
 	,name: 'get category'
 	,desc: ''
 	,lib: 'lib/cat'

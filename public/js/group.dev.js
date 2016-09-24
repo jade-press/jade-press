@@ -224,7 +224,7 @@
 
 				pi.onSubmit1 = true
 				$.ajax2({
-					type: 'post'
+					type: 'get'
 					,url: h5.host + '/api/group/get'
 					,data: pi.formData1
 				})
