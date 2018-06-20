@@ -1,7 +1,5 @@
 <h1 align="center">
-    <a href="http://jade-press.org">
-        <img src="https://raw.githubusercontent.com/jade-press/jade-press.org/master/public/jade-press-logo.png", alt="" />
-    </a>
+  <img src="https://raw.githubusercontent.com/jade-press/jade-press.org/master/public/jade-press-logo.png", alt="" />
 </h1>
 
 # jade-press
